@@ -1,6 +1,6 @@
 # Website Deployment
 
-This website is a Vite + React build deployed with GitHub Actions.
+This website is a Vite + React build and can be deployed using GitHub Pages or Netlify.
 
 ## Build locally
 

@@ -1,6 +1,12 @@
+import { useEffect } from 'react';
+
+const EVENTBRITE_URL = import.meta.env.VITE_EVENTBRITE_URL || 'https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-000000000000';
+const EVENTBRITE_EVENT_ID = import.meta.env.VITE_EVENTBRITE_EVENT_ID || '';
+const LUMA_URL = import.meta.env.VITE_LUMA_URL || 'https://lu.ma/golden-eagle-cyber-defense-summit-2026';
+
 const registrationLinks = [
-  { label: 'Register on Eventbrite', href: 'https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-000000000000' },
-  { label: 'Register on Luma', href: 'https://lu.ma/golden-eagle-cyber-defense-summit-2026' },
+  { label: 'Register on Eventbrite', href: EVENTBRITE_URL },
+  { label: 'Register on Luma', href: LUMA_URL },
 ];
 
 const sponsorTiers = [
@@ -45,6 +51,32 @@ function createTopicArt(seedText) {
 function App() {
   const agendaText = `Golden Eagle Cyber Defense Summit 2026\n\n8:00 AM - Registration and networking\n9:00 AM - Opening keynote\n10:30 AM - Breakout tracks\n12:00 PM - Sponsor expo lunch\n1:30 PM - Live incident response simulation\n3:30 PM - Threat intel lightning talks\n5:00 PM - Closing remarks`;
 
+  useEffect(() => {
+    if (!EVENTBRITE_EVENT_ID) {
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://www.eventbrite.com/static/widgets/eb_widgets.js';
+    script.async = true;
+    script.onload = () => {
+      if (window?.EBWidgets?.createWidget) {
+        window.EBWidgets.createWidget({
+          widgetType: 'checkout',
+          eventId: EVENTBRITE_EVENT_ID,
+          modal: true,
+          modalTriggerElementId: 'eventbrite-widget-trigger',
+        });
+      }
+    };
+
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   const copyAgenda = async () => {
     await navigator.clipboard.writeText(agendaText);
     alert('Agenda copied to clipboard!');
@@ -64,6 +96,11 @@ function App() {
               {link.label}
             </a>
           ))}
+          {EVENTBRITE_EVENT_ID ? (
+            <button id="eventbrite-widget-trigger" className="rounded-full border border-summit-gold px-5 py-3 font-semibold text-summit-gold hover:bg-summit-gold hover:text-summit-dark">
+              Eventbrite Checkout
+            </button>
+          ) : null}
           <button onClick={copyAgenda} className="rounded-full border border-slate-500 px-5 py-3 font-semibold hover:border-summit-gold">
             Copy Agenda
           </button>
