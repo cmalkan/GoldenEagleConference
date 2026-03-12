@@ -31,15 +31,23 @@
       .tile h3{margin:0 0 4px;font-size:19px;color:#183f70} .tile p{margin:0;font-size:12px;color:#5f738c}
 
       .topics{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px}
-      .topic{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px}
+      .topic{position:relative;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 10px 24px}
+      .topic.pending-topic{background:#f3f5f8;border-color:#d8e0ea}
       .topic-head{display:flex;justify-content:space-between;align-items:center;background:#1a4c89;color:#dbe8fa;border-radius:6px;padding:6px 8px;font-size:11px;font-weight:700}
       .badge{font-size:10px;padding:2px 6px;border-radius:999px}.ok{background:#e2f6e8;color:#1f7d3e}.pending{background:#edf0f4;color:#6f7c8c}
       .topic h4{margin:8px 0 5px;font-size:36px;color:#173c6b} .topic p{margin:0;font-size:12px;color:#5d738d}
+      .pending-note{position:absolute;right:10px;bottom:8px;font-size:10px;color:#7b8796;font-weight:700}
 
-      .legend{display:flex;gap:8px;align-items:center;margin:8px 0}
-      .legend .ok,.legend .pending{font-size:11px}
-      table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
-      th,td{padding:7px 8px;border-bottom:1px solid #e2eaf3;text-align:left;font-size:12px} th{background:#eef4fb;color:#1f446f}
+      .agenda-warning{margin:8px 0 10px;padding:8px 10px;border-radius:8px;background:#ffe7e7;border:1px solid #efb1b1;color:#b01717;font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.03em}
+      .agenda-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+      .agenda-tile{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px}
+      .agenda-tile h3{margin:0 0 6px;font-size:18px;color:#183f70}
+      .agenda-table{width:100%;border-collapse:collapse}
+      .agenda-table th,.agenda-table td{padding:6px 4px;border-bottom:1px solid #e2eaf3;text-align:left;font-size:12px;vertical-align:top}
+      .agenda-table th{color:#1f446f;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+      .agenda-table td:last-child{color:#405b78}
+      .benefit-list{margin:0;padding-left:17px;color:#405b78;font-size:12px}
+      .benefit-list li{margin:0 0 7px}
       .u{color:#778393}
 
       .pricing{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
@@ -57,16 +65,18 @@
 
       body.dark{background:#0b1320;color:#d8e6f8}
       body.dark .card,body.dark .tile,body.dark .topic,body.dark .price,body.dark .selected,body.dark .form,body.dark .footer-note{background:#13243a;border-color:#2c4563;color:#d8e6f8}
-      body.dark .small,body.dark .tile p,body.dark .topic p,body.dark .u{color:#a7bed9}
-      body.dark h2,body.dark .tile h3,body.dark .topic h4{color:#e8f3ff}
+      body.dark .small,body.dark .tile p,body.dark .topic p,body.dark .u,body.dark .agenda-table td:last-child{color:#a7bed9}
+      body.dark h2,body.dark .tile h3,body.dark .topic h4,body.dark .agenda-tile h3{color:#e8f3ff}
+body.dark .agenda-warning{background:#3a171b;border-color:#6a2a34;color:#ff8585}
+body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c4563}
       body.dark table{background:#13243a;border-color:#2c4563}
       body.dark th{background:#1b3554;color:#e5f0ff}
       body.dark td{border-bottom-color:#2c4563;color:#d8e6f8}
       body.dark .btn-blue{background:#3b6fad;color:#f0f6ff}
       body.dark .logo{background:#0c2d53}
 
-      @media (max-width:900px){h1{font-size:38px}.benefits,.topics,.pricing,.sgrid,.frow,.logos{grid-template-columns:1fr 1fr}}
-      @media (max-width:640px){h1{font-size:32px}.benefits,.topics,.pricing,.sgrid,.frow,.logos{grid-template-columns:1fr}}
+      @media (max-width:900px){h1{font-size:38px}.benefits,.topics,.pricing,.sgrid,.frow,.logos,.agenda-grid{grid-template-columns:1fr 1fr}}
+      @media (max-width:640px){h1{font-size:32px}.benefits,.topics,.pricing,.sgrid,.frow,.logos,.agenda-grid{grid-template-columns:1fr}}
     </style>
   </head>
   <body>
@@ -78,7 +88,7 @@
       <div class="hero">
         <div class="tag">Security for the Folks Conference</div>
         <h1>Midwest OT Cybersecurity Summit (MOCS)</h1>
-        <p class="subtitle">Hosted by Marquette University, this summit is built for all career classes focused on operational technology security—from students and career changers to plant engineers, SOC teams, OT defenders, and executive leaders protecting critical infrastructure.</p>
+        <p class="subtitle">Hosted by Marquette University, this summit is built for all career classes focused on manufacturing cybersecurity and Industrial Control Systems (ICS)—from students and career changers to plant engineers, SOC teams, OT defenders, and executive leaders.</p>
         <div class="meta"><span>🗓️ 12:00 PM - 5:00 PM</span><span>📍 Marquette University, Milwaukee</span><span>🎓 Earn CPE credits by attending sessions</span></div>
         <div class="actions"><a class="btn btn-gold" href="#register">Registration & Pricing</a><a class="btn btn-blue" href="#topics">Conference Topics</a><a class="btn btn-blue" href="#agenda">Draft Agenda</a><a class="btn btn-blue" href="#sponsor">Sponsor the Summit</a></div>
       </div>
@@ -87,10 +97,10 @@
     <main class="wrap">
       <section class="card">
         <h2>Why Attend MOCS?</h2>
-        <p class="small">A practical, community-driven OT cybersecurity conference for defenders, students, and hiring teams. OT means <strong>Operational Technology</strong>—industrial controls, plant-floor systems, and critical infrastructure environments.</p>
+        <p class="small">A practical, community-driven OT cybersecurity conference for defenders, students, and hiring teams. OT means <strong>Operational Technology</strong>, including manufacturing systems, industrial controls, and ICS environments across many sectors.</p>
         <div class="benefits">
           <article class="tile"><h3>🎓 Career Growth</h3><p>Resume workshops, mentor networking, and hiring-focused sessions.</p></article>
-          <article class="tile"><h3>🛡️ OT Hands-On Learning</h3><p>Real-world OT (Operational Technology) topics across presentation and lab tracks.</p></article>
+          <article class="tile"><h3>🛡️ OT Hands-On Learning</h3><p>Real-world OT and ICS topics across manufacturing, industrial control, and infrastructure environments.</p></article>
           <article class="tile"><h3>✅ CPE Credits</h3><p>Earn Continuing Professional Education credits through attendance.</p></article>
         </div>
       </section>
@@ -103,24 +113,55 @@
 
       <section id="agenda" class="card">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;"><h2 style="margin:0;">Conference Timetable (Parallel Tracks)</h2><button id="copy-agenda" class="btn btn-gold" type="button">Copy Timetable</button></div>
-        <p class="small">Parallel agenda by track. Additional session details are revealed on April 1st; unconfirmed items are greyed out.</p>
-        <div class="legend"><span class="badge ok">Confirmed</span><span class="badge pending">Unconfirmed (details reveal April 1st)</span></div>
-        <table>
-          <thead><tr><th>Time</th><th>Presentation Track</th><th>Lab Track</th><th>Career & Community Track</th></tr></thead>
-          <tbody>
-            <tr><td>11:30</td><td>People gather & check-in</td><td>—</td><td>—</td></tr>
-            <tr><td>12:00</td><td>Opening session</td><td>—</td><td>—</td></tr>
-            <tr><td>12:30</td><td>IT Risk Management</td><td>Pen Testing HW Device / GRC</td><td>Resume Workshop <span class="u">(Unconfirmed)</span></td></tr>
-            <tr><td>1:00</td><td>Network Security</td><td>Cyber Crime Scene <span class="u">(Unconfirmed)</span></td><td>Community Tables <span class="u">(Mixed)</span></td></tr>
-            <tr><td>1:30</td><td>AI Applications</td><td>CRT ISP Lab <span class="u">(Unconfirmed)</span></td><td>How to Land Jobs</td></tr>
-            <tr><td>2:00</td><td>Critical Infrastructure Security <span class="u">(Unconfirmed)</span></td><td>Hardware + Wi-Fi Hacking <span class="u">(Unconfirmed)</span></td><td>Career pathways Q&A <span class="u">(Unconfirmed)</span></td></tr>
-            <tr><td>2:30</td><td>Secure Development Lifecycle <span class="u">(Unconfirmed)</span></td><td>Lab office hours <span class="u">(Unconfirmed)</span></td><td>Mentor networking <span class="u">(Unconfirmed)</span></td></tr>
-            <tr><td>3:00</td><td>OT Cybersecurity Strategy <span class="u">(Unconfirmed)</span></td><td>Investigation workflow practice <span class="u">(Unconfirmed)</span></td><td>CPE guidance session</td></tr>
-            <tr><td>3:30</td><td>Cybersecurity for Industrial Protocols <span class="u">(Unconfirmed)</span></td><td>Lab continuation blocks <span class="u">(Unconfirmed)</span></td><td>Hiring manager AMA <span class="u">(Unconfirmed)</span></td></tr>
-            <tr><td>4:00</td><td>Cyber threats in job/client engagement</td><td>Lab results shareout</td><td>Community networking</td></tr>
-            <tr><td>4:45</td><td>Closing remarks</td><td>Close</td><td>Close</td></tr>
-          </tbody>
-        </table>
+        <p class="small">Three separate track tiles: presentation timetable, lab timetable, and career/community benefits.</p>
+        <div class="agenda-warning">⚠️ Working Version ONLY — Final timetable and speaker details will be revealed April 1st.</div>
+        <div class="agenda-grid">
+          <article class="agenda-tile">
+            <h3>Presentation Track</h3>
+            <table class="agenda-table">
+              <thead><tr><th>Time</th><th>Topic</th></tr></thead>
+              <tbody>
+                <tr><td>11:30</td><td>Check-in and gathering</td></tr>
+                <tr><td>12:00</td><td>Opening session</td></tr>
+                <tr><td>12:30</td><td>IT Risk Management + Network Security</td></tr>
+                <tr><td>1:30</td><td>AI Applications + Critical Infrastructure Session</td></tr>
+                <tr><td>2:30</td><td>Secure Development Lifecycle + OT Cybersecurity Strategy</td></tr>
+                <tr><td>3:30</td><td>Cybersecurity for Industrial Protocols + Job/Client Threats</td></tr>
+                <tr><td>4:45</td><td>Closing remarks</td></tr>
+              </tbody>
+            </table>
+          </article>
+          <article class="agenda-tile">
+            <h3>Lab Track (1-hour blocks)</h3>
+            <table class="agenda-table">
+              <thead><tr><th>Time</th><th>Lab Block</th></tr></thead>
+              <tbody>
+                <tr><td>11:30</td><td>No lab (check-in)</td></tr>
+                <tr><td>12:00</td><td>No lab (opening)</td></tr>
+                <tr><td>12:30 - 1:30</td><td>Pen Testing HW Device/GRC + Cyber Crime Scene</td></tr>
+                <tr><td>1:30 - 2:30</td><td>CRT ISP + Hardware/Wi-Fi Hacking</td></tr>
+                <tr><td>2:30 - 3:30</td><td>Investigation workflow + lab office hours</td></tr>
+                <tr><td>3:30 - 4:30</td><td>Hands-on continuation + results shareout</td></tr>
+                <tr><td>4:45</td><td>Lab close</td></tr>
+              </tbody>
+            </table>
+          </article>
+          <article class="agenda-tile">
+            <h3>Career &amp; Community Benefits</h3>
+            <table class="agenda-table">
+              <thead><tr><th>Time</th><th>Benefit Focus</th></tr></thead>
+              <tbody>
+                <tr><td>11:30</td><td>Networking lounge opens</td></tr>
+                <tr><td>12:00</td><td>Mentor meet-and-greet</td></tr>
+                <tr><td>12:30 - 1:30</td><td>Resume guidance + student pathways</td></tr>
+                <tr><td>1:30 - 2:30</td><td>Sponsor introductions + community resources</td></tr>
+                <tr><td>2:30 - 3:30</td><td>CPE guidance + mentor networking</td></tr>
+                <tr><td>3:30 - 4:30</td><td>Career Q&amp;A + industry conversations</td></tr>
+                <tr><td>4:45</td><td>Wrap-up networking</td></tr>
+              </tbody>
+            </table>
+          </article>
+        </div>
       </section>
 
       <section id="register" class="card">
@@ -184,15 +225,17 @@
       ];
       const flowWrap = document.getElementById('topicflow');
       conferenceFlow.forEach((item) => {
-        const badge = '<span class="badge pending">📅 Revealed April 1st</span>'; 
+        const badge = '<span class="badge pending">📅 Revealed April 1st</span>';
+        const pendingNote = item.status === 'Pending' ? '<span class="pending-note">Pending confirmation</span>' : '';
+
         const card = document.createElement('article');
-        card.className = 'topic';
-        card.innerHTML = `<div class="topic-head"><span>${item.time}</span>${badge}</div><h4>${item.title}</h4><p><strong>Topic Preview:</strong> ${item.highlight}</p><p class="small" style="margin-top:6px;">Details update April 1st</p>`;
+        card.className = item.status === 'Pending' ? 'topic pending-topic' : 'topic';
+        card.innerHTML = `<div class="topic-head"><span>${item.time}</span>${badge}</div><h4>${item.title}</h4><p><strong>Topic Preview:</strong> ${item.highlight}</p><p class="small" style="margin-top:6px;">Details update April 1st</p>${pendingNote}`;
         flowWrap.appendChild(card);
       });
 
       document.getElementById('copy-agenda').addEventListener('click', async () => {
-        const agendaText = `MOCS Parallel Timetable\n11:30 check-in\n12:00 opening\n12:30+ three tracks start in parallel`;
+        const agendaText = `MOCS Working Timetable (Final releases April 1st)\nPresentation track: 11:30 check-in, 12:00 opening, then topic blocks at 12:30, 1:30, 2:30, 3:30, closing at 4:45.\nLab track: starts 12:30 with 1-hour grouped blocks through 4:30.\nCareer/community track: mentor, networking, student pathways, and CPE guidance blocks in parallel.`;
         await navigator.clipboard.writeText(agendaText);
         alert('Timetable copied to clipboard.');
       });
