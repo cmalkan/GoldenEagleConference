@@ -1,23 +1,32 @@
 # Website Deployment
 
-This website is a Vite + React build and can be deployed using GitHub Pages or Netlify.
+This website is a static site and can be deployed directly from the `website/` folder.
 
-## Build locally
+## Local preview
 
 ```bash
 cd website
-npm ci || npm install
-npm run build
+python3 -m http.server 4173
 ```
 
-## Base path support
+Open `http://127.0.0.1:4173`.
 
-The build supports custom subpath deployments using `VITE_BASE_PATH`.
+## Netlify deployment
 
-```bash
-VITE_BASE_PATH=/GoldenEagleConference/ npm run build
-```
+A root `netlify.toml` is included and publishes the `website/` directory directly.
 
-## GitHub Pages workflow
+- No Node build step is required.
+- SPA fallback redirect is included for route handling.
 
-The workflow in `.github/workflows/deploy-website.yml` builds from `website/` and publishes `website/dist`.
+## Registration links
+
+The homepage includes:
+
+- Eventbrite registration button
+- Eventbrite embedded registration panel
+- Agenda copy button
+
+
+## Deploy test branch
+
+To test a non-production deployment, configure your Netlify site to track branch `deploy-test`.
