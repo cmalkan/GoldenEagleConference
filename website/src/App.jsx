@@ -1,12 +1,9 @@
 import { useEffect } from 'react';
 
-const EVENTBRITE_URL = import.meta.env.VITE_EVENTBRITE_URL || 'https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-000000000000';
-const EVENTBRITE_EVENT_ID = import.meta.env.VITE_EVENTBRITE_EVENT_ID || '';
-const LUMA_URL = import.meta.env.VITE_LUMA_URL || 'https://lu.ma/golden-eagle-cyber-defense-summit-2026';
-
+const EVENTBRITE_URL = import.meta.env.VITE_EVENTBRITE_URL || 'https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566';
+const EVENTBRITE_EVENT_ID = import.meta.env.VITE_EVENTBRITE_EVENT_ID || '1985023781566';
 const registrationLinks = [
   { label: 'Register on Eventbrite', href: EVENTBRITE_URL },
-  { label: 'Register on Luma', href: LUMA_URL },
 ];
 
 const sponsorTiers = [
