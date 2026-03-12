@@ -90,7 +90,7 @@ body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c456
         <h1>Midwest OT Cybersecurity Summit (MOCS)</h1>
         <p class="subtitle">Hosted by Marquette University, this summit is built for all career classes focused on manufacturing cybersecurity and Industrial Control Systems (ICS)—from students and career changers to plant engineers, SOC teams, OT defenders, and executive leaders.</p>
         <div class="meta"><span>🗓️ 12:00 PM - 5:00 PM</span><span>📍 Marquette University, Milwaukee</span><span>🎓 Earn CPE credits by attending sessions</span></div>
-        <div class="actions"><a class="btn btn-gold" href="#register">Registration & Pricing</a><a class="btn btn-blue" href="#topics">Conference Topics</a><a class="btn btn-blue" href="#agenda">Draft Agenda</a><a class="btn btn-blue" href="#sponsor">Sponsor the Summit</a></div>
+        <div class="actions"><a class="btn btn-gold" href="#register">Registration & Pricing</a><a class="btn btn-blue" href="#topics">Conference Topics</a><a class="btn btn-blue" href="#call-for-presenters">Call for Presenters &amp; Labs</a><a class="btn btn-blue" href="#agenda">Draft Agenda</a><a class="btn btn-blue" href="#sponsor">Sponsor the Summit</a></div>
       </div>
     </div></header>
 
@@ -109,6 +109,47 @@ body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c456
         <h2>OT Conference Topics</h2>
         <p class="small">Explore OT and ICS security topics and expected outcomes. Presenter and company details are temporarily hidden.</p>
         <div id="topicflow" class="topics"></div>
+      </section>
+
+      <section id="call-for-presenters" class="card">
+        <h2>Call for Presenters &amp; Labs</h2>
+        <p class="small">We are actively accepting talk and hands-on lab proposals for MOCS. Submission deadline: <strong>April 1st</strong>. We welcome practitioner-led sessions that deliver actionable takeaways for defenders and builders.</p>
+        <div class="benefits" style="margin-top:12px;grid-template-columns:repeat(2,1fr)">
+          <article class="tile"><h3>What we are looking for</h3>
+            <ul class="benefit-list">
+              <li>OT/ICS threat detection, defense strategy, and incident response</li>
+              <li>Critical infrastructure security and resilience engineering</li>
+              <li>Threat hunting, forensics, and attack simulation (red/blue)</li>
+              <li>Secure architecture, SDLC, risk governance, and compliance</li>
+              <li>Hands-on labs with practical workflows and measurable outcomes</li>
+            </ul>
+          </article>
+          <article class="tile"><h3>Presenter details</h3>
+            <ul class="benefit-list">
+              <li>Audience levels: beginner, intermediate, and advanced</li>
+              <li>Session formats: 30, 45, 60, and 90-minute options</li>
+              <li>Notification timeline: accepted speakers notified after review window closes</li>
+              <li>Lab proposals should include environment/setup requirements</li>
+            </ul>
+          </article>
+        </div>
+        <form id="cfp-form" class="form" style="margin-top:12px;">
+          <div class="frow">
+            <div><label>Presenter Name</label><input id="cfp-name" required /></div>
+            <div><label>Organization</label><input id="cfp-org" required /></div>
+            <div><label>Email</label><input id="cfp-email" type="email" required /></div>
+            <div><label>Phone (optional)</label><input id="cfp-phone" /></div>
+            <div><label>Proposal Type</label><input id="cfp-type" placeholder="Talk or Lab" required /></div>
+            <div><label>Session Title</label><input id="cfp-title" required /></div>
+            <div><label>Audience Level</label><input id="cfp-level" placeholder="Beginner / Intermediate / Advanced" required /></div>
+            <div><label>Track / Topic Area</label><input id="cfp-track" placeholder="OT/ICS, Incident Response, Threat Hunting, GRC, etc." required /></div>
+            <div><label>Preferred Duration</label><input id="cfp-duration" placeholder="30 / 45 / 60 / 90 minutes" required /></div>
+            <div><label>Prior speaking/lab experience (optional)</label><input id="cfp-experience" /></div>
+          </div>
+          <div style="margin-top:8px;"><label>Abstract (150-300 words)</label><textarea id="cfp-abstract" rows="4" required placeholder="Describe the problem, approach, and practical outcomes attendees will learn."></textarea></div>
+          <div style="margin-top:8px;"><label>Hands-on requirements / AV setup needs</label><textarea id="cfp-requirements" rows="3" placeholder="For labs, include hardware/software/networking dependencies."></textarea></div>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;"><button class="btn btn-gold" type="submit">Submit Presenter/Lab Proposal</button><span style="color:#355b8a;font-size:13px;">Opens an email draft to the conference organizing team.</span></div>
+        </form>
       </section>
 
       <section id="agenda" class="card">
@@ -194,7 +235,7 @@ body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c456
             <div><label>Phone</label><input id="phone" /></div>
           </div>
           <div style="margin-top:8px;"><label>Message</label><textarea id="message" rows="4" placeholder="Tell us your sponsorship goals and preferred training topic."></textarea></div>
-          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;"><button class="btn btn-gold" type="submit">Submit Sponsorship Interest</button><span style="color:#355b8a;font-size:13px;">Opens an email draft addressed to chirag.malkan@marquette.edu.</span></div>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;"><button class="btn btn-gold" type="submit">Submit Sponsorship Interest</button><span style="color:#355b8a;font-size:13px;">Opens an email draft to the conference organizing team.</span></div>
         </form>
       </section>
 
@@ -259,7 +300,14 @@ body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c456
         e.preventDefault();
         const subject = encodeURIComponent(`Sponsorship Interest: ${document.getElementById('tier').value} (${document.getElementById('tierPrice').value})`);
         const body = encodeURIComponent(`Midwest OT Cybersecurity Summit (MOCS) - Sponsorship Interest\n\nSelected Tier: ${document.getElementById('tier').value}\nTier Price: ${document.getElementById('tierPrice').value}\n\nName: ${document.getElementById('name').value}\nOrganization: ${document.getElementById('org').value}\nEmail: ${document.getElementById('email').value}\nPhone: ${document.getElementById('phone').value}\n\nMessage:\n${document.getElementById('message').value}`);
-        window.location.href = `mailto:chirag.malkan@marquette.edu?subject=${subject}&body=${body}`;
+        window.location.href = `mailto:chirag@malkansolutions.com?subject=${subject}&body=${body}`;
+      });
+
+      document.getElementById('cfp-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const subject = encodeURIComponent(`Call for Presenters/Labs Submission: ${document.getElementById('cfp-title').value}`);
+        const body = encodeURIComponent(`Midwest OT Cybersecurity Summit (MOCS) - Call for Presenters & Labs\n\nSubmission Deadline: April 1st\n\nPresenter Name: ${document.getElementById('cfp-name').value}\nOrganization: ${document.getElementById('cfp-org').value}\nEmail: ${document.getElementById('cfp-email').value}\nPhone: ${document.getElementById('cfp-phone').value}\nProposal Type: ${document.getElementById('cfp-type').value}\nSession Title: ${document.getElementById('cfp-title').value}\nAudience Level: ${document.getElementById('cfp-level').value}\nTrack / Topic Area: ${document.getElementById('cfp-track').value}\nPreferred Duration: ${document.getElementById('cfp-duration').value}\nPrior Speaking/Lab Experience: ${document.getElementById('cfp-experience').value}\n\nAbstract:\n${document.getElementById('cfp-abstract').value}\n\nHands-on Requirements / AV Setup:\n${document.getElementById('cfp-requirements').value}`);
+        window.location.href = `mailto:chirag@malkansolutions.com?subject=${subject}&body=${body}`;
       });
 
       document.getElementById('dark-toggle').addEventListener('click', () => {
