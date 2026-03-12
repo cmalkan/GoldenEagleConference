@@ -55,6 +55,16 @@
       .footer-note{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px}
       .logos{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.logo{background:#123e73;border-radius:10px;padding:10px;display:flex;justify-content:center;align-items:center;min-height:72px}
 
+      body.dark{background:#0b1320;color:#d8e6f8}
+      body.dark .card,body.dark .tile,body.dark .topic,body.dark .price,body.dark .selected,body.dark .form,body.dark .footer-note{background:#13243a;border-color:#2c4563;color:#d8e6f8}
+      body.dark .small,body.dark .tile p,body.dark .topic p,body.dark .u{color:#a7bed9}
+      body.dark h2,body.dark .tile h3,body.dark .topic h4{color:#e8f3ff}
+      body.dark table{background:#13243a;border-color:#2c4563}
+      body.dark th{background:#1b3554;color:#e5f0ff}
+      body.dark td{border-bottom-color:#2c4563;color:#d8e6f8}
+      body.dark .btn-blue{background:#3b6fad;color:#f0f6ff}
+      body.dark .logo{background:#0c2d53}
+
       @media (max-width:900px){h1{font-size:38px}.benefits,.topics,.pricing,.sgrid,.frow,.logos{grid-template-columns:1fr 1fr}}
       @media (max-width:640px){h1{font-size:32px}.benefits,.topics,.pricing,.sgrid,.frow,.logos{grid-template-columns:1fr}}
     </style>
@@ -62,13 +72,13 @@
   <body>
     <header class="top"><div class="wrap wrap-top">
       <div class="topbar">
-        <span class="chip">MOCS 2026</span>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;"><span class="chip">MOCS 2026</span><span style="font-size:12px;color:#d7e6fb;font-weight:700;">Hosted by Marquette University</span></div>
         <div style="display:flex;gap:8px;"><button id="dark-toggle" class="btn btn-blue" type="button">🌙 Dark Mode</button><a class="btn btn-gold" href="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566" target="_blank" rel="noreferrer">Register Now</a></div>
       </div>
       <div class="hero">
         <div class="tag">Security for the Folks Conference</div>
         <h1>Midwest OT Cybersecurity Summit (MOCS)</h1>
-        <p class="subtitle">Built for all career classes focused on operational technology security—from students and career changers to plant engineers, SOC teams, OT defenders, and executive leaders protecting critical infrastructure.</p>
+        <p class="subtitle">Hosted by Marquette University, this summit is built for all career classes focused on operational technology security—from students and career changers to plant engineers, SOC teams, OT defenders, and executive leaders protecting critical infrastructure.</p>
         <div class="meta"><span>🗓️ 12:00 PM - 5:00 PM</span><span>📍 Marquette University, Milwaukee</span><span>🎓 Earn CPE credits by attending sessions</span></div>
         <div class="actions"><a class="btn btn-gold" href="#register">Registration & Pricing</a><a class="btn btn-blue" href="#topics">Conference Topics</a><a class="btn btn-blue" href="#agenda">Draft Agenda</a><a class="btn btn-blue" href="#sponsor">Sponsor the Summit</a></div>
       </div>
@@ -117,10 +127,10 @@
         <h2>Registration & Pricing</h2>
         <p class="small">Select a pricing tile first, then continue with the Eventbrite checkout window below.</p>
         <div class="pricing">
-          <article class="price" data-ticket="MU Students (with valid ID)" data-price="FREE" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566"><h4>MU Students (with valid ID)</h4><p><strong>FREE</strong></p><p>Student-focused networking and pathways.</p></article>
-          <article class="price" data-ticket="Industry Professionals" data-price="$25" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566"><h4>Industry Professionals</h4><p><strong>$25</strong></p><p>Applies to early and mid-career attendees.</p></article>
-          <article class="price" data-ticket="Employers / Recruiters" data-price="$35" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566"><h4>Employers / Recruiters</h4><p><strong>$35</strong></p><p>Engage with diverse career-stage talent.</p></article>
-          <article class="price" data-ticket="Community Members" data-price="$15" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566"><h4>Community Members</h4><p><strong>$15</strong></p><p>Open access for local cybersecurity supporters.</p></article>
+          <article class="price" data-ticket="MU Students (with valid ID)" data-price="FREE" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566"><h4>MU Students (with valid ID)</h4><p><strong>FREE</strong></p><p>Student-focused networking and pathways. ID to be presented.</p></article>
+          <article class="price" data-ticket="Early Bird Industry Professionals" data-price="$25" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566"><h4>Early Bird Industry Professionals</h4><p><strong>$25</strong></p><p>Applies to early and mid-career attendees. Expires April 17th.</p></article>
+          <article class="price" data-ticket="Industry Professionals" data-price="$35" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566"><h4>Industry Professionals</h4><p><strong>$35</strong></p><p>Prices after early bird.</p></article>
+          <article class="price" data-ticket="Student Admission" data-price="$15" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566"><h4>Student Admission</h4><p><strong>$15</strong></p><p>For student attendees. Student ID to be presented at check-in.</p></article>
         </div>
         <div class="selected"><p style="margin:0;color:#607287;font-size:12px;">Selected ticket</p><p id="selected-ticket-name" style="margin:2px 0 4px;font-weight:800;">MU Students (with valid ID) — FREE</p><p id="selected-ticket-note" style="margin:0;color:#36557c;font-size:13px;">Checkout window is ready for this ticket.</p><div style="margin-top:8px;"><a id="eventbrite-checkout-btn" class="btn btn-gold" href="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566" target="_blank" rel="noreferrer">Continue to Eventbrite Checkout</a></div></div>
       </section>
@@ -174,7 +184,7 @@
       ];
       const flowWrap = document.getElementById('topicflow');
       conferenceFlow.forEach((item) => {
-        const badge = item.status === 'Confirmed' ? '<span class="badge ok">✅ Confirmed</span>' : '<span class="badge pending">⏳ Pending</span>';
+        const badge = '<span class="badge pending">📅 Revealed April 1st</span>'; 
         const card = document.createElement('article');
         card.className = 'topic';
         card.innerHTML = `<div class="topic-head"><span>${item.time}</span>${badge}</div><h4>${item.title}</h4><p><strong>Topic Preview:</strong> ${item.highlight}</p><p class="small" style="margin-top:6px;">Details update April 1st</p>`;
