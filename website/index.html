@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Golden Eagle Cyber Defense Summit 2026</title>
+    <style>
+      :root { --navy:#123b75; --ink:#123156; --text:#243648; --muted:#607287; --bg:#eef1f5; --panel:#f4f7fb; --line:#d8e0ea; --gold:#f4c300; }
+      *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+      .top{background:radial-gradient(1000px 380px at 100% 0%,#385f87 0%,#143f7b 45%,#0d3166 100%);color:#eaf2ff;padding-bottom:16px}
+      .wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+      .topbar{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
+      .brand{display:flex;align-items:center;gap:8px;color:#fff;font-weight:800}
+      .chip{background:#1a4f8e;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:5px 10px;font-size:26px;line-height:1;letter-spacing:.04em}
+      .host{font-size:13px;color:#dce8fa;font-weight:600}
+      .btn{border:none;border-radius:10px;padding:10px 14px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+      .pillbtn{background:var(--gold);color:#173b65;border-radius:999px}.btn-gold{background:var(--gold);color:#173b65}.btn-blue{background:#2a4f84;color:#e9f1ff;border:1px solid rgba(255,255,255,.2)}
+      .hero{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);border-radius:18px;padding:18px}
+      .tag{font-size:11px;letter-spacing:.14em;color:#ffda66;text-transform:uppercase;font-weight:700}
+      h1{margin:8px 0;font-size:clamp(30px,4vw,52px);color:#fff;line-height:1.12}.subtitle{color:#d2e0f2;max-width:900px}
+      .meta{color:#cedcf1;font-size:13px;display:flex;gap:16px;flex-wrap:wrap;margin:8px 0 16px}.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+      .sponsor-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}.sponsor-slot{border:1px solid rgba(255,255,255,.25);color:#dce8f9;text-align:center;padding:10px;border-radius:12px;background:rgba(255,255,255,.05);font-size:12px;font-weight:600}
+      section{margin:18px 0}.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 2px 6px rgba(15,30,60,.04)}
+      h2{color:var(--ink);margin:0 0 6px;font-size:34px}.small{color:var(--muted);margin:0 0 12px;font-size:13px}
+      .grid-3,.grid-2,.grid-4{display:grid;gap:10px}.grid-3{grid-template-columns:repeat(3,1fr)}.grid-2{grid-template-columns:repeat(2,1fr)}.grid-4{grid-template-columns:repeat(4,1fr)}
+      .tile{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}
+      .topicflow{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+      .topiccard{border:1px solid var(--line);border-radius:14px;background:#fff;padding:12px}
+      .topic-head{background:#133e78;color:#dbe8fa;padding:8px 10px;font-size:12px;border-radius:8px}
+      .topic-title{margin:10px 0 5px;color:var(--ink);font-size:22px}.topic-tag{font-size:11px;color:#496b94;text-transform:uppercase;font-weight:700}.topic-highlight{margin-top:8px;font-size:13px;color:#2d4f77}
+      .registration-tools{display:grid;grid-template-columns:1fr 1fr;gap:10px}.selected-ticket{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px}
+      .agenda-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}.agenda-table th,.agenda-table td{border-bottom:1px solid #e6edf5;padding:8px 10px;text-align:left;font-size:13px}.agenda-table th{background:#edf3fa;color:#24476e}
+      .agenda-copy{margin-top:10px;background:#0f2f5a;color:#fff;border-radius:10px;padding:10px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;white-space:pre-wrap}
+      .eventbrite-wrap{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;margin-bottom:10px}
+      .sponsor-band{background:#0f2f5a;color:#e4eeff;border-radius:16px;padding:16px;border:1px solid #1f467c}.sponsor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+      .sponsor-box{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:12px;cursor:pointer;transition:.2s transform,.2s border-color}
+      .sponsor-box:hover{transform:translateY(-2px);border-color:#ffd766}.gold{color:#ffd766;font-weight:700}
+      .sponsor-form{margin-top:12px;background:#fff;color:#1b2f48;border-radius:12px;padding:12px;border:1px solid #aac0df}
+      .form-row{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.sponsor-form input,.sponsor-form textarea{width:100%;padding:9px;border:1px solid #c6d6ea;border-radius:8px;font:inherit}
+      .row-note{margin-top:10px;background:#f4e9ae;border-radius:8px;padding:8px 10px;color:#5a4e1e;font-size:12px} ul{margin:6px 0 0 18px;padding:0} li{margin:3px 0}
+      @media (max-width:980px){.sponsor-strip,.grid-3,.grid-4,.sponsor-grid,.form-row,.topicflow,.registration-tools{grid-template-columns:1fr 1fr}}
+      @media (max-width:720px){.sponsor-strip,.grid-3,.grid-4,.topicflow,.sponsor-grid,.grid-2,.form-row,.registration-tools{grid-template-columns:1fr}.topbar{align-items:flex-start;flex-direction:column;gap:10px}}
+    </style>
+  </head>
+  <body>
+    <header class="top"><div class="wrap">
+      <div class="topbar"><div class="brand"><span class="chip">MU • STF</span><span class="host">Hosted by Marquette University &amp; Security for the Folks</span></div><a class="btn pillbtn" href="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566" target="_blank" rel="noreferrer">Register Now</a></div>
+      <div class="hero"><div class="tag">Milwaukee • Career-Focused Cyber Defense Summit</div><h1>Golden Eagle Cyber Defense Summit 2026</h1><p class="subtitle">Golden Eagle Cyber Defense Summit 2026 is designed for every career stage—students, early-career analysts, mid-career practitioners, technical leads, and hiring managers—to build practical skills, grow professional networks, and protect critical systems together.</p><div class="meta"><span>🗓️ 12:00 PM - 5:00 PM</span><span>📍 Marquette University, Milwaukee</span><span>👥 Students, professionals, sponsors</span></div><div class="hero-actions"><a class="btn btn-gold" href="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566" target="_blank" rel="noreferrer">Register Now</a><a class="btn btn-blue" href="#sponsor">Sponsor the Summit</a><a class="btn btn-blue" href="#program-flow">View Program Flow</a></div></div>
+      <div class="sponsor-strip"><div class="sponsor-slot">Title Sponsor Logo</div><div class="sponsor-slot">Supporting Sponsor</div><div class="sponsor-slot">Community Sponsor</div><div class="sponsor-slot">Partner Logo</div></div>
+    </div></header>
+
+    <main class="wrap">
+      <section class="card"><h2>Why this summit matters</h2><p class="small">This summit is structured as an inclusive, career-spanning security experience—not just a one-day event. We connect students, career changers, practitioners, and employers through OT and critical infrastructure content, hands-on labs, and mentorship opportunities.</p>
+        <div class="grid-3"><article class="tile"><h3>🛡️ OT &amp; Critical Infrastructure First</h3><p>Focused on OT systems, utility environments, and critical infrastructure segments where operational impact is highest.</p></article><article class="tile"><h3>🔧 Hands-On by Design</h3><p>Lab-first sessions and practical exercises centered on real-world defense patterns and incident windows.</p></article><article class="tile"><h3>🎓 Career Pathways Across Levels</h3><p>Direct links between employers, students, early-career talent, and mentors to support coaching, networking, and long-term career growth.</p></article></div>
+      </section>
+
+      <section id="program-flow" class="card"><h2>Conference Topics</h2><p class="small">Topic tiles show the session type, timing, focus area, and concrete program highlight—without side visuals.</p><div id="topicflow" class="topicflow"></div></section>
+
+      <section class="card"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center;"><div><h2 style="margin-bottom:2px;">Conference Agenda <span style="font-size:12px;background:#f4c300;color:#173b65;padding:3px 8px;border-radius:999px;vertical-align:middle;">DRAFT MODE</span></h2><p class="small" style="margin:0;">Presentation, labs, and community activity in one easy scan. Times and session details may be updated.</p></div><button id="copy-agenda" class="btn btn-blue" type="button">📋 Copy agenda</button></div>
+        <table class="agenda-table"><thead><tr><th>Time</th><th>Presentation Track</th><th>Hands-On Labs</th><th>Career Fair / Community</th></tr></thead><tbody>
+          <tr><td>12:00 PM</td><td>Opening + Keynote (all attendees)</td><td>-</td><td>Community fair opens</td></tr>
+          <tr><td>12:45 PM</td><td>IT Risk Management</td><td>Hardware / OT Lab</td><td>Recruiting + networking</td></tr>
+          <tr><td>1:30 PM</td><td>Network Security</td><td>Device Security Lab</td><td>Community tables</td></tr>
+          <tr><td>2:15 PM</td><td>AI Applications in Cybersecurity</td><td>Cybercrime Investigation Exercise</td><td>Resource conversations</td></tr>
+          <tr><td>3:00 PM</td><td>OT Strategy, SDL, and Industrial Protocol Security</td><td>Hardware Hacking + Wi-Fi Security</td><td>Employer networking</td></tr>
+          <tr><td>3:45 PM</td><td>Critical Infrastructure / Water / Utility Security</td><td>ICS / OT Attack Scenario</td><td>Student Q&amp;A</td></tr>
+          <tr><td>4:30 PM</td><td>Closing Talk + Panel</td><td>Open Lab Time</td><td>Final networking</td></tr>
+        </tbody></table>
+        <pre class="agenda-copy">12:00 PM | Opening + Keynote (all attendees) | - | Community fair opens
+12:45 PM | IT Risk Management | Hardware / OT Lab | Recruiting + networking
+1:30 PM  | Network Security | Device Security Lab | Community tables
+2:15 PM  | AI Applications in Cybersecurity | Cybercrime Investigation Exercise | Resource conversations
+3:00 PM  | OT Strategy, SDL, and Industrial Protocol Security | Hardware Hacking + Wi-Fi Security | Employer networking
+3:45 PM  | Critical Infrastructure / Water / Utility Security | ICS / OT Attack Scenario | Student Q&A
+4:30 PM  | Closing Talk + Panel | Open Lab Time | Final networking</pre>
+      </section>
+
+      <section class="grid-3"><article class="tile"><h4>🧾 Presentation Track</h4><p>45-minute expert sessions on enterprise security, OT strategy, and threat trends.</p></article><article class="tile"><h4>🧪 Hands-On Labs</h4><p>Interactive exercises in hardware security, OT scenarios, and cybercrime response.</p></article><article class="tile"><h4>🎯 Career Fair / Community</h4><p>A shared networking space for students, early-career, mid-career, and senior professionals to connect with employers and community mentors.</p></article></section>
+
+      <section class="card"><h2>Registration</h2><p class="small">Registration is handled through Eventbrite only. Click a pricing tile to preselect the ticket type, then continue to checkout.</p>
+        <div class="registration-tools">
+          <div class="selected-ticket">
+            <h4 style="margin:0 0 6px;">Selected ticket</h4>
+            <p id="selected-ticket-name" style="margin:0;font-weight:700;">General Registration</p>
+            <p id="selected-ticket-note" class="small" style="margin:4px 0 0;">Choose a pricing tile to prefill checkout context.</p>
+            <a id="eventbrite-checkout-btn" class="btn btn-gold" href="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566" target="_blank" rel="noreferrer">Go to Eventbrite Checkout ↗</a>
+          </div>
+          <div class="eventbrite-wrap"><iframe id="eventbrite-embed" src="https://www.eventbrite.com/tickets-external?eid=1985023781566&ref=etckt" frameborder="0" height="260" width="100%" marginheight="0" marginwidth="0" scrolling="auto" title="Eventbrite registration"></iframe></div>
+        </div>
+      </section>
+
+      <section class="card"><h2>Pricing</h2><div class="grid-4">
+        <article class="tile price-tile" data-ticket="MU Students (with valid ID)" data-price="FREE" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566?ticket=mu-student" data-ticket-class="mu-student"><h4>MU Students (with valid ID)</h4><div style="font-size:30px;color:#143b66;font-weight:800;">FREE</div></article>
+        <article class="tile price-tile" data-ticket="Student Admission (non-MU)" data-price="$8" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566?ticket=student" data-ticket-class="student"><h4>Student Admission (non-MU)</h4><div style="font-size:30px;color:#143b66;font-weight:800;">$8</div></article>
+        <article class="tile price-tile" data-ticket="Professional Early Bird" data-price="$25" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566?ticket=pro-early" data-ticket-class="pro-early"><h4>Professional Early Bird</h4><div style="font-size:30px;color:#143b66;font-weight:800;">$25</div></article>
+        <article class="tile price-tile" data-ticket="Professional Admission" data-price="$35" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566?ticket=pro" data-ticket-class="pro"><h4>Professional Admission</h4><div style="font-size:30px;color:#143b66;font-weight:800;">$35</div></article>
+      </div><div class="row-note">Click any pricing tile above to preselect a ticket path in the registration section. Sponsor community members attend free.</div></section>
+
+      <section id="sponsor" class="sponsor-band"><h2 style="color:#fff;">Sponsor the Summit</h2><p>Click a sponsorship tier to pre-fill a submission form. Submissions are sent to chirag.malkan@marquette.edu.</p>
+        <div class="sponsor-grid">
+          <article class="sponsor-box" data-tier="Title Sponsor" data-price="$1,000"><h4 class="gold">🏆 Title Sponsor</h4><p><strong>$1,000</strong></p><ul><li>Booth + brand placement</li><li>Free admission for organization members</li><li>Free threat analysis for one sponsored project</li></ul></article>
+          <article class="sponsor-box" data-tier="Supporting Sponsor" data-price="$500"><h4 class="gold">💡 Supporting Sponsor</h4><p><strong>$500</strong></p><ul><li>Brand placement + recruiting visibility</li><li>Free admission for organization members</li><li>Free mini threat analysis for one scoped project</li></ul></article>
+          <article class="sponsor-box" data-tier="Community Sponsor" data-price="$250"><h4 class="gold">🤝 Community Sponsor</h4><p><strong>$250</strong></p><ul><li>Community table mention</li><li>Free admission for organization members</li><li>Threat analysis office-hours credit for sponsored project teams</li></ul></article>
+        </div>
+
+        <form id="sponsor-form" class="sponsor-form">
+          <h3 style="margin:0 0 8px;color:#133b72;">Sponsor Interest Form</h3>
+          <div class="form-row">
+            <div><label>Selected Tier</label><input id="tier" name="tier" readonly value="Choose a tier above" /></div>
+            <div><label>Tier Price</label><input id="tierPrice" name="tierPrice" readonly value="-" /></div>
+            <div><label>Your Name</label><input id="name" name="name" required /></div>
+            <div><label>Organization</label><input id="org" name="org" required /></div>
+            <div><label>Email</label><input id="email" name="email" type="email" required /></div>
+            <div><label>Phone</label><input id="phone" name="phone" /></div>
+          </div>
+          <div style="margin-top:8px;"><label>Message</label><textarea id="message" name="message" rows="4" placeholder="Tell us your sponsorship goals, timeline, and any questions."></textarea></div>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;"><button class="btn btn-gold" type="submit">Submit Sponsorship Interest</button><span style="color:#355b8a;font-size:13px;">This opens your email client pre-addressed to chirag.malkan@marquette.edu.</span></div>
+        </form>
+      </section><br />
+    </main>
+
+    <script>
+      const conferenceFlow = [
+        { title: 'IT Risk Management & Enterprise Security', focus: 'Governance, controls, and measurable resilience', time: '12:45 PM', track: 'Presentation', org: 'Johnson Controls', key: 'risk', highlight: 'Risk program metrics and board-level reporting.' },
+        { title: 'Network Security Architecture', focus: 'Segmentation, trust boundaries, and secure access', time: '1:30 PM', track: 'Presentation', org: 'Johnson Controls', key: 'network', highlight: 'Practical network design patterns for defenders.' },
+        { title: 'AI Applications in Cybersecurity', focus: 'Detection engineering and analyst copilots', time: '2:15 PM', track: 'Presentation', org: 'ISACA Milwaukee Chapter', key: 'ai', highlight: 'Where AI helps detection and where analysts still lead.' },
+        { title: 'OT / ICS & Industrial Protocol Security', focus: 'PLC safety, protocol hardening, and plant uptime', time: '3:00 PM', track: 'Presentation', org: 'Rockwell Automation', key: 'ot', highlight: 'Security controls that preserve uptime in plants.' },
+        { title: 'Hardware Hacking & Device Penetration Testing', focus: 'Embedded attack paths and physical security', time: '3:00 PM', track: 'Lab', org: 'Praetorian', key: 'hardware', highlight: 'Hands-on testing across embedded systems and hardware.' },
+        { title: 'Cybercrime Investigation & Digital Forensics', focus: 'Evidence handling and incident reconstruction', time: '2:15 PM', track: 'Lab', org: 'Exida', key: 'forensics', highlight: 'Evidence-first workflows for investigations.' }
+      ];
+
+      const flowWrap = document.getElementById('topicflow');
+      conferenceFlow.forEach((item) => {
+        const card = document.createElement('article');
+        card.className = 'topiccard';
+        card.innerHTML = `<div class="topic-head">${item.track} • ${item.time}<span style="float:right;color:#f4c300;">${item.org}</span></div><h3 class="topic-title">${item.title}</h3><div class="topic-tag">Focus Area: ${item.focus}</div><div class="topic-highlight"><strong>Program Highlight:</strong> ${item.highlight}</div>`;
+        flowWrap.appendChild(card);
+      });
+
+      const checkoutBtn = document.getElementById('eventbrite-checkout-btn');
+      const selectedTicketName = document.getElementById('selected-ticket-name');
+      const selectedTicketNote = document.getElementById('selected-ticket-note');
+      const eventbriteEmbed = document.getElementById('eventbrite-embed');
+
+      document.querySelectorAll('.price-tile').forEach((tile) => {
+        tile.style.cursor = 'pointer';
+        tile.addEventListener('click', () => {
+          document.querySelectorAll('.price-tile').forEach((el) => { el.style.outline = 'none'; });
+          tile.style.outline = '3px solid #f4c300';
+
+          const ticketName = tile.dataset.ticket;
+          const ticketPrice = tile.dataset.price;
+          const checkout = tile.dataset.checkout;
+          const ticketClass = tile.dataset.ticketClass;
+
+          selectedTicketName.textContent = `${ticketName} — ${ticketPrice}`;
+          selectedTicketNote.textContent = 'Checkout has been prefilled for this ticket type.';
+          checkoutBtn.href = checkout;
+          eventbriteEmbed.src = `https://www.eventbrite.com/tickets-external?eid=1985023781566&ref=etckt&ticketClass=${encodeURIComponent(ticketClass)}`;
+
+          document.getElementById('eventbrite-checkout-btn').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+      });
+
+      document.getElementById('copy-agenda').addEventListener('click', async () => {
+        const agendaText = `Golden Eagle Cyber Defense Summit 2026\n\n12:00 PM | Opening + Keynote (all attendees) | - | Community fair opens\n12:45 PM | IT Risk Management | Hardware / OT Lab | Recruiting + networking\n1:30 PM | Network Security | Device Security Lab | Community tables\n2:15 PM | AI Applications in Cybersecurity | Cybercrime Investigation Exercise | Resource conversations\n3:00 PM | OT Strategy, SDL, and Industrial Protocol Security | Hardware Hacking + Wi-Fi Security | Employer networking\n3:45 PM | Critical Infrastructure / Water / Utility Security | ICS / OT Attack Scenario | Student Q&A\n4:30 PM | Closing Talk + Panel | Open Lab Time | Final networking`;
+        await navigator.clipboard.writeText(agendaText); alert('Agenda copied to clipboard!');
+      });
+
+      const tierInput = document.getElementById('tier');
+      const tierPriceInput = document.getElementById('tierPrice');
+      document.querySelectorAll('.sponsor-box').forEach((box) => {
+        box.addEventListener('click', () => {
+          tierInput.value = box.dataset.tier;
+          tierPriceInput.value = box.dataset.price;
+          document.getElementById('sponsor-form').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+      });
+
+      document.getElementById('sponsor-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = {
+          tier: tierInput.value,
+          tierPrice: tierPriceInput.value,
+          name: document.getElementById('name').value,
+          org: document.getElementById('org').value,
+          email: document.getElementById('email').value,
+          phone: document.getElementById('phone').value,
+          message: document.getElementById('message').value,
+        };
+
+        const subject = encodeURIComponent(`Sponsorship Interest: ${data.tier} (${data.tierPrice})`);
+        const body = encodeURIComponent(
+`Golden Eagle Cyber Defense Summit 2026 - Sponsorship Interest
+
+Selected Tier: ${data.tier}
+Tier Price: ${data.tierPrice}
+
+Name: ${data.name}
+Organization: ${data.org}
+Email: ${data.email}
+Phone: ${data.phone}
+
+Message:
+${data.message}`
+        );
+        window.location.href = `mailto:chirag.malkan@marquette.edu?subject=${subject}&body=${body}`;
+      });
+    </script>
+  </body>
+</html>
