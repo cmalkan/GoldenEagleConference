@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Midwest OT Cybersecurity Summit (MOCS)</title>
+    <style>
+      :root{--navy:#0d3260;--navy-2:#163f74;--blue:#1f4f8f;--panel:#e9eff6;--line:#cfdae8;--text:#23384e;--muted:#61758f;--gold:#f4c300;--ok:#2f9a52;--pending:#7d8897}
+      *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:#dfe7f0;color:var(--text)}
+      .wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+      .top{position:relative;overflow:hidden;background:radial-gradient(1200px 420px at 0 0,#214f8f 0,#133c72 45%,#0d2f5d 100%);color:#eaf2ff;padding:8px 0 16px}
+      .top::before{content:"";position:absolute;inset:0;opacity:.15;pointer-events:none;background-image:repeating-linear-gradient(0deg,transparent 0 24px,rgba(255,255,255,.2) 24px 25px),repeating-linear-gradient(90deg,transparent 0 72px,rgba(255,255,255,.17) 72px 73px),linear-gradient(90deg,transparent 0 10%,rgba(255,255,255,.22) 10% 11%,transparent 11% 38%,rgba(255,255,255,.18) 38% 39%,transparent 39% 100%)}
+      .wrap-top{position:relative;z-index:1}
+      .topbar{display:flex;justify-content:space-between;align-items:center;padding:8px 0}
+      .chip{display:inline-block;background:#2d5d9a;border:1px solid rgba(255,255,255,.25);padding:5px 10px;border-radius:999px;font-size:12px;font-weight:800}
+      .btn{display:inline-flex;align-items:center;gap:6px;border-radius:9px;padding:8px 12px;text-decoration:none;font-weight:700;border:none;cursor:pointer}
+      .btn-blue{background:#295b9c;color:#e9f2ff;border:1px solid rgba(255,255,255,.2)} .btn-gold{background:var(--gold);color:#173b65}
+      .hero{margin-top:8px;border:1px solid rgba(255,255,255,.2);background:rgba(7,27,54,.35);border-radius:14px;padding:14px}
+      .tag{display:inline-block;background:rgba(244,195,0,.2);border:1px solid rgba(244,195,0,.45);color:#ffde73;font-weight:800;font-size:11px;padding:4px 8px;border-radius:999px;text-transform:uppercase;letter-spacing:.08em}
+      h1{margin:10px 0 6px;color:#fff;font-size:48px;line-height:1.05}
+      .subtitle{margin:0;color:#d3e1f5;max-width:860px}
+      .meta{display:flex;gap:12px;flex-wrap:wrap;color:#c8d8ef;font-size:12px;margin:10px 0 14px}
+      .actions{display:flex;gap:8px;flex-wrap:wrap}
+
+      main{padding:14px 0 28px}
+      .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:12px}
+      h2{margin:0 0 6px;color:#143a68;font-size:40px} .small{margin:0;color:var(--muted);font-size:12px}
+
+      .benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+      .tile{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px}
+      .tile h3{margin:0 0 4px;font-size:19px;color:#183f70} .tile p{margin:0;font-size:12px;color:#5f738c}
+
+      .topics{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px}
+      .topic{position:relative;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 10px 24px}
+      .topic.pending-topic{background:#f3f5f8;border-color:#d8e0ea}
+      .topic-head{display:flex;justify-content:space-between;align-items:center;background:#1a4c89;color:#dbe8fa;border-radius:6px;padding:6px 8px;font-size:11px;font-weight:700}
+      .badge{font-size:10px;padding:2px 6px;border-radius:999px}.ok{background:#e2f6e8;color:#1f7d3e}.pending{background:#edf0f4;color:#6f7c8c}
+      .topic h4{margin:8px 0 5px;font-size:36px;color:#173c6b} .topic p{margin:0;font-size:12px;color:#5d738d}
+      .pending-note{position:absolute;right:10px;bottom:8px;font-size:10px;color:#7b8796;font-weight:700}
+
+      .agenda-warning{margin:8px 0 10px;padding:8px 10px;border-radius:8px;background:#ffe7e7;border:1px solid #efb1b1;color:#b01717;font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.03em}
+      .agenda-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+      .agenda-tile{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px}
+      .agenda-tile h3{margin:0 0 6px;font-size:18px;color:#183f70}
+      .agenda-table{width:100%;border-collapse:collapse}
+      .agenda-table th,.agenda-table td{padding:6px 4px;border-bottom:1px solid #e2eaf3;text-align:left;font-size:12px;vertical-align:top}
+      .agenda-table th{color:#1f446f;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+      .agenda-table td:last-child{color:#405b78}
+      .benefit-list{margin:0;padding-left:17px;color:#405b78;font-size:12px}
+      .benefit-list li{margin:0 0 7px}
+      .u{color:#778393}
+
+      .pricing{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
+      .price{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;cursor:pointer}
+      .selected{margin-top:10px;max-width:420px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px}
+
+      .sponsor{background:#0f3260;border:1px solid #235287;color:#eaf3ff;border-radius:12px;padding:12px}
+      .sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+      .sbox{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:10px;cursor:pointer}
+      .form{margin-top:10px;background:#fff;color:#173352;border:1px solid #a8c0e0;border-radius:10px;padding:10px}
+      .frow{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.form input,.form textarea{width:100%;padding:8px;border:1px solid #c7d7ea;border-radius:7px;font:inherit}
+
+      .footer-note{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px}
+      .logos{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.logo{background:#123e73;border-radius:10px;padding:10px;display:flex;justify-content:center;align-items:center;min-height:72px}
+
+      body.dark{background:#0b1320;color:#d8e6f8}
+      body.dark .card,body.dark .tile,body.dark .topic,body.dark .price,body.dark .selected,body.dark .form,body.dark .footer-note{background:#13243a;border-color:#2c4563;color:#d8e6f8}
+      body.dark .small,body.dark .tile p,body.dark .topic p,body.dark .u,body.dark .agenda-table td:last-child{color:#a7bed9}
+      body.dark h2,body.dark .tile h3,body.dark .topic h4,body.dark .agenda-tile h3{color:#e8f3ff}
+body.dark .agenda-warning{background:#3a171b;border-color:#6a2a34;color:#ff8585}
+body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c4563}
+      body.dark table{background:#13243a;border-color:#2c4563}
+      body.dark th{background:#1b3554;color:#e5f0ff}
+      body.dark td{border-bottom-color:#2c4563;color:#d8e6f8}
+      body.dark .btn-blue{background:#3b6fad;color:#f0f6ff}
+      body.dark .logo{background:#0c2d53}
+
+      @media (max-width:900px){h1{font-size:38px}.benefits,.topics,.pricing,.sgrid,.frow,.logos,.agenda-grid{grid-template-columns:1fr 1fr}}
+      @media (max-width:640px){h1{font-size:32px}.benefits,.topics,.pricing,.sgrid,.frow,.logos,.agenda-grid{grid-template-columns:1fr}}
+    </style>
+  </head>
+  <body>
+    <header class="top"><div class="wrap wrap-top">
+      <div class="topbar">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;"><span class="chip">MOCS 2026</span><span style="font-size:12px;color:#d7e6fb;font-weight:700;">Hosted by Marquette University</span></div>
+        <div style="display:flex;gap:8px;"><button id="dark-toggle" class="btn btn-blue" type="button">🌙 Dark Mode</button><a class="btn btn-gold" href="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566" target="_blank" rel="noreferrer">Register Now</a></div>
+      </div>
+      <div class="hero">
+        <div class="tag">Security for the Folks Conference</div>
+        <h1>Midwest OT Cybersecurity Summit (MOCS)</h1>
+        <p class="subtitle">Hosted by Marquette University, this summit is built for all career classes focused on manufacturing cybersecurity and Industrial Control Systems (ICS)—from students and career changers to plant engineers, SOC teams, OT defenders, and executive leaders.</p>
+        <div class="meta"><span>🗓️ 12:00 PM - 5:00 PM</span><span>📍 Marquette University, Milwaukee</span><span>🎓 Earn CPE credits by attending sessions</span></div>
+        <div class="actions"><a class="btn btn-gold" href="#register">Registration & Pricing</a><a class="btn btn-blue" href="#topics">Conference Topics</a><a class="btn btn-blue" href="#agenda">Draft Agenda</a><a class="btn btn-blue" href="#sponsor">Sponsor the Summit</a></div>
+      </div>
+    </div></header>
+
+    <main class="wrap">
+      <section class="card">
+        <h2>Why Attend MOCS?</h2>
+        <p class="small">A practical, community-driven OT cybersecurity conference for defenders, students, and hiring teams. OT means <strong>Operational Technology</strong>, including manufacturing systems, industrial controls, and ICS environments across many sectors.</p>
+        <div class="benefits">
+          <article class="tile"><h3>🎓 Career Growth</h3><p>Resume workshops, mentor networking, and hiring-focused sessions.</p></article>
+          <article class="tile"><h3>🛡️ OT Hands-On Learning</h3><p>Real-world OT and ICS topics across manufacturing, industrial control, and infrastructure environments.</p></article>
+          <article class="tile"><h3>✅ CPE Credits</h3><p>Earn Continuing Professional Education credits through attendance.</p></article>
+        </div>
+      </section>
+
+      <section id="topics" class="card">
+        <h2>OT Conference Topics</h2>
+        <p class="small">Explore OT and ICS security topics and expected outcomes. Presenter and company details are temporarily hidden.</p>
+        <div id="topicflow" class="topics"></div>
+      </section>
+
+      <section id="agenda" class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;"><h2 style="margin:0;">Conference Timetable (Parallel Tracks)</h2><button id="copy-agenda" class="btn btn-gold" type="button">Copy Timetable</button></div>
+        <p class="small">Three separate track tiles: presentation timetable, lab timetable, and career/community benefits.</p>
+        <div class="agenda-warning">⚠️ Working Version ONLY — Final timetable and speaker details will be revealed April 1st.</div>
+        <div class="agenda-grid">
+          <article class="agenda-tile">
+            <h3>Presentation Track</h3>
+            <table class="agenda-table">
+              <thead><tr><th>Time</th><th>Topic</th></tr></thead>
+              <tbody>
+                <tr><td>11:30</td><td>Check-in and gathering</td></tr>
+                <tr><td>12:00</td><td>Opening session</td></tr>
+                <tr><td>12:30</td><td>IT Risk Management + Network Security</td></tr>
+                <tr><td>1:30</td><td>AI Applications + Critical Infrastructure Session</td></tr>
+                <tr><td>2:30</td><td>Secure Development Lifecycle + OT Cybersecurity Strategy</td></tr>
+                <tr><td>3:30</td><td>Cybersecurity for Industrial Protocols + Job/Client Threats</td></tr>
+                <tr><td>4:45</td><td>Closing remarks</td></tr>
+              </tbody>
+            </table>
+          </article>
+          <article class="agenda-tile">
+            <h3>Lab Track (1-hour blocks)</h3>
+            <table class="agenda-table">
+              <thead><tr><th>Time</th><th>Lab Block</th></tr></thead>
+              <tbody>
+                <tr><td>11:30</td><td>No lab (check-in)</td></tr>
+                <tr><td>12:00</td><td>No lab (opening)</td></tr>
+                <tr><td>12:30 - 1:30</td><td>Pen Testing HW Device/GRC + Cyber Crime Scene</td></tr>
+                <tr><td>1:30 - 2:30</td><td>CRT ISP + Hardware/Wi-Fi Hacking</td></tr>
+                <tr><td>2:30 - 3:30</td><td>Investigation workflow + lab office hours</td></tr>
+                <tr><td>3:30 - 4:30</td><td>Hands-on continuation + results shareout</td></tr>
+                <tr><td>4:45</td><td>Lab close</td></tr>
+              </tbody>
+            </table>
+          </article>
+          <article class="agenda-tile">
+            <h3>Career &amp; Community Benefits</h3>
+            <table class="agenda-table">
+              <thead><tr><th>Time</th><th>Benefit Focus</th></tr></thead>
+              <tbody>
+                <tr><td>11:30</td><td>Networking lounge opens</td></tr>
+                <tr><td>12:00</td><td>Mentor meet-and-greet</td></tr>
+                <tr><td>12:30 - 1:30</td><td>Resume guidance + student pathways</td></tr>
+                <tr><td>1:30 - 2:30</td><td>Sponsor introductions + community resources</td></tr>
+                <tr><td>2:30 - 3:30</td><td>CPE guidance + mentor networking</td></tr>
+                <tr><td>3:30 - 4:30</td><td>Career Q&amp;A + industry conversations</td></tr>
+                <tr><td>4:45</td><td>Wrap-up networking</td></tr>
+              </tbody>
+            </table>
+          </article>
+        </div>
+      </section>
+
+      <section id="register" class="card">
+        <h2>Registration & Pricing</h2>
+        <p class="small">Select a pricing tile first, then continue with the Eventbrite checkout window below.</p>
+        <div class="pricing">
+          <article class="price" data-ticket="MU Students (with valid ID)" data-price="FREE" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566"><h4>MU Students (with valid ID)</h4><p><strong>FREE</strong></p><p>Student-focused networking and pathways. ID to be presented.</p></article>
+          <article class="price" data-ticket="Early Bird Industry Professionals" data-price="$25" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566"><h4>Early Bird Industry Professionals</h4><p><strong>$25</strong></p><p>Applies to early and mid-career attendees. Expires April 17th.</p></article>
+          <article class="price" data-ticket="Industry Professionals" data-price="$35" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566"><h4>Industry Professionals</h4><p><strong>$35</strong></p><p>Prices after early bird.</p></article>
+          <article class="price" data-ticket="Student Admission" data-price="$15" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566"><h4>Student Admission</h4><p><strong>$15</strong></p><p>For student attendees. Student ID to be presented at check-in.</p></article>
+        </div>
+        <div class="selected"><p style="margin:0;color:#607287;font-size:12px;">Selected ticket</p><p id="selected-ticket-name" style="margin:2px 0 4px;font-weight:800;">MU Students (with valid ID) — FREE</p><p id="selected-ticket-note" style="margin:0;color:#36557c;font-size:13px;">Checkout window is ready for this ticket.</p><div style="margin-top:8px;"><a id="eventbrite-checkout-btn" class="btn btn-gold" href="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566" target="_blank" rel="noreferrer">Continue to Eventbrite Checkout</a></div></div>
+      </section>
+
+      <section id="sponsor" class="sponsor">
+        <h2 style="color:#fff;">Seeking Sponsorship</h2>
+        <p style="margin-top:0;color:#d5e7ff;">We are actively seeking sponsorship. Click a tier to prefill the form. Every sponsor receives a table.</p>
+        <div class="sgrid">
+          <article class="sbox" data-tier="Title Sponsor" data-price="$1,000"><h4 style="color:#ffd766;">🏆 Title Sponsor</h4><p><strong>$1,000</strong></p><ul><li>Sponsor table included</li><li>Threat assessment engagement</li><li>1/2 day cybersecurity training workshop</li></ul></article>
+          <article class="sbox" data-tier="Supporting Sponsor" data-price="$500"><h4 style="color:#ffd766;">💡 Supporting Sponsor</h4><p><strong>$500</strong></p><ul><li>Sponsor table included</li><li>1/2 day cybersecurity training workshop</li><li>Brand visibility in summit materials</li></ul></article>
+          <article class="sbox" data-tier="Community Sponsor" data-price="$250"><h4 style="color:#ffd766;">🤝 Community Sponsor</h4><p><strong>$250</strong></p><ul><li>Sponsor table included</li><li>1-hour cybersecurity training workshop</li><li>Community engagement spotlight</li></ul></article>
+        </div>
+        <form id="sponsor-form" class="form">
+          <div class="frow">
+            <div><label>Selected Tier</label><input id="tier" readonly value="-" /></div>
+            <div><label>Tier Price</label><input id="tierPrice" readonly value="-" /></div>
+            <div><label>Your Name</label><input id="name" required /></div>
+            <div><label>Organization</label><input id="org" required /></div>
+            <div><label>Email</label><input id="email" type="email" required /></div>
+            <div><label>Phone</label><input id="phone" /></div>
+          </div>
+          <div style="margin-top:8px;"><label>Message</label><textarea id="message" rows="4" placeholder="Tell us your sponsorship goals and preferred training topic."></textarea></div>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;"><button class="btn btn-gold" type="submit">Submit Sponsorship Interest</button><span style="color:#355b8a;font-size:13px;">Opens an email draft addressed to chirag.malkan@marquette.edu.</span></div>
+        </form>
+      </section>
+
+      <section class="footer-note">
+        <p><strong>Conference brought to you by:</strong></p>
+        <div class="logos">
+          <div class="logo"><img src="assets/marquette-university-logo.svg" alt="Marquette University logo" style="max-width:100%;max-height:56px" /></div>
+          <div class="logo"><img src="assets/security-for-the-folks-logo.svg" alt="Security For the Folks logo" style="max-width:100%;max-height:56px" /></div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const conferenceFlow = [
+        { title: 'IT Risk Management', time: 'Presentation • 11:45 AM', status: 'Confirmed', highlight: 'Confirmed topic aligned to enterprise OT risk.' },
+        { title: 'Network Security', time: 'Presentation • 12:10 PM', status: 'Confirmed', highlight: 'Confirmed network defense session.' },
+        { title: 'AI Applications', time: 'Presentation • 12:35 PM', status: 'Confirmed', highlight: 'AI use cases for cybersecurity teams.' },
+        { title: 'Pen Testing HW Device or GRC', time: 'Lab • 11:45 AM', status: 'Confirmed', highlight: 'Hardware and governance-focused lab.' },
+        { title: 'Critical Infrastructure Session', time: 'Presentation • 1:25 PM', status: 'Pending', highlight: 'Critical infrastructure security focus.' },
+        { title: 'CRT ISP Lab', time: 'Lab • 1:45 PM', status: 'Pending', highlight: 'ISP/CRT practical lab session.' },
+        { title: 'OT Cybersecurity Strategy', time: 'Presentation • 2:40 PM', status: 'Pending', highlight: 'OT strategy program design and execution.' },
+        { title: 'Secure Development Lifecycle', time: 'Presentation • 2:15 PM', status: 'Pending', highlight: 'Secure SDLC for OT and industrial products.' },
+        { title: 'Cyber Crime Scene', time: 'Lab • 12:25 PM', status: 'Pending', highlight: 'Practical cybercrime scene handling.' },
+        { title: 'Cybersecurity for Industrial Protocols', time: 'Presentation • 3:05 PM', status: 'Pending', highlight: 'Industrial protocol defensive strategy.' },
+        { title: 'Resume Workshop', time: 'Career & Community • 11:45 AM', status: 'Pending', highlight: 'Career-fair/volunteer track activity.' },
+        { title: 'How to Land Jobs', time: 'Career & Community • 4:20 PM', status: 'Confirmed', highlight: 'Job search and hiring guidance.' },
+        { title: 'Threats in Job Application & Client Engagement', time: 'Presentation • 4:40 PM', status: 'Confirmed', highlight: 'Security risks in hiring and client processes.' }
+      ];
+      const flowWrap = document.getElementById('topicflow');
+      conferenceFlow.forEach((item) => {
+        const badge = '<span class="badge pending">📅 Revealed April 1st</span>';
+        const pendingNote = item.status === 'Pending' ? '<span class="pending-note">Pending confirmation</span>' : '';
+
+        const card = document.createElement('article');
+        card.className = item.status === 'Pending' ? 'topic pending-topic' : 'topic';
+        card.innerHTML = `<div class="topic-head"><span>${item.time}</span>${badge}</div><h4>${item.title}</h4><p><strong>Topic Preview:</strong> ${item.highlight}</p><p class="small" style="margin-top:6px;">Details update April 1st</p>${pendingNote}`;
+        flowWrap.appendChild(card);
+      });
+
+      document.getElementById('copy-agenda').addEventListener('click', async () => {
+        const agendaText = `MOCS Working Timetable (Final releases April 1st)\nPresentation track: 11:30 check-in, 12:00 opening, then topic blocks at 12:30, 1:30, 2:30, 3:30, closing at 4:45.\nLab track: starts 12:30 with 1-hour grouped blocks through 4:30.\nCareer/community track: mentor, networking, student pathways, and CPE guidance blocks in parallel.`;
+        await navigator.clipboard.writeText(agendaText);
+        alert('Timetable copied to clipboard.');
+      });
+
+      document.querySelectorAll('.price').forEach((tile) => {
+        tile.addEventListener('click', () => {
+          document.querySelectorAll('.price').forEach((el) => { el.style.outline = 'none'; });
+          tile.style.outline = '3px solid #f4c300';
+          document.getElementById('selected-ticket-name').textContent = `${tile.dataset.ticket} — ${tile.dataset.price}`;
+          document.getElementById('selected-ticket-note').textContent = 'Checkout window is ready for this ticket.';
+          document.getElementById('eventbrite-checkout-btn').href = tile.dataset.checkout;
+        });
+      });
+
+      document.querySelectorAll('.sbox').forEach((box) => box.addEventListener('click', () => {
+        document.getElementById('tier').value = box.dataset.tier;
+        document.getElementById('tierPrice').value = box.dataset.price;
+      }));
+
+      document.getElementById('sponsor-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const subject = encodeURIComponent(`Sponsorship Interest: ${document.getElementById('tier').value} (${document.getElementById('tierPrice').value})`);
+        const body = encodeURIComponent(`Midwest OT Cybersecurity Summit (MOCS) - Sponsorship Interest\n\nSelected Tier: ${document.getElementById('tier').value}\nTier Price: ${document.getElementById('tierPrice').value}\n\nName: ${document.getElementById('name').value}\nOrganization: ${document.getElementById('org').value}\nEmail: ${document.getElementById('email').value}\nPhone: ${document.getElementById('phone').value}\n\nMessage:\n${document.getElementById('message').value}`);
+        window.location.href = `mailto:chirag.malkan@marquette.edu?subject=${subject}&body=${body}`;
+      });
+
+      document.getElementById('dark-toggle').addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        document.getElementById('dark-toggle').textContent = document.body.classList.contains('dark') ? '☀️ Light Mode' : '🌙 Dark Mode';
+      });
+    </script>
+  </body>
+</html>
