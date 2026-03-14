@@ -67,7 +67,7 @@
       .benefit-list li{margin:0 0 7px}
       .u{color:#778393}
 
-      .pricing{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
+      .pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin-top:10px}
       .price{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;cursor:pointer}
       .selected{margin-top:10px;max-width:420px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px}
 
@@ -234,11 +234,11 @@ body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c456
         <h2>Registration & Pricing</h2>
         <p class="small">Select a pricing tile first, then continue with the Eventbrite checkout window below. <strong>Students must be registered prior to the event; at-the-door prices will be student pricing.</strong></p>
         <div class="pricing">
-          <article class="price" data-ticket="MU Students (with valid ID)" data-price="FREE" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566"><h4>MU Students</h4><p><strong>FREE (with valid ID & pre-registration)</strong></p><p>Student-focused networking and pathways. ID to be presented.  At door pricing is $15.</p></article>
+          <article class="price" data-ticket="Sponsored Tickets" data-price="Contact Us" data-checkout="mailto:chirag@malkansolutions.com?subject=Sponsored%20Tickets%20Interest&body=I%27m%20interested%20in%20sponsored%20ticket%20blocks%20for%20the%20Midwest%20OT%20Cybersecurity%20Summit%20(MOCS)."><h4>Sponsored Tickets</h4><p><strong>Contact us for pricing</strong></p><p>Custom sponsored ticket blocks for teams, students, or community partners.</p></article>
+          <article class="price" data-ticket="MU Students (with valid ID)" data-price="FREE" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566"><h4>MU Students</h4><p><strong>FREE (with valid ID & pre-registration)</strong></p><p>Student-focused networking and pathways. ID to be presented. At-door pricing is $15.</p></article>
           <article class="price" data-ticket="Student Admission" data-price="$15" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566"><h4>Student Admission</h4><p><strong>$15</strong></p><p>For student attendees. Student ID to be presented at check-in.</p></article>
           <article class="price" data-ticket="Early Bird Industry Professionals" data-price="$25" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566"><h4>Early Bird Industry Professionals</h4><p><strong>$25</strong></p><p>Applies to early and mid-career attendees. Expires April 17th.</p></article>
           <article class="price" data-ticket="Industry Professionals" data-price="$35" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566"><h4>Industry Professionals</h4><p><strong>$35</strong></p><p>Prices after early bird.</p></article>
-          <article class="price" data-ticket="Sponsored Tickets" data-price="Contact Us" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566"><h4>Sponsored Tickets</h4><p><strong>Contact us for pricing</strong></p><p>Custom sponsored ticket blocks for teams, students, or community partners.</p></article>
         </div>
         <div class="selected"><p style="margin:0;color:#607287;font-size:12px;">Selected ticket</p><p id="selected-ticket-name" style="margin:2px 0 4px;font-weight:800;">MU Students (with valid ID) — FREE</p><p id="selected-ticket-note" style="margin:0;color:#36557c;font-size:13px;">Checkout window is ready for this ticket.</p><div style="margin-top:8px;"><a id="eventbrite-checkout-btn" class="btn btn-gold" href="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566" target="_blank" rel="noreferrer">Continue to Eventbrite Checkout</a></div></div>
       </section>
@@ -311,9 +311,16 @@ body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c456
         tile.addEventListener('click', () => {
           document.querySelectorAll('.price').forEach((el) => { el.style.outline = 'none'; });
           tile.style.outline = '3px solid #f4c300';
-          document.getElementById('selected-ticket-name').textContent = `${tile.dataset.ticket} — ${tile.dataset.price}`;
-          document.getElementById('selected-ticket-note').textContent = 'Checkout window is ready for this ticket.';
-          document.getElementById('eventbrite-checkout-btn').href = tile.dataset.checkout;
+          const nameEl = document.getElementById('selected-ticket-name');
+          const noteEl = document.getElementById('selected-ticket-note');
+          const btn = document.getElementById('eventbrite-checkout-btn');
+          nameEl.textContent = `${tile.dataset.ticket} — ${tile.dataset.price}`;
+          if (tile.dataset.ticket === 'Sponsored Tickets') {
+            noteEl.textContent = 'Opens an email to the organizing team to configure sponsored ticket blocks.';
+          } else {
+            noteEl.textContent = 'Checkout window is ready for this ticket.';
+          }
+          btn.href = tile.dataset.checkout;
         });
       });
 
