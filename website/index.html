@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Golden Eagle Cyber Defense Summit 2026</title>
+    <title>Midwest OT Cybersecurity Summit (MOCS)</title>
     <style>
       :root { --navy:#123b75; --ink:#123156; --text:#243648; --muted:#607287; --bg:#eef1f5; --panel:#f4f7fb; --line:#d8e0ea; --gold:#f4c300; }
       *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
@@ -113,6 +113,10 @@
         { title: 'Hardware Hacking & Device Penetration Testing', focus: 'Embedded attack paths and physical security', time: '3:00 PM', track: 'Lab', org: 'Praetorian', key: 'hardware' },
         { title: 'Cybercrime Investigation & Digital Forensics', focus: 'Evidence handling and incident reconstruction', time: '2:15 PM', track: 'Lab', org: 'Exida', key: 'forensics' }
       ];
+      const flowWrap = document.getElementById('topicflow');
+      conferenceFlow.forEach((item) => {
+        const badge = '<span class="badge pending">📅 Revealed April 1st</span>';
+        const pendingNote = item.status === 'Pending' ? '<span class="pending-note">Pending confirmation</span>' : '';
 
       function createTopicArt(topic) {
         const themes = {
