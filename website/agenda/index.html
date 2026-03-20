@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MOCS Agenda — Midwest OT Cybersecurity Summit</title>
+    <style>
+      :root{--navy:#0d3260;--navy-2:#163f74;--blue:#1f4f8f;--panel:#e9eff6;--line:#cfdae8;--text:#23384e;--muted:#61758f;--gold:#f4c300;--ok:#2f9a52;--pending:#7d8897}
+      *{box-sizing:border-box}
+      body{
+        margin:0;
+        font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+        background:#dfe7f0;
+        color:var(--text);
+        position:relative;
+        overflow-x:hidden;
+      }
+      body::before{
+        content:"";
+        position:fixed;
+        inset:0;
+        background:url("../assets/sftf-background.png") -20px center/360px 360px no-repeat;
+        opacity:0.05;
+        pointer-events:none;
+        z-index:-1;
+      }
+      .wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+      .top{position:relative;overflow:hidden;background:radial-gradient(1200px 420px at 0 0,#214f8f 0,#133c72 45%,#0d2f5d 50%);color:#eaf2ff;padding:8px 0 16px}
+      .top::before{content:"";position:absolute;inset:0;opacity:.15;pointer-events:none;background-image:repeating-linear-gradient(0deg,transparent 0 24px,rgba(255,255,255,.2) 24px 25px),repeating-linear-gradient(90deg,transparent 0 72px,rgba(255,255,255,.17) 72px 73px),linear-gradient(90deg,transparent 0 10%,rgba(255,255,255,.22) 10% 11%,transparent 11% 38%,rgba(255,255,255,.18) 38% 39%,transparent 39% 100%)}
+      .wrap-top{position:relative;z-index:1}
+      .topbar{display:flex;justify-content:space-between;align-items:center;padding:8px 0}
+      .chip{display:inline-block;background:#2d5d9a;border:1px solid rgba(255,255,255,.25);padding:5px 10px;border-radius:999px;font-size:12px;font-weight:800}
+      .btn{display:inline-flex;align-items:center;gap:6px;border-radius:9px;padding:8px 12px;text-decoration:none;font-weight:700;border:none;cursor:pointer}
+      .btn-blue{background:#295b9c;color:#e9f2ff;border:1px solid rgba(255,255,255,.2)} .btn-gold{background:var(--gold);color:#173b65}
+
+      main{padding:14px 0 28px}
+      .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:12px}
+      h2{margin:0 0 6px;color:#143a68;font-size:40px} .small{margin:0;color:var(--muted);font-size:12px}
+
+      .agenda-warning{margin:8px 0 10px;padding:10px 14px;border-radius:8px;background:#f59e0b;color:#7c2d12;font-weight:800;font-size:14px;text-align:center;letter-spacing:.03em}
+      .reveal-badge{display:inline-block;background:#3b7dd8;color:#e8f0fb;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px}
+      .break-row td{text-align:center!important;color:var(--muted);font-style:italic;background:#f8fafc!important;font-size:11px;padding:4px!important;border-bottom:none!important}
+      .agenda-table{width:100%;border-collapse:collapse}
+      .agenda-table th,.agenda-table td{padding:6px 4px;border-bottom:1px solid #e2eaf3;text-align:left;font-size:12px;vertical-align:top}
+      .agenda-table th{color:#1f446f;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+      .agenda-table td:last-child{color:#405b78}
+
+      .footer-note{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px}
+      .logos{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.logo{background:var(--navy);border-radius:10px;padding:10px;display:flex;justify-content:center;align-items:center;min-height:72px}
+
+      .toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+      .toast{display:inline-block;background:#2f9a52;color:#fff;font-size:12px;font-weight:700;padding:4px 10px;border-radius:6px;margin-left:8px;opacity:0;transition:opacity .3s}
+      .toast.show{opacity:1}
+
+      body.dark{background:#0b1320;color:#d8e6f8}
+      body.dark .card,body.dark .footer-note{background:#13243a;border-color:#2c4563;color:#d8e6f8}
+      body.dark .small{color:#a7bed9}
+      body.dark h2{color:#e8f3ff}
+      body.dark .agenda-warning{background:#92400e;color:#fef3c7}
+      body.dark .reveal-badge{background:#4a8de0;color:#e8f0fb}
+      body.dark .break-row td{background:#1b2d44!important;color:#8ba3bf}
+      body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c4563}
+      body.dark table{background:#13243a;border-color:#2c4563}
+      body.dark th{background:#1b3554;color:#e5f0ff}
+      body.dark td{border-bottom-color:#2c4563;color:#d8e6f8}
+      body.dark .agenda-table td:last-child{color:#a7bed9}
+      body.dark .btn-blue{background:#3b6fad;color:#f0f6ff}
+      body.dark .logo{background:#0c2d53}
+
+      @media (max-width:900px){h2{font-size:28px}.logos{grid-template-columns:1fr}}
+      @media (max-width:640px){h2{font-size:24px}}
+
+      @media print{
+        header.top,footer,.toolbar,.footer-note,button,.btn,.toast,body::before{display:none!important}
+        body,body.dark{background:#fff!important;color:#000!important}
+        .card{border:none!important;padding:0!important;background:#fff!important}
+        .agenda-table th,.agenda-table td{color:#000!important;border-bottom-color:#ccc!important}
+        .agenda-table th{background:#eee!important;color:#000!important}
+        table{background:#fff!important;border-color:#ccc!important}
+        .break-row td{background:#f5f5f5!important;color:#555!important}
+        .reveal-badge{background:#ddd!important;color:#333!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+        .agenda-warning{background:#fff3cd!important;color:#856404!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+        .print-header{display:block!important;text-align:center;margin-bottom:16px;font-size:14px}
+        .print-header h1{font-size:22px;margin:0 0 4px;color:#000}
+        .print-header p{margin:0;color:#555;font-size:13px}
+        .wrap{max-width:100%;padding:0 8px}
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top"><div class="wrap wrap-top">
+      <div class="topbar">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+          <a href="../index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;">
+            <img src="../assets/marquette-logo.png" alt="Marquette University logo" style="height:44px;filter:drop-shadow(0 0 4px rgba(0,0,0,.35));" />
+            <span class="chip">MOCS 2026</span>
+          </a>
+          <span style="font-size:12px;color:#d7e6fb;font-weight:700;">Hosted at beautiful Marquette University</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <img src="../assets/sftf-logo.png" alt="Security For the Folks logo" style="height:40px;opacity:.45;filter:drop-shadow(0 0 6px rgba(0,0,0,.5));" />
+          <span style="font-size:12px;color:#d7e6fb;font-weight:700;">Hosted by Security for the Folks</span>
+          <a class="btn btn-gold" href="#" style="pointer-events:none;opacity:.85;">Agenda</a>
+          <button id="dark-toggle" class="btn btn-blue" type="button">🌙 Dark Mode</button>
+          <a class="btn btn-gold" href="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566" target="_blank" rel="noreferrer">Register Now</a>
+        </div>
+      </div>
+    </div></header>
+
+    <div class="print-header" style="display:none;">
+      <h1>Midwest OT Cybersecurity Summit (MOCS)</h1>
+      <p>DRAFT Agenda — As of March 19, 2026</p>
+    </div>
+
+    <main class="wrap">
+      <section class="card">
+        <h2>MOCS Agenda</h2>
+        <p class="small">Midwest OT Cybersecurity Summit · April 24, 2026 · Marquette University, Milwaukee · 3 Rooms</p>
+
+        <div class="toolbar">
+          <a class="btn btn-gold" href="../index.html">← Back to Main</a>
+          <button id="btn-pdf" class="btn btn-gold" type="button">Download PDF</button>
+          <button id="btn-copy" class="btn btn-gold" type="button">Copy Link</button>
+          <button id="btn-copy-agenda" class="btn btn-gold" type="button">Copy Agenda</button>
+          <span id="copy-toast" class="toast">Link copied!</span>
+          <span id="agenda-toast" class="toast">Agenda copied!</span>
+        </div>
+
+        <div style="overflow-x:auto;">
+        <table class="agenda-table" style="background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;">
+          <thead><tr><th>Time</th><th>Marquette, AMU Room 257</th><th>Marquette, AMU Room 252</th><th>Marquette, AMU Room 253</th></tr></thead>
+          <tbody>
+            <tr><td><strong>11:30 AM – 12:30 PM</strong></td><td colspan="3"><strong>Registration &amp; Check-In</strong> · Lobby</td></tr>
+            <tr><td><strong>12:30 PM – 1:00 PM</strong></td><td colspan="3"><strong>Opening Keynote</strong> — <span class="reveal-badge">🔒 Revealed April 1st</span> · All rooms</td></tr>
+            <tr class="break-row"><td colspan="4">── 10 min break ──</td></tr>
+            <tr><td><strong>1:10 PM – 1:40 PM</strong></td><td><strong>Securing the Wire: Advanced Communication Robustness Testing for Critical OT Infrastructure</strong><br>Exida<br><span class="reveal-badge">🔒 Revealed April 1st</span></td><td><strong>The OEM Perspective: Balancing Performance, Stability, and Security in OT Penetration Testing</strong><br>Rockwell Automation<br><span class="reveal-badge">🔒 Revealed April 1st</span></td><td>TBD</td></tr>
+            <tr class="break-row"><td colspan="4">── 10 min break ──</td></tr>
+            <tr><td><strong>1:50 PM – 2:20 PM</strong></td><td><strong>Securing the OT Architecture: From Firewall Hygiene to Advanced Network Segmentation</strong><br>Johnson Controls<br><span class="reveal-badge">🔒 Revealed April 1st</span></td><td><strong>The Invisible Breach: Securing the Digital Handshake in Hiring and Sales</strong><br>Irulast<br><span class="reveal-badge">🔒 Revealed April 1st</span></td><td>—</td></tr>
+            <tr class="break-row"><td colspan="4">── 10 min break ──</td></tr>
+            <tr><td><strong>2:30 PM – 3:00 PM</strong></td><td><strong>Navigating the Storm: Advanced Strategies for Modern IT Risk Management</strong><br>Johnson Controls<br><span class="reveal-badge">🔒 Revealed April 1st</span></td><td><strong>Securing the Precision: Threat Analysis and PTP Protocol Vulnerabilities in OT Networking</strong><br>Marquette University CSC<br><span class="reveal-badge">🔒 Revealed April 1st</span></td><td>—</td></tr>
+            <tr class="break-row"><td colspan="4">── 10 min break ──</td></tr>
+            <tr><td><strong>3:10 PM – 3:40 PM</strong></td><td><strong>The Future of Intelligence: Navigating AI Applications in Modern Cybersecurity</strong><br>ISACA MKE Chapter<br><span class="reveal-badge">🔒 Revealed April 1st</span></td><td><strong>Lost in Transliteration: Hidden Passwords in a Multilingual World</strong><br>Sprocket Security<br><span class="reveal-badge">🔒 Revealed April 1st</span></td><td><strong>Securing the Grid: Simulated Modbus SCADA Environments and Replay Attack Mitigation (Lab)</strong><br>ICSVillage<br><span class="reveal-badge">🔒 Revealed April 1st</span></td></tr>
+            <tr class="break-row"><td colspan="4">── 10 min break ──</td></tr>
+            <tr><td><strong>3:50 PM – 4:20 PM</strong></td><td><strong>Career Pathways in OT: Strategies for Landing Your Next Role</strong><br>BSides<br><span class="reveal-badge">🔒 Revealed April 1st</span></td><td><em>(open — TBD)</em></td><td>—</td></tr>
+            <tr class="break-row"><td colspan="4">── 10 min break ──</td></tr>
+            <tr><td><strong>4:30 PM – 5:00 PM</strong></td><td colspan="3"><strong>Technical Panel: OT Cybersecurity — Industry Perspectives</strong><br>Panelists: TBD<br><span class="reveal-badge">🔒 Revealed April 1st</span> · All rooms</td></tr>
+            <tr><td><strong>5:00 PM – 5:30 PM</strong></td><td colspan="3"><strong>Career Fair &amp; Networking</strong> · All rooms</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <section class="footer-note">
+        <p><strong>Conference brought to you by:</strong></p>
+        <div class="logos">
+          <div class="logo"><img src="../assets/marquette-logo.png" alt="Marquette University logo" style="max-width:100%;max-height:56px" /></div>
+          <div class="logo"><img src="../assets/sftf-logo.png" alt="Security For the Folks logo" style="max-width:100%;max-height:72px" /></div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      document.getElementById('btn-pdf').addEventListener('click', () => { window.print(); });
+
+      document.getElementById('btn-copy').addEventListener('click', async () => {
+        await navigator.clipboard.writeText(window.location.href);
+        const toast = document.getElementById('copy-toast');
+        toast.classList.add('show');
+        setTimeout(() => { toast.classList.remove('show'); }, 2000);
+      });
+
+      document.getElementById('btn-copy-agenda').addEventListener('click', async () => {
+        const agendaText = `Midwest OT Cybersecurity Summit (MOCS) — Agenda — As of March 19, 2026\nApril 24, 2026 · Marquette University, Milwaukee\n\n11:30 AM – 12:30 PM  Registration & Check-In | Lobby\n12:30 PM –  1:00 PM  Opening Keynote | All rooms\n  ── 10 min break ──\n 1:10 PM –  1:40 PM  AMU Room 257: Securing the Wire: Advanced Communication Robustness Testing for Critical OT Infrastructure — Exida\n                     AMU Room 252: The OEM Perspective: Balancing Performance, Stability, and Security in OT Penetration Testing — Rockwell Automation\n                     AMU Room 253: TBD\n  ── 10 min break ──\n 1:50 PM –  2:20 PM  AMU Room 257: Securing the OT Architecture: From Firewall Hygiene to Advanced Network Segmentation — Johnson Controls\n                     AMU Room 252: The Invisible Breach: Securing the Digital Handshake in Hiring and Sales — Irulast\n  ── 10 min break ──\n 2:30 PM –  3:00 PM  AMU Room 257: Navigating the Storm: Advanced Strategies for Modern IT Risk Management — Johnson Controls\n                     AMU Room 252: Securing the Precision: Threat Analysis and PTP Protocol Vulnerabilities in OT Networking — Marquette University CSC\n  ── 10 min break ──\n 3:10 PM –  3:40 PM  AMU Room 257: The Future of Intelligence: Navigating AI Applications in Modern Cybersecurity — ISACA MKE Chapter\n                     AMU Room 252: Lost in Transliteration: Hidden Passwords in a Multilingual World — Sprocket Security\n                     AMU Room 253: Securing the Grid: Simulated Modbus SCADA Environments and Replay Attack Mitigation (Lab) — ICSVillage\n  ── 10 min break ──\n 3:50 PM –  4:20 PM  AMU Room 257: Career Pathways in OT: Strategies for Landing Your Next Role — BSides\n                     AMU Room 252: (open — TBD)\n  ── 10 min break ──\n 4:30 PM –  5:00 PM  Technical Panel: OT Cybersecurity — Industry Perspectives | Panelists: TBD | All rooms\n 5:00 PM –  5:30 PM  Career Fair & Networking | All rooms`;
+        await navigator.clipboard.writeText(agendaText);
+        const toast = document.getElementById('agenda-toast');
+        toast.classList.add('show');
+        setTimeout(() => { toast.classList.remove('show'); }, 2000);
+      });
+
+      document.getElementById('dark-toggle').addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        document.getElementById('dark-toggle').textContent = document.body.classList.contains('dark') ? '☀️ Light Mode' : '🌙 Dark Mode';
+      });
+    </script>
+  </body>
+</html>

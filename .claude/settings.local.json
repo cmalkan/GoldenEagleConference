@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell.exe -Command \"Get-ChildItem ''C:\\\\Program Files\\\\nodejs'' -ErrorAction SilentlyContinue; Get-ChildItem ''C:\\\\Users\\\\b2\\\\AppData\\\\Roaming\\\\nvm'' -ErrorAction SilentlyContinue; Get-ChildItem ''C:\\\\Users\\\\b2\\\\AppData\\\\Local\\\\fnm*'' -ErrorAction SilentlyContinue; Test-Path ''C:\\\\Users\\\\b2\\\\.nvm''\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(powershell.exe -Command \"where.exe npx 2>&1; where.exe node 2>&1\")",
+      "Bash(powershell.exe -Command \"Get-ChildItem ''C:\\\\Program Files\\\\nodejs'' -ErrorAction SilentlyContinue | Select-Object Name; Get-ChildItem ''C:\\\\ProgramData\\\\nvm'' -ErrorAction SilentlyContinue | Select-Object Name; Get-ChildItem ''C:\\\\Users\\\\b2\\\\AppData\\\\Roaming\\\\npm'' -ErrorAction SilentlyContinue | Select-Object Name; Get-ChildItem ''C:\\\\Users\\\\b2\\\\AppData\\\\Local\\\\Programs'' -ErrorAction SilentlyContinue | Select-Object Name\")",
+      "Bash(powershell.exe -Command \"Get-ChildItem -Path ''C:\\\\'' -Recurse -Filter ''node.exe'' -ErrorAction SilentlyContinue -Depth 4 | Select-Object FullName -First 5\")",
+      "Bash(powershell.exe -Command \"Get-ChildItem ''C:\\\\Users\\\\b2\\\\scoop\\\\shims'' -ErrorAction SilentlyContinue | Where-Object {$_Name -like ''node*'' -or $_Name -like ''npm*''} | Select Name; Test-Path ''C:\\\\Users\\\\b2\\\\.volta''; Test-Path ''C:\\\\Users\\\\b2\\\\.fnm''\")",
+      "Bash(powershell.exe -Command \"Get-ChildItem -Path ''C:\\\\Users\\\\b2'' -Filter ''node.exe'' -Recurse -ErrorAction SilentlyContinue -Depth 5 | Select-Object FullName -First 3\")",
+      "Bash(powershell.exe -Command \"\\(Get-Item ''website/assets/Midwest_OT_Cybersecurity_Summit.mp4''\\).Length / 1MB\")"
+    ]
+  }
+}
