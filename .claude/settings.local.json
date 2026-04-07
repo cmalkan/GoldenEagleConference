@@ -29,7 +29,16 @@
       "Read(//c/Users/b2/source/repos/GoldenEagleConference/**)",
       "Bash(ls -la /tmp/user_upload*)",
       "Bash(ls -lat C:/Users/b2/AppData/Local/Temp/*.png C:/Users/b2/AppData/Local/Temp/*.jpg C:/Users/b2/AppData/Local/Temp/*.jpeg)",
-      "Bash(ls -la \"C:/Users/b2/source/repos/GoldenEagleConference/website/assets/logos/\"bsidesmke*)"
+      "Bash(ls -la \"C:/Users/b2/source/repos/GoldenEagleConference/website/assets/logos/\"bsidesmke*)",
+      "WebFetch(domain:www.linkedin.com)",
+      "WebFetch(domain:www.rsaconference.com)",
+      "WebFetch(domain:www.zoominfo.com)",
+      "WebFetch(domain:www.denversportsrecovery.com)",
+      "WebFetch(domain:www.grassr00tz.com)",
+      "WebFetch(domain:www.counterhack.com)",
+      "WebFetch(domain:www.advancedmanufacturing.org)",
+      "Bash(curl -L -o adam-weigold.jpg \"https://media.licdn.com/dms/image/v2/C5603AQE_Z4w_EaLrxg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1629066087601?e=2147483647&v=beta&t=e15RmL6Vy2CrzhKMvPfzAUFHxZpOVlXpZjipJXYuHTI\")",
+      "Bash(curl -L -o peter-mclane.jpg \"https://media.licdn.com/dms/image/v2/D5603AQEtsIIG7Ysegg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1686494402640?e=2147483647&v=beta&t=bbkQFqbKc9qjfWRgeDExvLS7yF0Ui7faXy8dk3n7uZU\")"
     ]
   }
 }
