@@ -23,7 +23,13 @@
       "WebFetch(domain:www.mkebside.com)",
       "WebFetch(domain:www.xftf.org)",
       "WebFetch(domain:www.bsidesmke.org)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(where npx:*)",
+      "Bash(ls -la /tmp/*.png /tmp/*.jpg /tmp/*.jpeg)",
+      "Read(//c/Users/b2/source/repos/GoldenEagleConference/**)",
+      "Bash(ls -la /tmp/user_upload*)",
+      "Bash(ls -lat C:/Users/b2/AppData/Local/Temp/*.png C:/Users/b2/AppData/Local/Temp/*.jpg C:/Users/b2/AppData/Local/Temp/*.jpeg)",
+      "Bash(ls -la \"C:/Users/b2/source/repos/GoldenEagleConference/website/assets/logos/\"bsidesmke*)"
     ]
   }
 }
