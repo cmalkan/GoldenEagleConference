@@ -38,7 +38,14 @@
       "WebFetch(domain:www.counterhack.com)",
       "WebFetch(domain:www.advancedmanufacturing.org)",
       "Bash(curl -L -o adam-weigold.jpg \"https://media.licdn.com/dms/image/v2/C5603AQE_Z4w_EaLrxg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1629066087601?e=2147483647&v=beta&t=e15RmL6Vy2CrzhKMvPfzAUFHxZpOVlXpZjipJXYuHTI\")",
-      "Bash(curl -L -o peter-mclane.jpg \"https://media.licdn.com/dms/image/v2/D5603AQEtsIIG7Ysegg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1686494402640?e=2147483647&v=beta&t=bbkQFqbKc9qjfWRgeDExvLS7yF0Ui7faXy8dk3n7uZU\")"
+      "Bash(curl -L -o peter-mclane.jpg \"https://media.licdn.com/dms/image/v2/D5603AQEtsIIG7Ysegg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1686494402640?e=2147483647&v=beta&t=bbkQFqbKc9qjfWRgeDExvLS7yF0Ui7faXy8dk3n7uZU\")",
+      "WebFetch(domain:midwest-otcs.org)",
+      "Bash(curl -s https://midwest-otcs.org)",
+      "Bash(curl -sI \"https://midwest-otcs.org/assets/mu-cyber-logo.png\")",
+      "Bash(curl -sI \"https://midwest-otcs.org/assets/MU%20Cyber%20logo.png\")",
+      "WebFetch(domain:sitereview.bluecoat.com)",
+      "WebFetch(domain:www.fortiguard.com)",
+      "WebFetch(domain:talosintelligence.com)"
     ]
   }
 }
