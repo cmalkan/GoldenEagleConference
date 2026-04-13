@@ -45,7 +45,9 @@
       "Bash(curl -sI \"https://midwest-otcs.org/assets/MU%20Cyber%20logo.png\")",
       "WebFetch(domain:sitereview.bluecoat.com)",
       "WebFetch(domain:www.fortiguard.com)",
-      "WebFetch(domain:talosintelligence.com)"
+      "WebFetch(domain:talosintelligence.com)",
+      "Bash(wslpath -w /tmp/5a804cbd-1d92-4236-b294-b3844ca2c3de.png)",
+      "Bash(echo \"C:\\\\\\\\Users\\\\\\\\b2\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Temp\")"
     ]
   }
 }
