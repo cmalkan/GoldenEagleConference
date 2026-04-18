@@ -29,9 +29,14 @@
     <style>
       :root{--navy:#0d3260;--navy-2:#163f74;--blue:#1f4f8f;--panel:#e9eff6;--line:#cfdae8;--text:#23384e;--muted:#61758f;--gold:#f4c300;--ok:#2f9a52;--pending:#7d8897}
       *{box-sizing:border-box}
+      html{font-size:16px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
       body{
         margin:0;
         font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+        font-size:15px;
+        line-height:1.55;
+        -webkit-font-smoothing:antialiased;
+        -moz-osx-font-smoothing:grayscale;
         background:#dfe7f0;
         color:var(--text);
         position:relative;
@@ -55,7 +60,7 @@
       .btn{display:inline-flex;align-items:center;gap:6px;border-radius:9px;padding:8px 12px;text-decoration:none;font-weight:700;border:none;cursor:pointer}
       .btn-blue{background:#295b9c;color:#e9f2ff;border:1px solid rgba(255,255,255,.2)} .btn-gold{background:var(--gold);color:#173b65}
 
-      main{padding:14px 0 28px}
+      main{padding:20px 0 48px}
       .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:12px}
       h2{margin:0 0 6px;color:#143a68;font-size:40px} .small{margin:0;color:var(--muted);font-size:12px}
 
@@ -110,6 +115,11 @@
       body.dark .scroll-arrow{background:#13243a;border-color:#2c4563;color:#e8f3ff}body.dark .scroll-arrow:hover{background:#1b3554}
       body.dark .logo{background:#0c2d53}
 
+      #cal-dropdown a:hover{background:#e9eff6}
+      body.dark #cal-dropdown{background:#1b2d44;border-color:#2c4563}
+      body.dark #cal-dropdown a{color:#d8e6f8;border-bottom-color:#2c4563}
+      body.dark #cal-dropdown a:hover{background:#253d58}
+
       @media (max-width:900px){h2{font-size:28px}.logos{grid-template-columns:1fr}}
       @media (max-width:640px){h2{font-size:24px}}
 
@@ -128,24 +138,152 @@
         .print-header p{margin:0;color:#555;font-size:13px}
         .wrap{max-width:100%;padding:0 8px}
       }
+
+      /* Touch-device hover — prevent sticky transform after tap */
+      @media (hover:none), (pointer:coarse){
+        *:hover{transform:none!important}
+      }
+
+      /* Reduced motion — respect user preference */
+      @media (prefers-reduced-motion:reduce){
+        *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+      }
+
+      /* REFINED TOOLBAR */
+      .tk-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 16px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:12px}
+      .tk-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;background:transparent;border:1px solid var(--line);border-radius:8px;color:#3b6ba5;font-size:13px;font-weight:700;text-decoration:none;cursor:pointer;letter-spacing:-.005em;transition:background 180ms ease,color 180ms ease,border-color 180ms ease,transform 160ms cubic-bezier(0.23,1,0.32,1)}
+      @media (hover:hover) and (pointer:fine){.tk-btn:hover{background:#eef3fb;color:#143a68;border-color:#b8cbe4}}
+      .tk-btn:active{transform:scale(0.97)}
+      .tk-btn-primary{background:var(--gold);color:#173b65;border-color:var(--gold)}
+      @media (hover:hover) and (pointer:fine){.tk-btn-primary:hover{background:#ffd433;border-color:#ffd433;color:#173b65}}
+      body.dark .tk-toolbar{background:#13243a;border-color:#2c4563}
+      body.dark .tk-btn{color:#7eb3e0;border-color:#2c4563}
+      body.dark .tk-btn:hover{background:#1b3554;color:#e8f3ff;border-color:#3b6ba5}
+      body.dark .tk-btn-primary{background:#ffd766;color:#173b65;border-color:#ffd766}
+
+      /* REFINED DAY-OF CALLOUT — subtle, not loud */
+      .agenda-dayof{display:flex;align-items:center;gap:14px;padding:14px 16px;margin:0 0 16px;background:linear-gradient(180deg,#fdfbf3 0%,#fff 60%);border:1px solid #ead9a1;border-radius:12px;text-decoration:none;color:var(--text);position:relative;overflow:hidden;transition:transform 220ms cubic-bezier(0.16,1,0.3,1),box-shadow 220ms ease,border-color 220ms ease}
+      .agenda-dayof::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(244,195,0,.6),transparent)}
+      .agenda-dayof-icon{width:36px;height:36px;border-radius:10px;background:rgba(244,195,0,.15);color:#8a6800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+      .agenda-dayof-body{flex:1;min-width:0}
+      .agenda-dayof-label{margin:0 0 2px;font-size:15px;font-weight:800;color:#3a2c00;letter-spacing:-.005em}
+      .agenda-dayof-desc{margin:0;font-size:13px;color:#5a4a1e;line-height:1.55}
+      .agenda-dayof-arrow{width:32px;height:32px;border-radius:50%;background:#f4c300;color:#173b65;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform 220ms cubic-bezier(0.23,1,0.32,1)}
+      @media (hover:hover) and (pointer:fine){
+        .agenda-dayof:hover{border-color:#d6b85c;box-shadow:0 6px 18px rgba(138,104,0,.15);transform:translateY(-1px)}
+        .agenda-dayof:hover .agenda-dayof-arrow{transform:translateX(3px)}
+      }
+      body.dark .agenda-dayof{background:linear-gradient(180deg,#1f1e12 0%,#13243a 80%);border-color:#5a4a1e;color:#d8e6f8}
+      body.dark .agenda-dayof-label{color:#ffde73}
+      body.dark .agenda-dayof-desc{color:#d8c98a}
+
+      /* Inline stamp for agenda section header */
+      .agenda-stamp-inline{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#a8bcd4;font-size:12px;letter-spacing:.02em}
+      body.dark .agenda-stamp-inline{color:#7eb3e0}
+
+      /* TASTE-SKILL SHARED — section heads */
+      .ts-head{display:flex;align-items:baseline;gap:14px;margin:0 0 16px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+      .ts-idx{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;font-weight:700;color:#a8bcd4;letter-spacing:.08em;flex-shrink:0}
+      .ts-title{margin:0;font-size:28px;font-weight:800;color:#143a68;letter-spacing:-.015em;line-height:1.1}
+      .ts-sub{margin:3px 0 0;font-size:13.5px;color:var(--muted);line-height:1.55}
+      body.dark .ts-head{border-bottom-color:#2c4563}
+      body.dark .ts-title{color:#e8f3ff}
+      body.dark .ts-sub{color:#a7bed9}
+
+      /* SPONSOR TIERS */
+      .spn-section{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 22px;margin-bottom:14px}
+      .spn-tier{margin-bottom:22px}
+      .spn-tier:last-child{margin-bottom:0}
+      .spn-tier-head{display:flex;align-items:baseline;gap:10px;margin:0 0 12px;padding-bottom:8px;border-bottom:1px dashed var(--line)}
+      .spn-tier-label{margin:0;font-size:11px;font-weight:800;color:#143a68;letter-spacing:.18em;text-transform:uppercase}
+      .spn-tier-count{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:#a8bcd4;letter-spacing:.04em}
+      .spn-grid{display:grid;gap:10px}
+      .spn-grid.cols-2{grid-template-columns:repeat(2,1fr)}
+      .spn-grid.cols-3{grid-template-columns:repeat(3,1fr)}
+      .spn-grid.cols-4{grid-template-columns:repeat(4,1fr)}
+      .spn-logo{background:#fff;border:1px solid var(--line);border-radius:10px;min-height:76px;display:flex;align-items:center;justify-content:center;padding:12px 16px;text-decoration:none;transition:transform 220ms cubic-bezier(0.16,1,0.3,1),box-shadow 220ms ease,border-color 220ms ease}
+      .spn-logo img{max-width:100%;max-height:52px;display:block}
+      @media (hover:hover) and (pointer:fine){.spn-logo:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(13,50,96,.08);border-color:#b8cbe4}}
+      @media (max-width:900px){.spn-grid.cols-4,.spn-grid.cols-3{grid-template-columns:repeat(2,1fr)}}
+      @media (max-width:500px){.spn-grid.cols-4,.spn-grid.cols-3,.spn-grid.cols-2{grid-template-columns:1fr}}
+      body.dark .spn-section{background:#13243a;border-color:#2c4563}
+      body.dark .spn-tier-label{color:#e8f3ff}
+      body.dark .spn-tier-head{border-bottom-color:#2c4563}
+      body.dark .spn-logo{background:#0f1e33;border-color:#2c4563}
+
+      /* PAGE HERO — taste-skill shared */
+      .page-hero{margin-top:10px;border:1px solid rgba(255,255,255,.2);background:rgba(7,27,54,.35);border-radius:14px;padding:22px 24px}
+      .hero-eyebrow{display:inline-block;font-size:11px;font-weight:800;color:#ffde73;letter-spacing:.18em;text-transform:uppercase;margin:0 0 10px;border-left:2px solid rgba(255,222,115,.5);padding-left:10px}
+      .page-hero h1{margin:4px 0 8px;color:#fff;font-size:40px;line-height:1.05;letter-spacing:-.015em;font-weight:800}
+      .page-hero p{margin:0;color:#d3e1f5;font-size:15px;max-width:680px;line-height:1.6}
+      @media (max-width:640px){.page-hero h1{font-size:28px}}
+
+      /* TOP BAR — taste-skill shared */
+      .topbar{display:flex;align-items:center;justify-content:space-between;padding:12px 0 10px;gap:24px;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.08)}
+      .brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:inherit;flex-shrink:0}
+      .brand-logos{display:inline-flex;align-items:center;gap:8px}
+      .brand-logo{height:32px;width:auto;display:block;opacity:.95}
+      .brand-logo-sftf{height:30px;opacity:.82}
+      .brand-rule{width:1px;height:26px;background:rgba(255,255,255,.18)}
+      .brand-word{font-size:17px;font-weight:800;color:#fff;letter-spacing:.04em;line-height:1}
+      .topnav{display:inline-flex;align-items:center;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+      .topnav-link{color:#c8d8ef;font-size:13px;font-weight:600;text-decoration:none;padding:6px 10px;border-radius:6px;letter-spacing:-.005em;transition:color 180ms ease,background 180ms ease}
+      @media (hover:hover) and (pointer:fine){.topnav-link:hover{color:#fff;background:rgba(255,255,255,.07)}}
+      .topnav-rule{width:1px;height:18px;background:rgba(255,255,255,.15);margin:0 6px;align-self:center}
+      .topnav-link.is-current{color:#ffd766;background:rgba(244,195,0,.12)}
+      .topnav-link.is-current::after{content:"";position:absolute;bottom:-2px;left:12px;right:12px;height:2px;background:#ffd766;border-radius:2px}
+      .btn-register-sm{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:#173b65;text-decoration:none;font-weight:800;font-size:13px;padding:8px 14px;border-radius:8px;letter-spacing:-.005em;transition:transform 160ms cubic-bezier(0.23,1,0.32,1),background 180ms ease,box-shadow 180ms ease;box-shadow:0 2px 10px rgba(244,195,0,.2);margin-left:4px}
+      @media (hover:hover) and (pointer:fine){.btn-register-sm:hover{background:#ffd433;box-shadow:0 4px 16px rgba(244,195,0,.4)}}
+      .btn-register-sm:active{transform:scale(0.97)}
+      @media (max-width:760px){
+        .topbar{gap:12px}
+        .topnav{width:100%;justify-content:flex-start;gap:2px;padding-top:4px;border-top:1px solid rgba(255,255,255,.08)}
+        .topnav-rule{display:none}
+        .brand-rule{height:22px}
+        .brand-word{font-size:15px}
+      }
+
+      /* ICON TOGGLE — dark-mode ghost button */
+      .icon-toggle{width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:transparent;color:#c8d8ef;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:background 180ms ease,color 180ms ease,border-color 180ms ease,transform 160ms cubic-bezier(0.23,1,0.32,1)}
+      @media (hover:hover) and (pointer:fine){.icon-toggle:hover{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.4)}}
+      .icon-toggle:active{transform:scale(0.92)}
+      .icon-toggle:focus-visible{outline:2px solid #ffd766;outline-offset:2px}
+      .icon-toggle .icon-sun{display:none}
+      body.dark .icon-toggle .icon-moon{display:none}
+      body.dark .icon-toggle .icon-sun{display:inline-block}
+      body.dark .icon-toggle{color:#ffd766;border-color:rgba(255,215,102,.3)}
     </style>
   </head>
   <body>
     <header class="top"><div class="wrap wrap-top">
       <div class="topbar">
-        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-          <a href="../index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;">
-            <img src="../assets/marquette-logo.png" alt="Marquette University logo" style="height:44px;filter:drop-shadow(0 0 4px rgba(0,0,0,.35));" />
-            <img src="../assets/sftf-logo.png" alt="Security For the Folks logo" style="height:40px;opacity:.85;filter:drop-shadow(0 0 6px rgba(0,0,0,.5));" />
+        <a href="../index.html" class="brand" aria-label="MOCS 2026 — Midwest OT Cybersecurity Summit">
+          <span class="brand-logos">
+            <img src="../assets/marquette-logo.png" alt="Marquette University" class="brand-logo" />
+            <img src="../assets/sftf-logo.png" alt="Security For the Folks" class="brand-logo brand-logo-sftf" />
+          </span>
+          <span class="brand-rule" aria-hidden="true"></span>
+          <span class="brand-word">MOCS 2026</span>
+        </a>
+        <nav class="topnav" aria-label="Primary">
+          <a class="topnav-link" href="../index.html">Home</a>
+          <a class="topnav-link is-current" href="../agenda/index.html" aria-current="page">Agenda</a>
+          <a class="topnav-link" href="../day-of/index.html">Day-of</a>
+          <a class="topnav-link" href="../speaker-sponsor/index.html">Logistics</a>
+          <a class="topnav-link" href="../about/index.html">About</a>
+          <span class="topnav-rule" aria-hidden="true"></span>
+          <button id="dark-toggle" class="icon-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+            <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          </button>
+          <a class="btn-register-sm" href="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566" target="_blank" rel="noreferrer">Register
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
-          <span style="font-size:18px;font-weight:800;color:#fff;letter-spacing:.5px;text-shadow:0 1px 4px rgba(0,0,0,.4);">MOCS 2026</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-          <a class="btn btn-gold" href="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566" target="_blank" rel="noreferrer">Register</a>
-          <a class="btn btn-blue" href="#speakers-list">Speakers</a>
-          <a class="btn btn-blue" href="#" style="pointer-events:none;opacity:.85;">Agenda</a>
-          <a class="btn btn-blue" href="../index.html#sponsors">Sponsors</a>
-          <button id="dark-toggle" class="btn btn-blue" type="button">🌙 Dark Mode</button>
+        </nav>
+        <div class="page-hero">
+          <p class="hero-eyebrow">Full Agenda · April 24, 2026</p>
+          <h1>MOCS 2026 — the run of day.</h1>
+          <p>10:00 AM – 5:30 PM · 3 rooms · 12 sessions · hands-on labs + networking. Marquette University, Alumni Memorial Union, Milwaukee.</p>
         </div>
       </div>
     </div></header>
@@ -156,45 +294,82 @@
     </div>
 
     <main class="wrap">
-      <section class="card">
-        <h2>MOCS Agenda</h2>
-        <p class="small">Midwest OT Cybersecurity Summit · April 24, 2026 · Marquette University, Milwaukee · 3 Rooms</p>
+      <section class="spn-section">
+        <div class="ts-head">
+          <span class="ts-idx">01 /</span>
+          <div>
+            <h2 class="ts-title">Run of day</h2>
+            <p class="ts-sub">Midwest OT Cybersecurity Summit · April 24, 2026 · Marquette University · 3 rooms · 12 sessions <span class="agenda-stamp-inline">· Last updated April 17, 2026</span></p>
+          </div>
+        </div>
 
-        <div class="toolbar">
-          <a class="btn btn-gold" href="../index.html">← Back to Main</a>
-          <button id="btn-pdf" class="btn btn-gold" type="button">Download PDF</button>
-          <button id="btn-copy" class="btn btn-gold" type="button">Copy Link</button>
-          <button id="btn-copy-agenda" class="btn btn-gold" type="button">Copy Agenda</button>
+        <!-- Refined toolbar -->
+        <div class="toolbar tk-toolbar">
+          <a class="tk-btn" href="../index.html">← Back</a>
+          <button id="btn-pdf" class="tk-btn" type="button">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            PDF
+          </button>
+          <button id="btn-copy" class="tk-btn" type="button">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            Link
+          </button>
+          <button id="btn-copy-agenda" class="tk-btn" type="button">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy text
+          </button>
+          <div style="position:relative;display:inline-block;">
+            <button id="cal-btn" class="tk-btn tk-btn-primary" type="button">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Add to calendar ▾
+            </button>
+            <div id="cal-dropdown" style="display:none;position:absolute;bottom:100%;left:0;margin-bottom:6px;background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.25);min-width:220px;z-index:100;overflow:hidden;">
+              <a id="cal-google" href="#" target="_blank" rel="noreferrer" style="display:block;padding:10px 14px;text-decoration:none;color:#23384e;font-size:13px;font-weight:600;border-bottom:1px solid #eee;">Google Calendar</a>
+              <a id="cal-outlook" href="#" target="_blank" rel="noreferrer" style="display:block;padding:10px 14px;text-decoration:none;color:#23384e;font-size:13px;font-weight:600;border-bottom:1px solid #eee;">Outlook Web</a>
+              <a id="cal-ics" href="#" download="MOCS-2026.ics" style="display:block;padding:10px 14px;text-decoration:none;color:#23384e;font-size:13px;font-weight:600;">Download .ics (Apple/Outlook)</a>
+            </div>
+          </div>
           <span id="copy-toast" class="toast">Link copied!</span>
           <span id="agenda-toast" class="toast">Agenda copied!</span>
         </div>
 
-        <p class="version-note">DRAFT — As of April 11, 2026</p>
+        <!-- Refined Day-of callout -->
+        <a href="../day-of/index.html" class="agenda-dayof">
+          <span class="agenda-dayof-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </span>
+          <div class="agenda-dayof-body">
+            <p class="agenda-dayof-label">Day-of Guide</p>
+            <p class="agenda-dayof-desc">Parking, campus navigation, check-in flow &amp; food — everything you need for April 24th.</p>
+          </div>
+          <span class="agenda-dayof-arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </a>
 
         <div style="overflow-x:auto;">
         <table class="agenda-table" style="background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;">
           <thead><tr><th>Time</th><th>Marquette, AMU Room 227</th><th>Marquette, AMU Room 252</th><th>Marquette, AMU Room 254</th></tr></thead>
           <tbody>
-            <tr><td><strong>10:00 AM – 11:00 AM</strong></td><td colspan="3"><strong>Registration &amp; Check-In</strong> · Lobby · Badges, welcome packets, sponsor tables</td></tr>
-            <tr><td><strong>11:00 AM – 11:45 AM</strong></td><td colspan="3"><strong>🍽️ Lunch</strong> · Provided for all REGISTERED attendees</td></tr>
-            <tr><td><strong>11:45 AM – 12:30 PM</strong></td><td colspan="3"><strong>Opening & Keynote by FBI Milwaukee</strong><br>SSA Brett Lerner &amp; IA Thomas Gathman · Counterintelligence, WMD, and Cyber Programs · AMU Room 227</td></tr>
+            <tr><td><strong>10:00 AM →</strong></td><td colspan="3"><strong>Registration &amp; Check-In opens</strong> · Lobby · Badges, welcome packets, sponsor tables</td></tr>
+            <tr style="background:#f0f7ff;"><td><strong>11:00 AM – 11:30 AM</strong></td><td colspan="3"><strong>Lunch &amp; Networking</strong> · Box lunches provided for all REGISTERED attendees · AMU Room 227</td></tr>
+            <tr><td><strong>11:30 AM – 12:30 PM</strong></td><td colspan="3"><strong>Opening & Keynote by FBI Milwaukee</strong><br>SSA Brett Lerner &amp; IA Thomas Gathman · Counterintelligence, WMD, and Cyber Programs · AMU Room 227</td></tr>
             <tr class="break-row"><td colspan="4">── 10 min break ──</td></tr>
-            <tr><td><strong>12:40 PM – 1:10 PM</strong></td><td><strong>OT Cybersecurity GRC, IEC 62443 Standards, and the EU Cyber Resilience Act</strong><br>Shoshana Wodzisz · Malkan Solutions</td><td><strong>OT Device Penetration Testing Basics</strong><br>Tillman Petersen · Rockwell Automation</td><td><strong>🔐 Cybersecurity Escape Room — Session 1</strong><br><span style="font-size:11px;color:var(--muted);">30 min · 5–10 participants · Solve cyber puzzles to "escape" a simulated breach scenario</span></td></tr>
+            <tr><td><strong>12:40 PM – 1:10 PM</strong></td><td><strong>OT Cybersecurity GRC, IEC 62443 Standards, and the EU Cyber Resilience Act</strong><br>Shoshana Wodzisz · Malkan Solutions</td><td><strong>OT Device Penetration Testing Basics</strong><br>Tillman Petersen · Rockwell Automation</td><td><strong>Cybersecurity Escape Room — Session 1</strong><br><span style="font-size:11px;color:var(--muted);">30 min · 5–10 participants · Solve cyber puzzles to "escape" a simulated breach scenario</span></td></tr>
             <tr class="break-row"><td colspan="4">── 10 min break ──</td></tr>
             <tr><td><strong>1:20 PM – 1:50 PM</strong></td><td><strong>From Firewall Hygiene to Advanced Network Segmentation</strong><br>Peter McLane · Johnson Controls</td><td><strong>Lost in Transliteration: Hidden Passwords in a Multilingual World</strong><br>Juan Pablo Gomez Postigo · Sprocket Security</td><td rowspan="3" style="vertical-align:top;"><strong>Securing the Grid: Simulated Modbus SCADA Environments and Replay Attack Mitigation (Lab)</strong><br>Neil Brandon · ICS Village<br><span style="font-size:11px;color:var(--muted);">1 hour · 1:20 PM – 2:20 PM</span></td></tr>
             <tr class="break-row"><td colspan="3">── 10 min break ──</td></tr>
             <tr><td><strong>2:00 PM – 2:30 PM</strong></td><td><strong>OT Threat Modeling and Risk Prioritization</strong><br>Steven Taylor · Rockwell Automation</td><td><strong>Advanced Strategies for Modern IT Risk Management</strong><br>Jeni Herrera &amp; Kelly Yang · Johnson Controls</td></tr>
-            <tr class="break-row"><td colspan="4">── 10 min break ──</td></tr>
-            <tr><td><strong>2:40 PM – 3:10 PM</strong></td><td><strong>Presentation from IBM on OT System Security</strong><br>TBD · IBM</td><td><strong>Securing the Digital Handshake in Hiring and Sales</strong><br>Adam Weigold · Irulast</td><td><strong>🔐 Cybersecurity Escape Room — Session 2</strong><br><span style="font-size:11px;color:var(--muted);">30 min · 5–10 participants · Solve cyber puzzles to "escape" a simulated breach scenario</span></td></tr>
+            <tr class="break-row"><td colspan="4">── 10 min break · Salsa &amp; dip served ──</td></tr>
+            <tr><td><strong>2:40 PM – 3:10 PM</strong></td><td><strong>Presentation from IBM on OT System Security</strong><br>TBD · IBM</td><td><strong>Securing the Digital Handshake in Hiring and Sales</strong><br>Adam Weigold · Irulast</td><td><strong>Cybersecurity Escape Room — Session 2</strong><br><span style="font-size:11px;color:var(--muted);">30 min · 5–10 participants · Solve cyber puzzles to "escape" a simulated breach scenario</span></td></tr>
             <tr class="break-row"><td colspan="4">── 10 min break ──</td></tr>
             <tr><td><strong>3:20 PM – 3:50 PM</strong></td><td><strong>Strategies for Landing Your Next Role</strong><br>Rebecca Jo Jones · BSides MKE</td><td><strong>Practical Security That Scales: Automation, Risk, and Real-World Execution</strong><br>Joshua Sharkey · ISACA MKE Chapter</td><td> </td></tr>
             <tr class="break-row"><td colspan="4">── 10 min break ──</td></tr>
-            <tr><td><strong>4:00 PM – 4:30 PM</strong></td><td><strong>Technical Panel: OT Cybersecurity — Industry Perspectives</strong><br><span class="reveal-badge">🔒 Revealed April 17th</span></td><td> </td><td> </td></tr>
-            <tr><td><strong>4:30 PM – 5:30 PM</strong></td><td colspan="3"><strong>Career Networking</strong> · AMU Room 227 · 1 hour</td></tr>
+            <tr><td><strong>4:00 PM – 4:30 PM</strong></td><td><strong>Executive Panel: Preparing OT Environments for the Next Generation of Cybersecurity</strong><br><span class="reveal-badge">Revealed April 17th</span></td><td> </td><td> </td></tr>
+            <tr style="background:#f0f7ff;"><td><strong>4:30 PM – 5:30 PM</strong></td><td colspan="3"><strong>Evening Networking</strong> · Snacks provided · AMU Room 227</td></tr>
           </tbody>
         </table>
         </div>
-        <p style="margin:8px 0 0;font-size:13px;color:var(--muted);text-align:center;">🍿 Afternoon snacks will be served throughout the event.</p>
       </section>
 
       <section id="speakers-list" class="card" style="margin-bottom:12px;">
@@ -282,40 +457,67 @@
         </div>
       </section>
 
-      <section class="footer-note">
-        <p><strong>Executive Sponsors</strong></p>
-        <div class="logos" style="grid-template-columns:repeat(2,1fr);">
-          <div class="logo" style="background:#fff;flex-direction:column;gap:6px;"><img src="../assets/MU Cyber logo.png" alt="Marquette University Center for Cyber Security logo" style="max-width:100%;max-height:56px" /></div>
-          <div class="logo" style="background:#fff;flex-direction:column;gap:6px;"><img src="../assets/sftf-logo.png" alt="Security For the Folks logo" style="max-width:100%;max-height:72px" /></div>
+      <section id="sponsors" class="spn-section">
+        <div class="ts-head">
+          <span class="ts-idx">02 /</span>
+          <div>
+            <h2 class="ts-title">Sponsors &amp; partners</h2>
+            <p class="ts-sub">MOCS exists because of the organizations that back it — students attend free thanks to them.</p>
+          </div>
         </div>
-        <p style="margin-top:12px;"><strong>Title Sponsors</strong></p>
-        <div class="logos" style="grid-template-columns:repeat(2,1fr);">
-          <div class="logo" style="background:#fff;flex-direction:column;gap:6px;"><img src="../assets/malkansolutions logo.png" alt="Malkan Solutions logo" style="max-width:100%;max-height:56px" /></div>
-          <div class="logo" style="background:#fff;flex-direction:column;gap:6px;"><img src="../assets/logos/aws.png" alt="AWS logo" style="max-width:100%;max-height:56px" /></div>
-          <div class="logo" style="background:#fff;flex-direction:column;gap:6px;"><img src="../assets/logos/ibmconsulting_logo.jpg" alt="IBM Consulting logo" style="max-width:100%;max-height:56px" /></div>
-          <div class="logo" style="background:#fff;flex-direction:column;gap:6px;"><img src="../assets/logos/nmsdi-logo.png" alt="Northwestern Mutual Data Science Institute logo" style="max-width:100%;max-height:56px" /></div>
-        </div>
-        <p style="margin-top:12px;"><strong>Community Sponsors</strong></p>
-        <div class="logos" style="grid-template-columns:repeat(3,1fr);">
-          <div class="logo" style="background:#fff;flex-direction:column;gap:6px;"><img src="../assets/logos/rockwell-automation.png" alt="Rockwell Automation logo" style="max-width:100%;max-height:56px" /></div>
-          <div class="logo" style="background:#fff;flex-direction:column;gap:6px;"><img src="../assets/logos/claroty.png" alt="Claroty logo" style="max-width:100%;max-height:56px" /></div>
-          <div class="logo" style="background:#fff;flex-direction:column;gap:6px;"><img src="../assets/logos/Push-Color-Horzt-RGB-Logo copy.png" alt="Push Security logo" style="max-width:100%;max-height:56px" /></div>
-        </div>
-      </section>
 
-      <section class="footer-note" style="margin-top:12px;">
-        <p><strong>Companies Presenting</strong></p>
-        <div class="logos" style="grid-template-columns:repeat(3,1fr);">
-          <div class="logo" style="background:rgba(255,255,255,.55);flex-direction:column;gap:6px;"><img src="../assets/logos/rockwell-automation.png" alt="Rockwell Automation logo" style="max-width:100%;max-height:48px" /></div>
-          <div class="logo" style="background:rgba(255,255,255,.55);flex-direction:column;gap:6px;"><img src="../assets/logos/johnson-controls.png" alt="Johnson Controls logo" style="max-width:100%;max-height:48px" /></div>
+        <div class="spn-tier">
+          <div class="spn-tier-head">
+            <p class="spn-tier-label">Executive Sponsors</p>
+            <span class="spn-tier-count">02</span>
+          </div>
+          <div class="spn-grid cols-2">
+            <a href="https://www.marquette.edu/cyber-security/" target="_blank" rel="noreferrer" class="spn-logo"><img src="../assets/MU Cyber logo.png" alt="Marquette University Center for Cyber Security" /></a>
+            <a href="https://www.xftf.org" target="_blank" rel="noreferrer" class="spn-logo"><img src="../assets/sftf-logo.png" alt="Security For the Folks" style="max-height:60px;" /></a>
+          </div>
+        </div>
 
-          <div class="logo" style="background:rgba(255,255,255,.55);flex-direction:column;gap:6px;"><img src="../assets/logos/sprocket-security.png" alt="Sprocket Security logo" style="max-width:100%;max-height:48px" /></div>
-          <div class="logo" style="background:rgba(255,255,255,.55);flex-direction:column;gap:6px;"><img src="../assets/logos/irulast.svg" alt="Irulast logo" style="max-width:100%;max-height:48px" /></div>
-          <div class="logo" style="background:rgba(255,255,255,.55);flex-direction:column;gap:6px;"><img src="../assets/logos/isaca-mke.png" alt="ISACA Milwaukee Chapter logo" style="max-width:100%;max-height:48px" /></div>
-          <div class="logo" style="background:rgba(255,255,255,.55);flex-direction:column;gap:6px;"><img src="../assets/logos/icsvillage.png" alt="ICS Village logo" style="max-width:100%;max-height:48px" /></div>
-          <div class="logo" style="background:rgba(255,255,255,.55);flex-direction:column;gap:6px;"><img src="../assets/logos/bsidesmke.jpg" alt="BSides MKE logo" style="max-width:100%;max-height:48px" /></div>
-          <div class="logo" style="background:rgba(255,255,255,.55);flex-direction:column;gap:6px;"><img src="../assets/malkansolutions logo.png" alt="Malkan Solutions logo" style="max-width:100%;max-height:48px" /></div>
-          <div class="logo" style="background:rgba(255,255,255,.55);flex-direction:column;gap:6px;"><img src="../assets/logos/ibmconsulting_logo.jpg" alt="IBM Consulting logo" style="max-width:100%;max-height:48px" /></div>
+        <div class="spn-tier">
+          <div class="spn-tier-head">
+            <p class="spn-tier-label">Title Sponsors</p>
+            <span class="spn-tier-count">04</span>
+          </div>
+          <div class="spn-grid cols-4">
+            <a href="https://www.malkansolutions.com" target="_blank" rel="noreferrer" class="spn-logo"><img src="../assets/malkansolutions logo.png" alt="Malkan Solutions" /></a>
+            <a href="https://www.ibm.com/consulting/aws" target="_blank" rel="noreferrer" class="spn-logo"><img src="../assets/logos/aws.png" alt="AWS" /></a>
+            <a href="https://www.ibm.com/consulting" target="_blank" rel="noreferrer" class="spn-logo"><img src="../assets/logos/ibmconsulting_logo.jpg" alt="IBM Consulting" /></a>
+            <a href="https://datascienceinstitute.northwesternmutual.com" target="_blank" rel="noreferrer" class="spn-logo"><img src="../assets/logos/nmsdi-logo.png" alt="Northwestern Mutual Data Science Institute" /></a>
+          </div>
+        </div>
+
+        <div class="spn-tier">
+          <div class="spn-tier-head">
+            <p class="spn-tier-label">Community Sponsors</p>
+            <span class="spn-tier-count">03</span>
+          </div>
+          <div class="spn-grid cols-3">
+            <a href="https://www.rockwellautomation.com" target="_blank" rel="noreferrer" class="spn-logo"><img src="../assets/logos/rockwell-automation.png" alt="Rockwell Automation" /></a>
+            <a href="https://www.claroty.com" target="_blank" rel="noreferrer" class="spn-logo"><img src="../assets/logos/claroty.png" alt="Claroty" /></a>
+            <a href="https://pushsecurity.com" target="_blank" rel="noreferrer" class="spn-logo"><img src="../assets/logos/Push-Color-Horzt-RGB-Logo copy.png" alt="Push Security" /></a>
+          </div>
+        </div>
+
+        <div class="spn-tier">
+          <div class="spn-tier-head">
+            <p class="spn-tier-label">Companies Presenting</p>
+            <span class="spn-tier-count">09</span>
+          </div>
+          <div class="spn-grid cols-4">
+            <a href="https://www.rockwellautomation.com" target="_blank" rel="noreferrer" class="spn-logo"><img src="../assets/logos/rockwell-automation.png" alt="Rockwell Automation" style="max-height:44px;" /></a>
+            <a href="https://www.johnsoncontrols.com" target="_blank" rel="noreferrer" class="spn-logo"><img src="../assets/logos/johnson-controls.png" alt="Johnson Controls" style="max-height:44px;" /></a>
+            <a href="https://www.sprocketsecurity.com" target="_blank" rel="noreferrer" class="spn-logo"><img src="../assets/logos/sprocket-security.png" alt="Sprocket Security" style="max-height:44px;" /></a>
+            <a href="https://www.irulast.com" target="_blank" rel="noreferrer" class="spn-logo"><img src="../assets/logos/irulast.svg" alt="Irulast" style="max-height:44px;" /></a>
+            <a href="https://www.isaca.org" target="_blank" rel="noreferrer" class="spn-logo"><img src="../assets/logos/isaca-mke.png" alt="ISACA Milwaukee Chapter" style="max-height:44px;" /></a>
+            <a href="https://www.icsvillage.com" target="_blank" rel="noreferrer" class="spn-logo"><img src="../assets/logos/icsvillage.png" alt="ICS Village" style="max-height:44px;" /></a>
+            <a href="https://www.bsidesmke.org" target="_blank" rel="noreferrer" class="spn-logo"><img src="../assets/logos/bsidesmke.jpg" alt="BSides MKE" style="max-height:44px;" /></a>
+            <a href="https://www.malkansolutions.com" target="_blank" rel="noreferrer" class="spn-logo"><img src="../assets/malkansolutions logo.png" alt="Malkan Solutions" style="max-height:44px;" /></a>
+            <a href="https://www.ibm.com/consulting" target="_blank" rel="noreferrer" class="spn-logo"><img src="../assets/logos/ibmconsulting_logo.jpg" alt="IBM Consulting" style="max-height:44px;" /></a>
+          </div>
         </div>
       </section>
     </main>
@@ -331,7 +533,7 @@
       });
 
       document.getElementById('btn-copy-agenda').addEventListener('click', async () => {
-        const agendaText = `Midwest OT Cybersecurity Summit (MOCS) — Agenda — As of April 11, 2026\nApril 24, 2026 · Marquette University, Milwaukee\n\n10:00 AM – 11:00 AM  Registration & Check-In | Lobby | Badges, welcome packets, sponsor tables\n11:15 AM – 11:45 AM  Lunch | Provided for all attendees\n11:45 AM – 12:30 PM  Opening Keynote — FBI | Supervisory Special Agent Brett Lerner & Intelligence Analyst Thomas Gathman | AMU Room 227\n  ── 10 min break ──\n12:40 PM –  1:10 PM  AMU Room 227: OT Cybersecurity GRC, IEC 62443 Standards, and the EU Cyber Resilience Act — Malkan Solutions\n                     AMU Room 252: OT Device Penetration Testing Basics — Rockwell Automation\n                     AMU Room 254: Cybersecurity Escape Room — Session 1 (30 min, 5–10 participants)\n  ── 10 min break ──\n 1:20 PM –  1:50 PM  AMU Room 227: From Firewall Hygiene to Advanced Network Segmentation — Johnson Controls\n                     AMU Room 252: Lost in Transliteration: Hidden Passwords in a Multilingual World — Sprocket Security\n                     AMU Room 254: Securing the Grid: Simulated Modbus SCADA Environments and Replay Attack Mitigation (Lab) — ICS Village (1 hour: 1:20–2:20 PM)\n  ── 10 min break ──\n 2:00 PM –  2:30 PM  AMU Room 227: OT Threat Modeling and Risk Prioritization — Rockwell Automation\n                     AMU Room 252: Advanced Strategies for Modern IT Risk Management — Johnson Controls\n  ── 10 min break ──\n 2:40 PM –  3:10 PM  AMU Room 227: Presentation from IBM on OT System Security — IBM\n                     AMU Room 252: Securing the Digital Handshake in Hiring and Sales — Irulast\n                     AMU Room 254: Cybersecurity Escape Room — Session 2 (30 min, 5–10 participants)\n  ── 10 min break ──\n 3:20 PM –  3:50 PM  AMU Room 227: Strategies for Landing Your Next Role — BSides MKE\n                     AMU Room 252: Practical Security That Scales: Automation, Risk, and Real-World Execution — ISACA MKE Chapter\n  ── 10 min break ──\n 4:00 PM –  4:30 PM  Technical Panel: OT Cybersecurity — Industry Perspectives | Panelists TBA | AMU Room 227\n 4:30 PM –  5:30 PM  Career Networking | 60 min\n\nAfternoon snacks will be served throughout the event.`;
+        const agendaText = `Midwest OT Cybersecurity Summit (MOCS) — Agenda — As of April 17, 2026\nApril 24, 2026 · Marquette University, Milwaukee\n\n10:00 AM →            Registration & Check-In opens | Lobby | Badges, welcome packets, sponsor tables\n11:00 AM – 11:30 AM  Lunch & Networking | Box lunches provided for all REGISTERED attendees | AMU Room 227\n11:30 AM – 12:30 PM  Opening Keynote — FBI Milwaukee | SSA Brett Lerner & IA Thomas Gathman | Counterintelligence, WMD, and Cyber Programs | AMU Room 227\n  ── 10 min break ──\n12:40 PM –  1:10 PM  AMU Room 227: OT Cybersecurity GRC, IEC 62443 Standards, and the EU Cyber Resilience Act — Malkan Solutions\n                     AMU Room 252: OT Device Penetration Testing Basics — Rockwell Automation\n                     AMU Room 254: Cybersecurity Escape Room — Session 1 (30 min, 5–10 participants)\n  ── 10 min break ──\n 1:20 PM –  1:50 PM  AMU Room 227: From Firewall Hygiene to Advanced Network Segmentation — Johnson Controls\n                     AMU Room 252: Lost in Transliteration: Hidden Passwords in a Multilingual World — Sprocket Security\n                     AMU Room 254: Securing the Grid: Simulated Modbus SCADA Environments and Replay Attack Mitigation (Lab) — ICS Village (1:20–2:20 PM)\n  ── 10 min break ──\n 2:00 PM –  2:30 PM  AMU Room 227: OT Threat Modeling and Risk Prioritization — Rockwell Automation\n                     AMU Room 252: Advanced Strategies for Modern IT Risk Management — Johnson Controls\n  ── 10 min break · Salsa & dip served ──\n 2:40 PM –  3:10 PM  AMU Room 227: Presentation from IBM on OT System Security — IBM\n                     AMU Room 252: Securing the Digital Handshake in Hiring and Sales — Irulast\n                     AMU Room 254: Cybersecurity Escape Room — Session 2 (30 min, 5–10 participants)\n  ── 10 min break ──\n 3:20 PM –  3:50 PM  AMU Room 227: Strategies for Landing Your Next Role — BSides MKE\n                     AMU Room 252: Practical Security That Scales: Automation, Risk, and Real-World Execution — ISACA MKE Chapter\n  ── 10 min break ──\n 4:00 PM –  4:30 PM  Executive Panel: Preparing OT Environments for the Next Generation of Cybersecurity | AMU Room 227\n 4:30 PM –  5:30 PM  Evening Networking | Snacks provided | AMU Room 227`;
         await navigator.clipboard.writeText(agendaText);
         const toast = document.getElementById('agenda-toast');
         toast.classList.add('show');
@@ -340,8 +542,78 @@
 
       document.getElementById('dark-toggle').addEventListener('click', () => {
         document.body.classList.toggle('dark');
-        document.getElementById('dark-toggle').textContent = document.body.classList.contains('dark') ? '☀️ Light Mode' : '🌙 Dark Mode';
       });
+
+      // Calendar dropdown
+      (function(){
+        const title = 'Midwest OT Cybersecurity Summit (MOCS) 2026';
+        const desc = [
+          'Midwest OT Cybersecurity Summit — April 24, 2026',
+          'Marquette University · Alumni Memorial Union · Milwaukee, WI',
+          '',
+          'AGENDA',
+          '10:00 AM   Registration & Check-In opens (Lobby)',
+          '11:00 AM   Lunch & Networking (AMU 227)',
+          '11:30 AM   Opening Keynote — FBI Milwaukee (AMU 227)',
+          '12:40 PM   Breakouts',
+          '           R227 · OT GRC / IEC 62443 / EU CRA — Malkan Solutions',
+          '           R252 · OT Device Pen Testing — Rockwell Automation',
+          '           R254 · Cybersecurity Escape Room — Session 1',
+          ' 1:20 PM   Breakouts',
+          '           R227 · Firewall Hygiene to Network Segmentation — Johnson Controls',
+          '           R252 · Hidden Passwords in a Multilingual World — Sprocket Security',
+          '           R254 · Modbus SCADA Lab — ICS Village (runs to 2:20)',
+          ' 2:00 PM   Breakouts',
+          '           R227 · OT Threat Modeling & Risk Prioritization — Rockwell Automation',
+          '           R252 · Advanced IT Risk Management — Johnson Controls',
+          ' 2:40 PM   Breakouts · Salsa & dip served',
+          '           R227 · OT System Security — IBM',
+          '           R252 · Securing the Digital Handshake — Irulast',
+          '           R254 · Cybersecurity Escape Room — Session 2',
+          ' 3:20 PM   Breakouts',
+          '           R227 · Strategies for Landing Your Next Role — BSides MKE',
+          '           R252 · Practical Security That Scales — ISACA MKE',
+          ' 4:00 PM   Executive Panel · Preparing OT Environments for the Next Generation of Cybersecurity (AMU 227)',
+          ' 4:30 PM   Evening Networking · Snacks (AMU 227)',
+          '',
+          'Register:  https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566',
+          'Full agenda: https://midwest-otcs.org/agenda/'
+        ].join('\n');
+        const location = 'Marquette University, Alumni Memorial Union, Milwaukee, WI';
+        const start = '20260424T150000Z'; // 10:00 AM CDT
+        const end   = '20260424T223000Z'; // 5:30 PM CDT
+
+        document.getElementById('cal-google').href =
+          'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+          '&text=' + encodeURIComponent(title) +
+          '&dates=' + start + '/' + end +
+          '&details=' + encodeURIComponent(desc) +
+          '&location=' + encodeURIComponent(location);
+
+        document.getElementById('cal-outlook').href =
+          'https://outlook.live.com/calendar/0/action/compose?allday=false' +
+          '&subject=' + encodeURIComponent(title) +
+          '&startdt=2026-04-24T10:00:00-05:00' +
+          '&enddt=2026-04-24T17:30:00-05:00' +
+          '&body=' + encodeURIComponent(desc) +
+          '&location=' + encodeURIComponent(location);
+
+        var icsContent = [
+          'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//MOCS//EN',
+          'BEGIN:VEVENT',
+          'DTSTART:'+start,'DTEND:'+end,
+          'SUMMARY:'+title,
+          'DESCRIPTION:'+desc.replace(/\n/g,'\\n'),
+          'LOCATION:'+location,
+          'END:VEVENT','END:VCALENDAR'
+        ].join('\r\n');
+        document.getElementById('cal-ics').href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsContent);
+
+        var btn = document.getElementById('cal-btn');
+        var dd  = document.getElementById('cal-dropdown');
+        btn.addEventListener('click', function(e){ e.stopPropagation(); dd.style.display = dd.style.display === 'none' ? 'block' : 'none'; });
+        document.addEventListener('click', function(){ dd.style.display = 'none'; });
+      })();
 
       // Speaker carousel scroll arrows
       (function(){

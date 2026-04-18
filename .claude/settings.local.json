@@ -47,7 +47,30 @@
       "WebFetch(domain:www.fortiguard.com)",
       "WebFetch(domain:talosintelligence.com)",
       "Bash(wslpath -w /tmp/5a804cbd-1d92-4236-b294-b3844ca2c3de.png)",
-      "Bash(echo \"C:\\\\\\\\Users\\\\\\\\b2\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Temp\")"
+      "Bash(echo \"C:\\\\\\\\Users\\\\\\\\b2\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Temp\")",
+      "Bash(unzip -l \"Photos-3-001 \\(1\\).zip\")",
+      "Bash(unzip -l \"Photos-3-001 \\(2\\).zip\")",
+      "Bash(unzip -o \"Photos-3-001 \\(1\\).zip\" -d journey-photos)",
+      "Bash(unzip -o \"Photos-3-001 \\(2\\).zip\" -d journey-photos)",
+      "Bash(ffmpeg -version)",
+      "Bash(where ffmpeg *)",
+      "Bash(where ffmpeg.exe)",
+      "Read(//usr/**)",
+      "Bash(ls /c/ffmpeg*)",
+      "Read(//c/Program Files/**)",
+      "Bash(winget install *)",
+      "Bash(cmd.exe /c \"ffprobe -v quiet -print_format json -show_streams \\\\\"C:\\\\Users\\\\b2\\\\source\\\\repos\\\\GoldenEagleConference\\\\website\\\\assets\\\\20260410_144727.mp4\\\\\" 2>&1\")",
+      "Bash(cmd.exe /c \"ffprobe -v error -select_streams v:0 -show_entries stream=width,height,r_frame_rate,duration -of default \\\\\"C:\\\\Users\\\\b2\\\\source\\\\repos\\\\GoldenEagleConference\\\\website\\\\assets\\\\20260410_144727.mp4\\\\\"\")",
+      "Bash(cmd.exe /c \"where ffmpeg & ffmpeg -version 2>&1 | head -1\")",
+      "Read(//c/Users/b2/AppData/Local/Microsoft/WinGet/Links/**)",
+      "Read(//c/Users/b2/AppData/Local/Microsoft/WinGet/Packages/**)",
+      "Bash(/c/Users/b2/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-8.1-full_build/bin/ffprobe.exe -v error -select_streams v:0 -show_entries stream=width,height,r_frame_rate -of default 'C:\\\\Users\\\\b2\\\\source\\\\repos\\\\GoldenEagleConference\\\\website\\\\assets\\\\20260410_144727.mp4')",
+      "Bash(/c/Users/b2/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-8.1-full_build/bin/ffmpeg.exe -y -i 'C:\\\\Users\\\\b2\\\\source\\\\repos\\\\GoldenEagleConference\\\\website\\\\assets\\\\20260410_144727.mp4' -i 'C:\\\\Users\\\\b2\\\\source\\\\repos\\\\GoldenEagleConference\\\\website\\\\assets\\\\sftf-logo.png' -filter_complex ' *)",
+      "WebFetch(domain:tasteskill.dev)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(curl -s \"https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/taste-skill.md\")",
+      "Bash(curl -s \"https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/skills/taste-skill/SKILL.md\")"
     ]
   }
 }

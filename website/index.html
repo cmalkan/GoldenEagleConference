@@ -63,9 +63,14 @@
     <style>
       :root{--navy:#0d3260;--navy-2:#163f74;--blue:#1f4f8f;--panel:#e9eff6;--line:#cfdae8;--text:#23384e;--muted:#61758f;--gold:#f4c300;--ok:#2f9a52;--pending:#7d8897}
       *{box-sizing:border-box}
+      html{font-size:16px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
       body{
         margin:0;
         font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+        font-size:15px;
+        line-height:1.55;
+        -webkit-font-smoothing:antialiased;
+        -moz-osx-font-smoothing:grayscale;
         background:#dfe7f0;
         color:var(--text);
         position:relative;
@@ -88,14 +93,92 @@
       .chip{display:inline-block;background:#2d5d9a;border:1px solid rgba(255,255,255,.25);padding:5px 10px;border-radius:999px;font-size:12px;font-weight:800}
       .btn{display:inline-flex;align-items:center;gap:6px;border-radius:9px;padding:8px 12px;text-decoration:none;font-weight:700;border:none;cursor:pointer}
       .btn-blue{background:#295b9c;color:#e9f2ff;border:1px solid rgba(255,255,255,.2)} .btn-gold{background:var(--gold);color:#173b65}
-      .hero{margin-top:8px;border:1px solid rgba(255,255,255,.2);background:rgba(7,27,54,.35);border-radius:14px;padding:14px}
-      .tag{display:inline-block;background:rgba(244,195,0,.2);border:1px solid rgba(244,195,0,.45);color:#ffde73;font-weight:800;font-size:11px;padding:4px 8px;border-radius:999px;text-transform:uppercase;letter-spacing:.08em}
-      h1{margin:10px 0 6px;color:#fff;font-size:48px;line-height:1.05}
-      .subtitle{margin:0;color:#d3e1f5;max-width:860px}
-      .meta{display:flex;gap:12px;flex-wrap:wrap;color:#c8d8ef;font-size:12px;margin:10px 0 14px}
-      .actions{display:flex;gap:8px;flex-wrap:wrap}
+      /* TOP BAR — taste-skill refined */
+      .topbar{display:flex;align-items:center;justify-content:space-between;padding:12px 0 10px;gap:24px;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.08)}
+      .brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:inherit;flex-shrink:0}
+      .brand-logos{display:inline-flex;align-items:center;gap:8px}
+      .brand-logo{height:32px;width:auto;display:block;opacity:.95}
+      .brand-logo-sftf{height:30px;opacity:.82}
+      .brand-rule{width:1px;height:26px;background:rgba(255,255,255,.18)}
+      .brand-word{font-size:17px;font-weight:800;color:#fff;letter-spacing:.04em;line-height:1}
 
-      main{padding:14px 0 28px}
+      .topnav{display:inline-flex;align-items:center;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+      .topnav-link{color:#c8d8ef;font-size:13px;font-weight:600;text-decoration:none;padding:6px 10px;border-radius:6px;letter-spacing:-.005em;transition:color 180ms ease,background 180ms ease}
+      @media (hover:hover) and (pointer:fine){.topnav-link:hover{color:#fff;background:rgba(255,255,255,.07)}}
+      .topnav-rule{width:1px;height:18px;background:rgba(255,255,255,.15);margin:0 6px;align-self:center}
+      .topnav-link.is-current{color:#ffd766;background:rgba(244,195,0,.12)}
+      .topnav-link.is-current::after{content:"";position:absolute;bottom:-2px;left:12px;right:12px;height:2px;background:#ffd766;border-radius:2px}
+
+      .btn-register-sm{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:#173b65;text-decoration:none;font-weight:800;font-size:13px;padding:8px 14px;border-radius:8px;letter-spacing:-.005em;transition:transform 160ms cubic-bezier(0.23,1,0.32,1),background 180ms ease,box-shadow 180ms ease;box-shadow:0 2px 10px rgba(244,195,0,.2);margin-left:4px}
+      @media (hover:hover) and (pointer:fine){.btn-register-sm:hover{background:#ffd433;box-shadow:0 4px 16px rgba(244,195,0,.4)}}
+      .btn-register-sm:active{transform:scale(0.97)}
+
+      @media (max-width:760px){
+        .topbar{gap:12px}
+        .topnav{width:100%;justify-content:flex-start;gap:2px;padding-top:4px;border-top:1px solid rgba(255,255,255,.08)}
+        .topnav-rule{display:none}
+        .brand-rule{height:22px}
+        .brand-word{font-size:15px}
+      }
+
+      /* ICON TOGGLE — subtle ghost dark-mode button */
+      .icon-toggle{width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:transparent;color:#c8d8ef;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:background 180ms ease,color 180ms ease,border-color 180ms ease,transform 160ms cubic-bezier(0.23,1,0.32,1)}
+      @media (hover:hover) and (pointer:fine){.icon-toggle:hover{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.4)}}
+      .icon-toggle:active{transform:scale(0.92)}
+      .icon-toggle:focus-visible{outline:2px solid #ffd766;outline-offset:2px}
+      .icon-toggle .icon-sun{display:none}
+      body.dark .icon-toggle .icon-moon{display:none}
+      body.dark .icon-toggle .icon-sun{display:inline-block}
+      body.dark .icon-toggle{color:#ffd766;border-color:rgba(255,215,102,.3)}
+
+      /* HERO — taste-skill redesign · registration-focused */
+      .hero{margin-top:12px;border:1px solid rgba(255,255,255,.14);background:rgba(7,27,54,.42);border-radius:16px;padding:28px 30px;position:relative;overflow:hidden}
+      .hero::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 10%,rgba(244,195,0,.45) 50%,transparent 90%)}
+      .hero-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(280px,.6fr);gap:30px;align-items:center}
+      .hero-eyebrow{margin:0 0 10px;font-size:11px;font-weight:800;color:#ffde73;letter-spacing:.22em;text-transform:uppercase;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+      .hero-eyebrow .sep{color:rgba(255,222,115,.5);margin:0 8px}
+      h1{margin:0 0 12px;color:#fff;font-size:52px;line-height:1.02;letter-spacing:-.02em;font-weight:800}
+      .subtitle{margin:0 0 20px;color:#c8d8ef;font-size:15.5px;line-height:1.6;max-width:560px}
+      .hero-facts{display:flex;gap:24px;flex-wrap:wrap;margin:0 0 22px}
+      .hero-fact{display:flex;align-items:center;gap:9px;color:#d3e1f5;font-size:13.5px;line-height:1.4}
+      .hero-fact svg{color:#7eb3e0;flex-shrink:0}
+      .hero-fact strong{color:#fff;font-weight:700}
+      .hero-links{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px}
+      .hero-link{color:#a8d4ff;font-weight:700;text-decoration:none;letter-spacing:-.005em;padding:2px 0;border-bottom:1px solid rgba(168,212,255,.25);background:none;border-top:none;border-left:none;border-right:none;cursor:pointer;font:inherit;transition:color 180ms ease,border-color 180ms ease}
+      .hero-sep{color:rgba(168,212,255,.28);font-weight:600}
+      @media (hover:hover) and (pointer:fine){.hero-link:hover{color:#ffd766;border-bottom-color:#ffd766}}
+
+      /* Hero CTA panel */
+      .hero-cta{position:relative;background:linear-gradient(180deg,rgba(244,195,0,.07) 0%,rgba(13,50,96,.5) 100%);border:1px solid rgba(244,195,0,.35);border-radius:14px;padding:22px}
+      .cta-label{margin:0 0 10px;font-size:10.5px;font-weight:800;color:#ffde73;letter-spacing:.22em;text-transform:uppercase;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;display:flex;align-items:center;gap:8px}
+      .cta-label .dot{width:6px;height:6px;border-radius:50%;background:#ffd766;box-shadow:0 0 10px rgba(255,215,102,.8);animation:pulse 2s ease-in-out infinite}
+      @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+      .cta-countdown{display:flex;align-items:flex-end;gap:14px;margin:0 0 16px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#fff}
+      .cta-cd-unit{display:flex;flex-direction:column;align-items:flex-start;gap:2px;line-height:1}
+      .cta-cd-num{font-size:30px;font-weight:800;color:#ffd766;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+      .cta-cd-lbl{font-size:10px;font-weight:700;color:#7eb3e0;letter-spacing:.1em;text-transform:uppercase}
+      .cta-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px 18px;background:#f4c300;color:#173b65;border-radius:10px;font-size:15px;font-weight:800;text-decoration:none;letter-spacing:-.005em;transition:transform 160ms cubic-bezier(0.23,1,0.32,1),background 180ms ease,box-shadow 180ms ease;box-shadow:0 4px 16px rgba(244,195,0,.25)}
+      @media (hover:hover) and (pointer:fine){.cta-btn:hover{background:#ffd433;box-shadow:0 8px 22px rgba(244,195,0,.4)}}
+      .cta-btn:active{transform:scale(0.98)}
+      .cta-social{margin:12px 0 0;font-size:12px;color:#a8d4ff;text-align:center;letter-spacing:.01em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;padding-top:12px;border-top:1px dashed rgba(168,212,255,.18)}
+      .cta-social strong{color:#ffd766;font-weight:700;font-variant-numeric:tabular-nums}
+      .cta-pricing{margin:8px 0 0;font-size:11.5px;color:#c8d8ef;text-align:center;letter-spacing:.02em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+      .cta-pricing strong{color:#fff;font-weight:700}
+
+      @media (max-width:900px){
+        .hero{padding:24px 22px}
+        .hero-grid{grid-template-columns:1fr;gap:22px}
+        h1{font-size:38px}
+        .subtitle{font-size:14.5px}
+      }
+      @media (max-width:640px){
+        .hero{padding:22px 18px}
+        h1{font-size:30px}
+        .hero-facts{gap:14px}
+        .cta-cd-num{font-size:26px}
+      }
+
+      main{padding:20px 0 48px}
       .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:12px}
       h2{margin:0 0 6px;color:#143a68;font-size:40px} .small{margin:0;color:var(--muted);font-size:12px}
 
@@ -104,9 +187,16 @@
       .tile{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px}
       .tile h3{margin:0 0 4px;font-size:19px;color:#183f70} .tile p{margin:0;font-size:12px;color:#5f738c}
 
-      .speaker-scroll-wrap{position:relative;margin-top:10px}
-      .speaker-scroll{display:flex;gap:12px;overflow-x:auto;scroll-behavior:smooth;padding:4px 0 8px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
-      .speaker-scroll::-webkit-scrollbar{height:6px}.speaker-scroll::-webkit-scrollbar-thumb{background:#b0c4de;border-radius:3px}
+      .speaker-scroll-wrap{position:relative;margin-top:10px;overflow:hidden;border-radius:12px}
+      .speaker-scroll-wrap::before,.speaker-scroll-wrap::after{content:"";position:absolute;top:0;bottom:0;width:60px;z-index:2;pointer-events:none}
+      .speaker-scroll-wrap::before{left:0;background:linear-gradient(to right,var(--panel),transparent)}
+      .speaker-scroll-wrap::after{right:0;background:linear-gradient(to left,var(--panel),transparent)}
+      body.dark .speaker-scroll-wrap::before{background:linear-gradient(to right,#13243a,transparent)}
+      body.dark .speaker-scroll-wrap::after{background:linear-gradient(to left,#13243a,transparent)}
+      .speaker-scroll{overflow:hidden;padding:4px 0 8px}
+      .speaker-track{display:flex;gap:12px;width:max-content;animation:speaker-scroll 60s linear infinite}
+      .speaker-track:hover{animation-play-state:paused}
+      @keyframes speaker-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
       .speaker-card{min-width:280px;max-width:280px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px}
       .speaker-card h4{margin:0;font-size:16px;color:#173c6b;line-height:1.3}
       .speaker-card .company{margin:0;font-size:13px;color:#3b6ba5;font-weight:600}
@@ -114,9 +204,7 @@
       .speaker-initials{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:#fff;flex-shrink:0;overflow:hidden}
       .speaker-initials img{width:100%;height:100%;object-fit:cover}
       .speaker-linkedin{display:inline-flex;align-items:center;gap:4px;color:#0077b5;font-size:12px;font-weight:600;text-decoration:none}.speaker-linkedin:hover{text-decoration:underline}
-      .scroll-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:#183f70;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.12)}
-      .scroll-arrow:hover{background:#e6eef8}.scroll-arrow.left{left:-12px}.scroll-arrow.right{right:-12px}
-      @media (max-width:640px){.scroll-arrow{display:none}}
+      .scroll-arrow{display:none}
 
       .agenda-warning{margin:8px 0 10px;padding:10px 14px;border-radius:8px;background:#f59e0b;color:#7c2d12;font-weight:800;font-size:14px;text-align:center;letter-spacing:.03em}
       .reveal-badge{display:inline-block;background:#3b7dd8;color:#e8f0fb;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px}
@@ -168,46 +256,373 @@ body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c456
 
       @media (max-width:900px){h1{font-size:38px}.why-layout{grid-template-columns:1fr}.benefits,.topics,.pricing,.sgrid,.frow,.logos,.agenda-grid{grid-template-columns:1fr 1fr}}
       @media (max-width:640px){h1{font-size:32px}.benefits,.topics,.pricing,.sgrid,.frow,.logos,.agenda-grid{grid-template-columns:1fr}}
+
+      /* MOMENTUM — registration social proof */
+      .mom{margin:0 0 18px}
+      .mom-head{display:flex;align-items:baseline;gap:18px;margin:0 4px 16px;flex-wrap:wrap}
+      .mom-eyebrow{margin:0;font-size:11px;font-weight:800;color:#3b6ba5;letter-spacing:.16em;text-transform:uppercase;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+      .mom-title{margin:0;font-size:26px;font-weight:800;color:#143a68;letter-spacing:-.015em;line-height:1.15}
+      .mom-num{color:#143a68;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums;font-size:30px;margin-right:2px;background:linear-gradient(180deg,#143a68 0%,#1f4f8f 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+      .mom-stamp{margin:0;font-size:12px;color:var(--muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em}
+      .mom-stamp a{color:#1f4f8f;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(31,79,143,.3)}
+
+      .mom-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:0 0 16px}
+      .mom-stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 16px 16px;position:relative;overflow:hidden;transition:transform 220ms cubic-bezier(0.16,1,0.3,1),box-shadow 220ms ease,border-color 220ms ease}
+      .mom-stat::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(244,195,0,.5),transparent)}
+      .mom-stat-num{margin:0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:36px;font-weight:800;color:#143a68;letter-spacing:-.025em;line-height:1;font-variant-numeric:tabular-nums}
+      .mom-stat-lbl{margin:6px 0 2px;font-size:13px;font-weight:800;color:#173c6b;letter-spacing:-.005em}
+      .mom-stat-sub{margin:0;font-size:11.5px;color:var(--muted);line-height:1.4;letter-spacing:.01em}
+
+      .mom-orgs{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+      .mom-orgs .mom-eyebrow{margin:0 0 12px}
+      .mom-chips{display:flex;flex-wrap:wrap;gap:6px}
+      .mom-chip{display:inline-block;padding:4px 10px;background:#f6f9fc;border:1px solid #dae4f0;border-radius:999px;font-size:12px;font-weight:600;color:#3b6ba5;letter-spacing:-.005em}
+      .mom-chip-more{background:rgba(244,195,0,.14);border-color:rgba(244,195,0,.4);color:#8a6800;font-weight:700}
+
+      @media (hover:hover) and (pointer:fine){
+        .mom-stat:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(13,50,96,.10);border-color:#b8cbe4}
+      }
+
+      @media (max-width:900px){.mom-stats{grid-template-columns:repeat(3,1fr)}.mom-title{font-size:22px}.mom-num{font-size:26px}}
+      @media (max-width:640px){.mom-stats{grid-template-columns:repeat(2,1fr)}.mom-stat-num{font-size:28px}.mom-title{font-size:20px}.mom-num{font-size:22px}}
+
+      body.dark .mom-title{color:#e8f3ff}
+      body.dark .mom-num{background:linear-gradient(180deg,#e8f3ff 0%,#7eb3e0 100%);-webkit-background-clip:text;background-clip:text}
+      body.dark .mom-stat,body.dark .mom-orgs{background:#13243a;border-color:#2c4563}
+      body.dark .mom-stat-num,body.dark .mom-stat-lbl{color:#e8f3ff}
+      body.dark .mom-stat-sub{color:#a7bed9}
+      body.dark .mom-chip{background:#0f1e33;border-color:#2c4563;color:#7eb3e0}
+
+      /* TASTE-SKILL SHARED PATTERNS — eyebrows, section heads, monospace indices */
+      .ts-head{display:flex;align-items:baseline;gap:14px;margin:0 0 16px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+      .ts-idx{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;font-weight:700;color:#a8bcd4;letter-spacing:.08em;flex-shrink:0}
+      .ts-title{margin:0;font-size:28px;font-weight:800;color:#143a68;letter-spacing:-.015em;line-height:1.1}
+      .ts-sub{margin:3px 0 0;font-size:13.5px;color:var(--muted);line-height:1.55}
+      .ts-eyebrow{margin:0;font-size:10.5px;font-weight:800;color:#3b6ba5;letter-spacing:.16em;text-transform:uppercase}
+      .ts-section{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:14px}
+      body.dark .ts-head{border-bottom-color:#2c4563}
+      body.dark .ts-title{color:#e8f3ff}
+      body.dark .ts-sub{color:#a7bed9}
+      body.dark .ts-section{background:#13243a;border-color:#2c4563}
+
+      /* FEATURE CARD — premium dark panel (escape room) */
+      .feature{position:relative;background:linear-gradient(180deg,#0f3a6e 0%,#0a2550 100%);border:1px solid #1c4478;border-radius:16px;padding:28px;margin-bottom:14px;color:#eaf2ff;overflow:hidden}
+      .feature::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(244,195,0,.5),transparent)}
+      .feature-layout{display:grid;grid-template-columns:64px 1fr auto;gap:22px;align-items:center}
+      .feature-icon{width:56px;height:56px;border-radius:14px;background:rgba(244,195,0,.1);border:1px solid rgba(244,195,0,.25);color:#ffd766;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+      .feature-eyebrow{margin:0 0 4px;font-size:10.5px;font-weight:800;color:#ffd766;letter-spacing:.18em;text-transform:uppercase}
+      .feature h3{margin:0 0 4px;font-size:22px;font-weight:800;color:#fff;letter-spacing:-.015em;line-height:1.2}
+      .feature-sub{margin:0;font-size:13.5px;color:#c8d8ef;line-height:1.55}
+      .feature-by{display:inline-flex;align-items:center;gap:6px;margin-top:6px;font-size:11px;font-weight:700;color:#ffde73;text-transform:uppercase;letter-spacing:.1em}
+      @media (max-width:700px){.feature-layout{grid-template-columns:1fr;text-align:left}.feature-icon{margin-bottom:4px}}
+
+      /* REGISTRATION — refined pricing */
+      .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+      .price-tile{position:relative;background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 20px 18px;cursor:pointer;transition:transform 220ms cubic-bezier(0.16,1,0.3,1),box-shadow 220ms ease,border-color 220ms ease}
+      .price-tile.is-selected{border-color:#1f4f8f;box-shadow:0 0 0 2px rgba(31,79,143,.12)}
+      .price-tier{margin:0 0 6px;font-size:10.5px;font-weight:800;color:#3b6ba5;letter-spacing:.16em;text-transform:uppercase}
+      .price-amt{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:32px;font-weight:800;color:#143a68;letter-spacing:-.02em;line-height:1;margin:0 0 4px}
+      .price-amt .cur{font-size:18px;color:#3b6ba5;font-weight:700;vertical-align:top;margin-right:2px}
+      .price-amt.is-free{color:#2f9a52}
+      .price-sub{margin:0 0 10px;font-size:12px;color:var(--muted);line-height:1.5}
+      .price-tile h4{margin:0 0 6px;font-size:16px;font-weight:800;color:#173c6b;letter-spacing:-.005em}
+      .price-chip{display:inline-block;font-size:10px;font-weight:800;padding:3px 8px;border-radius:4px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+      .price-chip.green{background:rgba(47,154,82,.1);color:#1a6b36;border:1px solid rgba(47,154,82,.25)}
+      .price-chip.gold{background:rgba(244,195,0,.14);color:#8a6800;border:1px solid rgba(244,195,0,.35)}
+      .price-foot{margin:0;font-size:12px;color:#546b86;line-height:1.5}
+      .price-select{position:absolute;top:14px;right:14px;width:18px;height:18px;border-radius:50%;border:1.5px solid var(--line);background:#fff;transition:all 200ms ease}
+      .price-tile.is-selected .price-select{border-color:#1f4f8f;background:#1f4f8f;box-shadow:inset 0 0 0 3px #fff}
+
+      .checkout{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:16px;padding:16px 18px;background:#fff;border:1px solid var(--line);border-radius:12px}
+      .checkout-label{margin:0;font-size:11px;font-weight:800;color:#3b6ba5;letter-spacing:.14em;text-transform:uppercase}
+      .checkout-ticket{margin:2px 0 0;font-size:15px;font-weight:800;color:#143a68;letter-spacing:-.005em}
+      .checkout-note{margin:2px 0 0;font-size:12.5px;color:#546b86}
+
+      body.dark .price-tile{background:#13243a;border-color:#2c4563}
+      body.dark .price-tile h4{color:#e8f3ff}
+      body.dark .price-amt{color:#e8f3ff}
+      body.dark .price-tile.is-selected{border-color:#4a8de0;box-shadow:0 0 0 2px rgba(74,141,224,.18)}
+      body.dark .price-select{background:#13243a;border-color:#2c4563}
+      body.dark .checkout{background:#13243a;border-color:#2c4563}
+      body.dark .checkout-ticket{color:#e8f3ff}
+      body.dark .checkout-note{color:#a7bed9}
+
+      /* AGENDA STRIP */
+      .agenda-strip{background:linear-gradient(180deg,#fff 0%,#fafbfd 100%);border:1px solid var(--line);border-radius:14px;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:14px;position:relative}
+      .agenda-strip::before{content:"";position:absolute;top:0;left:22px;right:22px;height:1px;background:linear-gradient(90deg,transparent,rgba(244,195,0,.6),transparent)}
+      .agenda-meta{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+      .agenda-time{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;font-weight:700;color:#143a68;letter-spacing:.04em}
+      .agenda-dot{color:#a8bcd4;font-weight:700}
+      .agenda-stat{font-size:13px;color:#546b86}
+      .agenda-stat strong{color:#143a68;font-weight:800}
+      .agenda-stamp{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:#a8bcd4;letter-spacing:.04em}
+      body.dark .agenda-strip{background:linear-gradient(180deg,#13243a 0%,#0e1a2e 100%);border-color:#2c4563}
+      body.dark .agenda-stat,body.dark .agenda-time{color:#d8e6f8}
+      body.dark .agenda-stat strong{color:#ffd766}
+
+      /* SPONSOR TIERS */
+      .spn-section{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 22px;margin-bottom:14px}
+      .spn-tier{margin-bottom:22px}
+      .spn-tier:last-child{margin-bottom:0}
+      .spn-tier-head{display:flex;align-items:baseline;gap:10px;margin:0 0 12px;padding-bottom:8px;border-bottom:1px dashed var(--line)}
+      .spn-tier-label{margin:0;font-size:11px;font-weight:800;color:#143a68;letter-spacing:.18em;text-transform:uppercase}
+      .spn-tier-count{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:#a8bcd4;letter-spacing:.04em}
+      .spn-grid{display:grid;gap:10px}
+      .spn-grid.cols-2{grid-template-columns:repeat(2,1fr)}
+      .spn-grid.cols-3{grid-template-columns:repeat(3,1fr)}
+      .spn-grid.cols-4{grid-template-columns:repeat(4,1fr)}
+      .spn-logo{background:#fff;border:1px solid var(--line);border-radius:10px;min-height:76px;display:flex;align-items:center;justify-content:center;padding:12px 16px;text-decoration:none;transition:transform 220ms cubic-bezier(0.16,1,0.3,1),box-shadow 220ms ease,border-color 220ms ease}
+      .spn-logo img{max-width:100%;max-height:52px;display:block;filter:none}
+      @media (max-width:900px){.spn-grid.cols-4{grid-template-columns:repeat(2,1fr)}.spn-grid.cols-3{grid-template-columns:repeat(2,1fr)}}
+      @media (max-width:500px){.spn-grid.cols-4,.spn-grid.cols-3,.spn-grid.cols-2{grid-template-columns:1fr}}
+      body.dark .spn-section{background:#13243a;border-color:#2c4563}
+      body.dark .spn-tier-label{color:#e8f3ff}
+      body.dark .spn-tier-head{border-bottom-color:#2c4563}
+      body.dark .spn-logo{background:#0f1e33;border-color:#2c4563}
+
+      @media (hover:hover) and (pointer:fine){
+        .price-tile:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(13,50,96,.10);border-color:#b8cbe4}
+        .spn-logo:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(13,50,96,.08);border-color:#b8cbe4}
+      }
+
+      /* QUICK LINKS — refined 3-card grid */
+      .ql{margin:4px 0 18px}
+      .ql-head-row{display:flex;align-items:baseline;gap:14px;margin:0 4px 12px;flex-wrap:wrap}
+      .ql-eyebrow{margin:0;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.16em;color:#3b6ba5}
+      .ql-sub{margin:0;font-size:13px;color:var(--muted);letter-spacing:-.005em}
+
+      .ql-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+      .ql-card{position:relative;display:flex;flex-direction:column;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 22px 18px;text-decoration:none;color:var(--text);overflow:hidden;transition:transform 220ms cubic-bezier(0.16,1,0.3,1),box-shadow 220ms ease,border-color 220ms ease}
+      .ql-card::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,rgba(31,79,143,.18),transparent);opacity:0;transition:opacity 220ms ease}
+      .ql-card:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+      .ql-idx{position:absolute;top:14px;right:18px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;font-weight:700;color:#a8bcd4;letter-spacing:.08em}
+      .ql-tag{position:absolute;top:14px;left:18px;font-size:10px;font-weight:800;color:#8a6800;background:rgba(244,195,0,.18);border:1px solid rgba(244,195,0,.4);padding:2px 8px;border-radius:999px;text-transform:uppercase;letter-spacing:.1em}
+
+      .ql-icon{width:40px;height:40px;border-radius:10px;background:#eef3fb;color:#1f4f8f;display:flex;align-items:center;justify-content:center;margin-top:14px;transition:background 220ms ease,color 220ms ease,transform 220ms cubic-bezier(0.16,1,0.3,1)}
+      .ql-title{margin:2px 0 0;font-size:19px;font-weight:800;color:#143a68;letter-spacing:-.01em;line-height:1.2}
+      .ql-desc{margin:0;font-size:13.5px;line-height:1.55;color:#546b86;flex:1}
+
+      .ql-link{display:inline-flex;align-items:center;gap:6px;margin-top:4px;font-size:13px;font-weight:700;color:#1f4f8f;letter-spacing:.01em}
+      .ql-arrow{display:inline-block;transition:transform 220ms cubic-bezier(0.23,1,0.32,1)}
+
+      /* Feature card (About) — subtle gold emphasis, no loud border */
+      .ql-feature{background:linear-gradient(180deg,#fdfbf3 0%,#fff 60%);border-color:#ead9a1}
+      .ql-feature::before{background:linear-gradient(90deg,transparent,rgba(244,195,0,.55),transparent);opacity:1}
+      .ql-feature .ql-icon{background:rgba(244,195,0,.15);color:#8a6800}
+      .ql-feature .ql-link{color:#8a6800}
+
+      @media (hover:hover) and (pointer:fine){
+        .ql-card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(13,50,96,.10);border-color:#b8cbe4}
+        .ql-card:hover::before{opacity:1}
+        .ql-card:hover .ql-arrow{transform:translateX(4px)}
+        .ql-card:hover .ql-icon{transform:scale(1.04)}
+        .ql-feature:hover{border-color:#d6b85c;box-shadow:0 12px 28px rgba(138,104,0,.12)}
+      }
+      .ql-card:active{transform:scale(0.995)}
+
+      @media (max-width:900px){.ql-grid{grid-template-columns:1fr 1fr}}
+      @media (max-width:640px){.ql-grid{grid-template-columns:1fr}}
+
+      body.dark .ql-card{background:#13243a;border-color:#2c4563;color:#d8e6f8}
+      body.dark .ql-title{color:#e8f3ff}
+      body.dark .ql-desc{color:#a7bed9}
+      body.dark .ql-icon{background:#1b3554;color:#7eb3e0}
+      body.dark .ql-link{color:#7eb3e0}
+      body.dark .ql-idx{color:#5f7997}
+      body.dark .ql-feature{background:linear-gradient(180deg,#1f1e12 0%,#13243a 70%);border-color:#5a4a1e}
+      body.dark .ql-feature .ql-icon{background:rgba(244,195,0,.12);color:#ffd766}
+      body.dark .ql-feature .ql-link{color:#ffd766}
+
+      /* Contact bubble — hover gated to real pointers */
+      @media (hover:hover) and (pointer:fine){
+        #contact-bubble:hover{transform:scale(1.1);box-shadow:0 6px 24px rgba(0,0,0,.45)}
+      }
+      #contact-bubble:active{transform:scale(0.97)}
+
+      /* Touch-device hover — prevent sticky transform after tap */
+      @media (hover:none), (pointer:coarse){
+        *:hover{transform:none!important}
+      }
+
+      /* Reduced motion — respect user preference */
+      @media (prefers-reduced-motion:reduce){
+        *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+      }
     </style>
   </head>
   <body>
     <header class="top"><div class="wrap wrap-top">
       <div class="topbar">
-        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-          <img src="assets/marquette-logo.png" alt="Marquette University logo" style="height:44px;filter:drop-shadow(0 0 4px rgba(0,0,0,.35));" />
-          <img src="assets/sftf-logo.png" alt="Security For the Folks logo" style="height:40px;opacity:.85;filter:drop-shadow(0 0 6px rgba(0,0,0,.5));" />
-          <span style="font-size:18px;font-weight:800;color:#fff;letter-spacing:.5px;text-shadow:0 1px 4px rgba(0,0,0,.4);">MOCS 2026</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:10px;">
-          <a class="btn btn-blue" href="agenda/index.html">Agenda</a>
-          <a class="btn btn-blue" href="#" onclick="event.preventDefault();document.getElementById('contact-modal').style.display='flex'">Contact Us</a>
-          <button id="dark-toggle" class="btn btn-blue" type="button">🌙 Dark Mode</button>
-          <a class="btn btn-gold" href="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566" target="_blank" rel="noreferrer">Register Now</a>
-        </div>
+        <a href="#top" class="brand" aria-label="MOCS 2026 — Midwest OT Cybersecurity Summit">
+          <span class="brand-logos">
+            <img src="assets/marquette-logo.png" alt="Marquette University" class="brand-logo" />
+            <img src="assets/sftf-logo.png" alt="Security For the Folks" class="brand-logo brand-logo-sftf" />
+          </span>
+          <span class="brand-rule" aria-hidden="true"></span>
+          <span class="brand-word">MOCS 2026</span>
+        </a>
+        <nav class="topnav" aria-label="Primary">
+          <a class="topnav-link is-current" href="index.html" aria-current="page">Home</a>
+          <a class="topnav-link" href="agenda/index.html">Agenda</a>
+          <a class="topnav-link" href="day-of/index.html">Day-of</a>
+          <a class="topnav-link" href="speaker-sponsor/index.html">Logistics</a>
+          <a class="topnav-link" href="about/index.html">About</a>
+          <span class="topnav-rule" aria-hidden="true"></span>
+          <button id="dark-toggle" class="icon-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+            <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          </button>
+          <a class="btn-register-sm" href="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566" target="_blank" rel="noreferrer">Register
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </nav>
       </div>
       <div class="hero">
-        <h1>Midwest OT Cybersecurity Summit (MOCS)</h1>
-        <p class="subtitle">Hosted at Marquette University, this summit is built for all career classes focused on manufacturing cybersecurity and Industrial Control Systems (ICS)—from students and career changers to plant engineers, SOC teams, OT defenders, and executive leaders.</p>
-        <div class="meta"><span>🗓️ Friday, April 24th, 2026 • 10:00 AM - 5:30 PM</span><span>📍 Marquette University, Milwaukee</span><span id="countdown" style="display:inline-flex;gap:8px;padding:3px 10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;font-weight:700;font-size:13px;color:#ffd766;letter-spacing:.3px;"><span id="cd-days">--</span>d <span id="cd-hours">--</span>h <span id="cd-mins">--</span>m <span id="cd-secs">--</span>s</span></div>
-        <div class="actions"><a class="btn btn-gold" href="#register">Register</a><a class="btn btn-blue" href="#speakers-list">Speakers</a><a class="btn btn-blue" href="agenda/index.html">Agenda</a><a class="btn btn-blue" href="#sponsors">Sponsors</a>
-          <div style="position:relative;display:inline-block;">
-            <button id="cal-btn" class="btn btn-blue" type="button" style="gap:4px;">📅 Add to Calendar <span style="font-size:10px;">▼</span></button>
-            <div id="cal-dropdown" style="display:none;position:absolute;bottom:100%;left:0;margin-bottom:6px;background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.25);min-width:220px;z-index:100;overflow:hidden;">
-              <a id="cal-google" href="#" target="_blank" rel="noreferrer" style="display:block;padding:10px 14px;text-decoration:none;color:#23384e;font-size:13px;font-weight:600;border-bottom:1px solid #eee;">Google Calendar</a>
-              <a id="cal-outlook" href="#" target="_blank" rel="noreferrer" style="display:block;padding:10px 14px;text-decoration:none;color:#23384e;font-size:13px;font-weight:600;border-bottom:1px solid #eee;">Outlook Web</a>
-              <a id="cal-ics" href="#" download="MOCS-2026.ics" style="display:block;padding:10px 14px;text-decoration:none;color:#23384e;font-size:13px;font-weight:600;">Download .ics (Apple/Outlook)</a>
+        <div class="hero-grid">
+          <div>
+            <p class="hero-eyebrow">MOCS<span class="sep">·</span>April 24, 2026<span class="sep">·</span>Milwaukee</p>
+            <h1>Midwest OT Cybersecurity Summit</h1>
+            <p class="subtitle">A one-day, practitioner-led summit at Marquette University for defenders, students, plant engineers, SOC teams, and hiring leaders working in operational technology.</p>
+            <div class="hero-facts">
+              <span class="hero-fact">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <span><strong>Friday, April 24, 2026</strong> · 10:00 AM – 5:30 PM</span>
+              </span>
+              <span class="hero-fact">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span><strong>Marquette University</strong> · Alumni Memorial Union</span>
+              </span>
             </div>
+            <div class="hero-links">
+              <a class="hero-link" href="#speakers-list">Speakers</a>
+              <span class="hero-sep">/</span>
+              <a class="hero-link" href="agenda/index.html">Agenda</a>
+              <span class="hero-sep">/</span>
+              <a class="hero-link" href="#sponsors">Sponsors</a>
+              <span class="hero-sep">/</span>
+              <div style="position:relative;display:inline-block;">
+                <button id="cal-btn" class="hero-link" type="button">Add to calendar ▾</button>
+                <div id="cal-dropdown" style="display:none;position:absolute;bottom:100%;left:0;margin-bottom:6px;background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.25);min-width:220px;z-index:100;overflow:hidden;">
+                  <a id="cal-google" href="#" target="_blank" rel="noreferrer" style="display:block;padding:10px 14px;text-decoration:none;color:#23384e;font-size:13px;font-weight:600;border-bottom:1px solid #eee;">Google Calendar</a>
+                  <a id="cal-outlook" href="#" target="_blank" rel="noreferrer" style="display:block;padding:10px 14px;text-decoration:none;color:#23384e;font-size:13px;font-weight:600;border-bottom:1px solid #eee;">Outlook Web</a>
+                  <a id="cal-ics" href="#" download="MOCS-2026.ics" style="display:block;padding:10px 14px;text-decoration:none;color:#23384e;font-size:13px;font-weight:600;">Download .ics (Apple/Outlook)</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-cta">
+            <p class="cta-label"><span class="dot" aria-hidden="true"></span>Registration closes Apr 24</p>
+            <div class="cta-countdown" id="countdown" aria-label="Time remaining">
+              <span class="cta-cd-unit"><span class="cta-cd-num" id="cd-days">--</span><span class="cta-cd-lbl">days</span></span>
+              <span class="cta-cd-unit"><span class="cta-cd-num" id="cd-hours">--</span><span class="cta-cd-lbl">hrs</span></span>
+              <span class="cta-cd-unit"><span class="cta-cd-num" id="cd-mins">--</span><span class="cta-cd-lbl">min</span></span>
+              <span class="cta-cd-unit"><span class="cta-cd-num" id="cd-secs">--</span><span class="cta-cd-lbl">sec</span></span>
+            </div>
+            <a class="cta-btn" href="#register">
+              Register Now
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <p class="cta-social">Join <strong>130</strong> already registered from <strong>30+</strong> organizations</p>
+            <p class="cta-pricing"><strong>$0</strong> students (pre-reg) · <strong>$15</strong> at-door · <strong>$45</strong> industry</p>
           </div>
         </div>
       </div>
     </div></header>
 
     <main class="wrap">
-      <section id="speakers-list" class="card">
-        <h2>Featured Speakers</h2>
-        <p class="small">Presenters from industry, government, and community organizations.</p>
+
+      <!-- QUICK LINKS -->
+      <section class="ql" aria-label="Quick links">
+        <div class="ql-head-row">
+          <p class="ql-eyebrow">Start here</p>
+          <p class="ql-sub">Three quick reads before April 24th.</p>
+        </div>
+        <div class="ql-grid">
+
+          <a class="ql-card" href="day-of/index.html">
+            <span class="ql-idx">01</span>
+            <span class="ql-tag">New</span>
+            <div class="ql-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <h3 class="ql-title">Day-of Guide</h3>
+            <p class="ql-desc">Parking, campus nav video, check-in flow, and food info. Everything you need the morning of.</p>
+            <span class="ql-link">Open guide<span class="ql-arrow" aria-hidden="true">→</span></span>
+          </a>
+
+          <a class="ql-card" href="speaker-sponsor/index.html">
+            <span class="ql-idx">02</span>
+            <div class="ql-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v4M8 23h8"/></svg>
+            </div>
+            <h3 class="ql-title">Speakers &amp; Sponsors</h3>
+            <p class="ql-desc">Presentation deadlines, AV logistics, setup times, and day-of guidelines for presenters and table sponsors.</p>
+            <span class="ql-link">View info<span class="ql-arrow" aria-hidden="true">→</span></span>
+          </a>
+
+          <a class="ql-card ql-feature" href="about/index.html">
+            <span class="ql-idx">03</span>
+            <div class="ql-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </div>
+            <h3 class="ql-title">About MOCS</h3>
+            <p class="ql-desc">Who we are, why attend, and the road to April 24. XFTF — the cybersecurity maker space — sits at the intersection of academia, government, and industry.</p>
+            <span class="ql-link">Read the story<span class="ql-arrow" aria-hidden="true">→</span></span>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- MOMENTUM / THE ROOM SO FAR -->
+      <section class="mom" aria-label="Registration momentum">
+        <div class="mom-head">
+          <p class="mom-eyebrow">The room so far</p>
+          <h2 class="mom-title"><span class="mom-num">130</span> registered — and growing.</h2>
+          <p class="mom-stamp">Snapshot · April 18, 2026 · <a href="#register">secure your seat →</a></p>
+        </div>
+
+        <div class="mom-stats">
+          <div class="mom-stat">
+            <p class="mom-stat-num">65</p>
+            <p class="mom-stat-lbl">Students</p>
+            <p class="mom-stat-sub">MU &amp; NMDSI sponsored</p>
+          </div>
+          <div class="mom-stat">
+            <p class="mom-stat-num">55</p>
+            <p class="mom-stat-lbl">Industry pros</p>
+            <p class="mom-stat-sub">Defenders, OT practitioners, consultants</p>
+          </div>
+          <div class="mom-stat">
+            <p class="mom-stat-num">30+</p>
+            <p class="mom-stat-lbl">Organizations</p>
+            <p class="mom-stat-sub">ICS, manufacturing, healthcare, gov</p>
+          </div>
+          <div class="mom-stat">
+            <p class="mom-stat-num">5</p>
+            <p class="mom-stat-lbl">Universities</p>
+            <p class="mom-stat-sub">Marquette, UWM, UWGB, WGU, WCTC</p>
+          </div>
+          <div class="mom-stat">
+            <p class="mom-stat-num">7</p>
+            <p class="mom-stat-lbl">States</p>
+            <p class="mom-stat-sub">WI · IL · MN · MI · MO · TX · VA</p>
+          </div>
+        </div>
+
+        <p style="margin:14px 4px 0;font-size:13px;color:var(--muted);">Curious who's in the room? <a href="speaker-sponsor/index.html#audience" style="color:#1f4f8f;font-weight:700;border-bottom:1px solid rgba(31,79,143,.3);text-decoration:none;">See the full audience profile →</a></p>
+      </section>
+
+      <section id="speakers-list" class="ts-section">
+        <div class="ts-head">
+          <span class="ts-idx">01 /</span>
+          <div>
+            <h2 class="ts-title">Featured speakers</h2>
+            <p class="ts-sub">Presenters from industry, government, and community organizations. Scroll →</p>
+          </div>
+        </div>
         <div class="speaker-scroll-wrap">
-          <button class="scroll-arrow left" aria-label="Scroll left">&#8249;</button>
           <div class="speaker-scroll">
 
             <div class="speaker-card">
@@ -284,96 +699,152 @@ body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c456
             </div>
 
           </div>
-          <button class="scroll-arrow right" aria-label="Scroll right">&#8250;</button>
         </div>
       </section>
 
-      <section class="card" style="background:linear-gradient(135deg,#0d3260 0%,#1f4f8f 100%);color:#eaf2ff;border:none;padding:20px 16px;text-align:center;">
-        <h2 style="color:#f4c300;margin:0 0 6px;font-size:26px;">🔒 Cybersecurity Escape Room</h2>
-        <p style="font-size:14px;margin:0 0 10px;color:#c8ddf5;">Hosted by <strong style="color:#fff;">Johnson Controls</strong></p>
-        <p style="font-size:13px;margin:0 auto;max-width:640px;color:#a7bed9;">Put your skills to the test in an interactive, hands-on escape room challenge. Work with your team to solve cybersecurity puzzles, crack codes, and escape before time runs out. Open to all attendees throughout the event.</p>
-      </section>
-
-      <section id="register" class="card">
-        <h2>Registration & Pricing</h2>
-        <p class="small">Select a pricing tile first, then continue with the Eventbrite checkout window below. <strong>Student tickets are $0 when pre-registered! At-the-door pricing is $15.</strong></p>
-        <div class="pricing">
-          <article class="price" data-ticket="MU Students (with valid ID)" data-price="$0" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566"><h4>MU Students</h4><p><strong style="font-size:28px;color:#2f9a52;">$0</strong></p><p style="background:#e6f4ec;border-radius:6px;padding:4px 8px;font-size:11px;font-weight:700;color:#1a6b36;display:inline-block;margin:4px 0;">Sponsored through MU Cybersecurity Program — Pre-Registration Required</p><p>Student ID to be presented at check-in. At-door pricing is $15.</p></article>
-          <article class="price" data-ticket="Students (with valid ID)" data-price="$0" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566"><h4>Student Admission</h4><p><strong style="font-size:28px;color:#2f9a52;">$0</strong></p><p style="background:#e6f4ec;border-radius:6px;padding:4px 8px;font-size:11px;font-weight:700;color:#1a6b36;display:inline-block;margin:4px 0;">Sponsored through NDMSI — Pre-Registration Required</p><p>Student ID to be presented at check-in. At-door pricing is $15.</p></article>
-          <article class="price" data-ticket="Industry Professionals" data-price="$25 / $45" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566"><h4>Industry Professionals</h4><p><strong>$25</strong> <span style="font-size:12px;color:#607287;">(Early Bird — before April 17th)</span></p><p><strong>$45</strong> <span style="font-size:12px;color:#607287;">after April 17th</span></p><p>For early, mid-career, and senior industry attendees.</p></article>
-        </div>
-        <div class="selected"><p style="margin:0;color:#607287;font-size:12px;">Selected ticket</p><p id="selected-ticket-name" style="margin:2px 0 4px;font-weight:800;">MU Students (with valid ID) — $0 (Sponsored through MU Cybersecurity Program)</p><p id="selected-ticket-note" style="margin:0;color:#36557c;font-size:13px;">Checkout window is ready for this ticket.</p><div style="margin-top:8px;"><a id="eventbrite-checkout-btn" class="btn btn-gold" href="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566" target="_blank" rel="noreferrer">Continue to Eventbrite Checkout</a></div></div>
-      </section>
-
-      <section class="card">
-        <h2>Why Attend MOCS?</h2>
-        <p class="small">A practical, community-driven OT cybersecurity conference for defenders, students, and hiring teams. OT means <strong>Operational Technology</strong>, including manufacturing systems, industrial controls, and ICS environments across many sectors.</p>
-        <div class="why-layout">
-          <div class="benefits">
-            <article class="tile"><h3>🎓 Career Growth</h3><p>Resume workshops, mentor networking, and hiring-focused sessions.</p></article>
-            <article class="tile"><h3>🛡️ OT Hands-On Learning</h3><p>Real-world OT and ICS topics across manufacturing, industrial control, and infrastructure environments.</p></article>
-            <article class="tile"><h3>✅ CPE Credits</h3><p>Earn Continuing Professional Education credits through attendance.</p></article>
+      <section class="feature">
+        <div class="feature-layout">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           </div>
-          <div style="border-radius:10px;overflow:hidden;border:1px solid var(--line);cursor:pointer;position:relative;align-self:center;" id="promo-video-wrap">
-            <video id="promo-video" autoplay muted loop playsinline style="width:100%;display:block;border-radius:10px;">
-              <source src="assets/Midwest_OT_Cybersecurity_Summit.mp4" type="video/mp4" />
-            </video>
-            <div id="sound-hint" style="position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,.6);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:6px;pointer-events:none;">🔇 Click for sound</div>
+          <div>
+            <p class="feature-eyebrow">Side Event · Open to all attendees</p>
+            <h3>Cybersecurity Escape Room</h3>
+            <p class="feature-sub">An interactive, hands-on team challenge — solve puzzles, crack codes, escape before time runs out. Drop in any time during the summit.</p>
+            <span class="feature-by">Hosted by Johnson Controls</span>
+          </div>
+          <div></div>
+        </div>
+      </section>
+
+      <section id="register" class="ts-section">
+        <div class="ts-head">
+          <span class="ts-idx">02 /</span>
+          <div>
+            <h2 class="ts-title">Registration &amp; pricing</h2>
+            <p class="ts-sub">Students free with pre-registration · Industry $45 · Select a tier, then continue to Eventbrite.</p>
           </div>
         </div>
+        <div class="price-grid">
+          <article class="price-tile is-selected" data-ticket="MU Students (with valid ID)" data-price="$0" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566">
+            <span class="price-select" aria-hidden="true"></span>
+            <p class="price-tier">Student · Marquette</p>
+            <h4>MU Students</h4>
+            <p class="price-amt is-free">$0</p>
+            <span class="price-chip green">Sponsored · MU Cyber</span>
+            <p class="price-foot">Student ID required at check-in. At-door $15.</p>
+          </article>
+          <article class="price-tile" data-ticket="Students (with valid ID)" data-price="$0" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566">
+            <span class="price-select" aria-hidden="true"></span>
+            <p class="price-tier">Student · All others</p>
+            <h4>Student Admission</h4>
+            <p class="price-amt is-free">$0</p>
+            <span class="price-chip green">Sponsored · NDMSI</span>
+            <p class="price-foot">Student ID required at check-in. At-door $15.</p>
+          </article>
+          <article class="price-tile" data-ticket="Industry Professionals" data-price="$45" data-checkout="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566">
+            <span class="price-select" aria-hidden="true"></span>
+            <p class="price-tier">Industry · Professional</p>
+            <h4>Industry Professionals</h4>
+            <p class="price-amt"><span class="cur">$</span>45</p>
+            <span class="price-chip gold">General admission</span>
+            <p class="price-foot">For early, mid-career, and senior industry attendees.</p>
+          </article>
+        </div>
+        <div class="checkout">
+          <div>
+            <p class="checkout-label">Selected ticket</p>
+            <p class="checkout-ticket" id="selected-ticket-name">MU Students (with valid ID) — $0 (Sponsored through MU Cybersecurity Program)</p>
+            <p class="checkout-note" id="selected-ticket-note">Checkout window is ready for this ticket.</p>
+          </div>
+          <a id="eventbrite-checkout-btn" class="btn btn-gold" href="https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566" target="_blank" rel="noreferrer">Continue to Eventbrite →</a>
+        </div>
       </section>
 
-      <section id="agenda" class="card" style="max-height:140px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:28px;">
+<section id="agenda" class="agenda-strip">
         <div>
-          <h2 style="margin:0;font-size:28px;">Event Agenda</h2>
-          <p style="margin:4px 0 0;color:var(--muted);font-size:13px;">10:00 AM – 5:30 PM · 3 Rooms · 12 Sessions · Networking</p>
+          <p class="ts-eyebrow" style="margin:0 0 6px;">Event agenda</p>
+          <div class="agenda-meta">
+            <span class="agenda-time">10:00 → 17:30</span>
+            <span class="agenda-dot">·</span>
+            <span class="agenda-stat"><strong>3</strong> rooms</span>
+            <span class="agenda-dot">·</span>
+            <span class="agenda-stat"><strong>12</strong> sessions</span>
+            <span class="agenda-dot">·</span>
+            <span class="agenda-stat">Networking</span>
+          </div>
+          <p class="agenda-stamp" style="margin:6px 0 0;">Last updated · April 11, 2026</p>
         </div>
-        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <span class="reveal-badge" style="font-size:12px;padding:4px 10px;">⚠ As of April 11th, 2026</span>
-          <a class="btn btn-gold" href="agenda/index.html">View Full Agenda →</a>
-        </div>
+        <a class="btn btn-gold" href="agenda/index.html">View full agenda →</a>
       </section>
 
-      <section id="sponsors" class="footer-note">
-        <p><strong>Executive Sponsors</strong></p>
-        <div class="logos" style="grid-template-columns:repeat(2,1fr);">
-          <a href="https://www.marquette.edu/cyber-security/" target="_blank" rel="noreferrer" class="logo" style="background:#fff;flex-direction:column;gap:6px;text-decoration:none;"><img src="assets/MU Cyber logo.png" alt="Marquette University Center for Cyber Security logo" style="max-width:100%;max-height:56px" /></a>
-          <a href="https://www.xftf.org" target="_blank" rel="noreferrer" class="logo" style="background:#fff;flex-direction:column;gap:6px;text-decoration:none;"><img src="assets/sftf-logo.png" alt="Security For the Folks logo" style="max-width:100%;max-height:72px" /></a>
+      <section id="sponsors" class="spn-section">
+        <div class="ts-head">
+          <span class="ts-idx">03 /</span>
+          <div>
+            <h2 class="ts-title">Sponsors &amp; partners</h2>
+            <p class="ts-sub">MOCS exists because of the organizations that back it — students attend free thanks to them.</p>
+          </div>
         </div>
-        <p style="margin-top:12px;"><strong>Title Sponsors</strong></p>
-        <div class="logos" style="grid-template-columns:repeat(2,1fr);">
-          <a href="https://www.malkansolutions.com" target="_blank" rel="noreferrer" class="logo" style="background:#fff;flex-direction:column;gap:6px;text-decoration:none;"><img src="assets/malkansolutions logo.png" alt="Malkan Solutions logo" style="max-width:100%;max-height:56px" /></a>
-          <a href="https://www.ibm.com/consulting/aws" target="_blank" rel="noreferrer" class="logo" style="background:#fff;flex-direction:column;gap:6px;text-decoration:none;"><img src="assets/logos/aws.png" alt="AWS logo" style="max-width:100%;max-height:56px" /></a>
-          <a href="https://www.ibm.com/consulting" target="_blank" rel="noreferrer" class="logo" style="background:#fff;flex-direction:column;gap:6px;text-decoration:none;"><img src="assets/logos/ibmconsulting_logo.jpg" alt="IBM Consulting logo" style="max-width:100%;max-height:56px" /></a>
-          <a href="https://datascienceinstitute.northwesternmutual.com" target="_blank" rel="noreferrer" class="logo" style="background:#fff;flex-direction:column;gap:6px;text-decoration:none;"><img src="assets/logos/nmsdi-logo.png" alt="Northwestern Mutual Data Science Institute logo" style="max-width:100%;max-height:56px" /></a>
-        </div>
-        <p style="margin-top:12px;"><strong>Community Sponsors</strong></p>
-        <div class="logos" style="grid-template-columns:repeat(3,1fr);">
-          <a href="https://www.rockwellautomation.com" target="_blank" rel="noreferrer" class="logo" style="background:#fff;flex-direction:column;gap:6px;text-decoration:none;"><img src="assets/logos/rockwell-automation.png" alt="Rockwell Automation logo" style="max-width:100%;max-height:56px" /></a>
-          <a href="https://www.claroty.com" target="_blank" rel="noreferrer" class="logo" style="background:#fff;flex-direction:column;gap:6px;text-decoration:none;"><img src="assets/logos/claroty.png" alt="Claroty logo" style="max-width:100%;max-height:56px" /></a>
-          <a href="https://pushsecurity.com" target="_blank" rel="noreferrer" class="logo" style="background:#fff;flex-direction:column;gap:6px;text-decoration:none;"><img src="assets/logos/Push-Color-Horzt-RGB-Logo copy.png" alt="Push Security logo" style="max-width:100%;max-height:56px" /></a>
-        </div>
-      </section>
 
-      <section class="footer-note" style="margin-top:12px;">
-        <p><strong>Companies Presenting</strong></p>
-        <div class="logos" style="grid-template-columns:repeat(3,1fr);">
-          <a href="https://www.rockwellautomation.com" target="_blank" rel="noreferrer" class="logo" style="background:rgba(255,255,255,.55);flex-direction:column;gap:6px;text-decoration:none;"><img src="assets/logos/rockwell-automation.png" alt="Rockwell Automation logo" style="max-width:100%;max-height:48px" /></a>
-          <a href="https://www.johnsoncontrols.com" target="_blank" rel="noreferrer" class="logo" style="background:rgba(255,255,255,.55);flex-direction:column;gap:6px;text-decoration:none;"><img src="assets/logos/johnson-controls.png" alt="Johnson Controls logo" style="max-width:100%;max-height:48px" /></a>
+        <div class="spn-tier">
+          <div class="spn-tier-head">
+            <p class="spn-tier-label">Executive Sponsors</p>
+            <span class="spn-tier-count">02</span>
+          </div>
+          <div class="spn-grid cols-2">
+            <a href="https://www.marquette.edu/cyber-security/" target="_blank" rel="noreferrer" class="spn-logo"><img src="assets/MU Cyber logo.png" alt="Marquette University Center for Cyber Security" /></a>
+            <a href="https://www.xftf.org" target="_blank" rel="noreferrer" class="spn-logo"><img src="assets/sftf-logo.png" alt="Security For the Folks" style="max-height:60px;" /></a>
+          </div>
+        </div>
 
-          <a href="https://www.sprocketsecurity.com" target="_blank" rel="noreferrer" class="logo" style="background:rgba(255,255,255,.55);flex-direction:column;gap:6px;text-decoration:none;"><img src="assets/logos/sprocket-security.png" alt="Sprocket Security logo" style="max-width:100%;max-height:48px" /></a>
-          <a href="https://www.irulast.com" target="_blank" rel="noreferrer" class="logo" style="background:rgba(255,255,255,.55);flex-direction:column;gap:6px;text-decoration:none;"><img src="assets/logos/irulast.svg" alt="Irulast logo" style="max-width:100%;max-height:48px" /></a>
-          <a href="https://www.isaca.org" target="_blank" rel="noreferrer" class="logo" style="background:rgba(255,255,255,.55);flex-direction:column;gap:6px;text-decoration:none;"><img src="assets/logos/isaca-mke.png" alt="ISACA Milwaukee Chapter logo" style="max-width:100%;max-height:48px" /></a>
-          <a href="https://www.icsvillage.com" target="_blank" rel="noreferrer" class="logo" style="background:rgba(255,255,255,.55);flex-direction:column;gap:6px;text-decoration:none;"><img src="assets/logos/icsvillage.png" alt="ICS Village logo" style="max-width:100%;max-height:48px" /></a>
-          <a href="https://www.bsidesmke.org" target="_blank" rel="noreferrer" class="logo" style="background:rgba(255,255,255,.55);flex-direction:column;gap:6px;text-decoration:none;"><img src="assets/logos/bsidesmke.jpg" alt="BSides MKE logo" style="max-width:100%;max-height:48px" /></a>
-          <a href="https://www.malkansolutions.com" target="_blank" rel="noreferrer" class="logo" style="background:rgba(255,255,255,.55);flex-direction:column;gap:6px;text-decoration:none;"><img src="assets/malkansolutions logo.png" alt="Malkan Solutions logo" style="max-width:100%;max-height:48px" /></a>
-          <a href="https://www.ibm.com/consulting" target="_blank" rel="noreferrer" class="logo" style="background:rgba(255,255,255,.55);flex-direction:column;gap:6px;text-decoration:none;"><img src="assets/logos/ibmconsulting_logo.jpg" alt="IBM Consulting logo" style="max-width:100%;max-height:48px" /></a>
+        <div class="spn-tier">
+          <div class="spn-tier-head">
+            <p class="spn-tier-label">Title Sponsors</p>
+            <span class="spn-tier-count">04</span>
+          </div>
+          <div class="spn-grid cols-4">
+            <a href="https://www.malkansolutions.com" target="_blank" rel="noreferrer" class="spn-logo"><img src="assets/malkansolutions logo.png" alt="Malkan Solutions" /></a>
+            <a href="https://www.ibm.com/consulting/aws" target="_blank" rel="noreferrer" class="spn-logo"><img src="assets/logos/aws.png" alt="AWS" /></a>
+            <a href="https://www.ibm.com/consulting" target="_blank" rel="noreferrer" class="spn-logo"><img src="assets/logos/ibmconsulting_logo.jpg" alt="IBM Consulting" /></a>
+            <a href="https://datascienceinstitute.northwesternmutual.com" target="_blank" rel="noreferrer" class="spn-logo"><img src="assets/logos/nmsdi-logo.png" alt="Northwestern Mutual Data Science Institute" /></a>
+          </div>
+        </div>
+
+        <div class="spn-tier">
+          <div class="spn-tier-head">
+            <p class="spn-tier-label">Community Sponsors</p>
+            <span class="spn-tier-count">03</span>
+          </div>
+          <div class="spn-grid cols-3">
+            <a href="https://www.rockwellautomation.com" target="_blank" rel="noreferrer" class="spn-logo"><img src="assets/logos/rockwell-automation.png" alt="Rockwell Automation" /></a>
+            <a href="https://www.claroty.com" target="_blank" rel="noreferrer" class="spn-logo"><img src="assets/logos/claroty.png" alt="Claroty" /></a>
+            <a href="https://pushsecurity.com" target="_blank" rel="noreferrer" class="spn-logo"><img src="assets/logos/Push-Color-Horzt-RGB-Logo copy.png" alt="Push Security" /></a>
+          </div>
+        </div>
+
+        <div class="spn-tier">
+          <div class="spn-tier-head">
+            <p class="spn-tier-label">Companies Presenting</p>
+            <span class="spn-tier-count">09</span>
+          </div>
+          <div class="spn-grid cols-4">
+            <a href="https://www.rockwellautomation.com" target="_blank" rel="noreferrer" class="spn-logo"><img src="assets/logos/rockwell-automation.png" alt="Rockwell Automation" style="max-height:44px;" /></a>
+            <a href="https://www.johnsoncontrols.com" target="_blank" rel="noreferrer" class="spn-logo"><img src="assets/logos/johnson-controls.png" alt="Johnson Controls" style="max-height:44px;" /></a>
+            <a href="https://www.sprocketsecurity.com" target="_blank" rel="noreferrer" class="spn-logo"><img src="assets/logos/sprocket-security.png" alt="Sprocket Security" style="max-height:44px;" /></a>
+            <a href="https://www.irulast.com" target="_blank" rel="noreferrer" class="spn-logo"><img src="assets/logos/irulast.svg" alt="Irulast" style="max-height:44px;" /></a>
+            <a href="https://www.isaca.org" target="_blank" rel="noreferrer" class="spn-logo"><img src="assets/logos/isaca-mke.png" alt="ISACA Milwaukee Chapter" style="max-height:44px;" /></a>
+            <a href="https://www.icsvillage.com" target="_blank" rel="noreferrer" class="spn-logo"><img src="assets/logos/icsvillage.png" alt="ICS Village" style="max-height:44px;" /></a>
+            <a href="https://www.bsidesmke.org" target="_blank" rel="noreferrer" class="spn-logo"><img src="assets/logos/bsidesmke.jpg" alt="BSides MKE" style="max-height:44px;" /></a>
+            <a href="https://www.malkansolutions.com" target="_blank" rel="noreferrer" class="spn-logo"><img src="assets/malkansolutions logo.png" alt="Malkan Solutions" style="max-height:44px;" /></a>
+            <a href="https://www.ibm.com/consulting" target="_blank" rel="noreferrer" class="spn-logo"><img src="assets/logos/ibmconsulting_logo.jpg" alt="IBM Consulting" style="max-height:44px;" /></a>
+          </div>
         </div>
       </section>
 
 
       <!-- Floating Contact Bubble -->
-      <button id="contact-bubble" onclick="document.getElementById('contact-modal').style.display='flex'" style="position:fixed;bottom:24px;right:24px;z-index:1000;width:60px;height:60px;border-radius:50%;background:#003366;color:#fff;border:none;cursor:pointer;font-size:28px;box-shadow:0 4px 16px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 6px 24px rgba(0,0,0,.45)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.35)'"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></button>
+      <button id="contact-bubble" onclick="document.getElementById('contact-modal').style.display='flex'" style="position:fixed;bottom:24px;right:24px;z-index:1000;width:60px;height:60px;border-radius:50%;background:#003366;color:#fff;border:none;cursor:pointer;font-size:28px;box-shadow:0 4px 16px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;transition:transform 200ms cubic-bezier(0.23,1,0.32,1),box-shadow 200ms ease;"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></button>
 
       <!-- Contact Modal -->
       <div id="contact-modal" style="display:none;position:fixed;inset:0;z-index:1001;background:rgba(0,0,0,.5);align-items:center;justify-content:center;padding:16px;" onclick="if(event.target===this)this.style.display='none'">
@@ -404,38 +875,18 @@ body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c456
     </main>
 
     <script>
-      document.getElementById('promo-video-wrap').addEventListener('click', () => {
-        const vid = document.getElementById('promo-video');
-        const hint = document.getElementById('sound-hint');
-        if (vid.muted) {
-          vid.muted = false;
-          hint.textContent = '🔊 Sound on';
-          setTimeout(() => { hint.style.opacity = '0'; }, 1500);
-        } else {
-          vid.muted = true;
-          hint.textContent = '🔇 Click for sound';
-          hint.style.opacity = '1';
-        }
-      });
 
-      document.querySelectorAll('.price').forEach((tile) => {
+      document.querySelectorAll('.price-tile').forEach((tile) => {
         tile.addEventListener('click', () => {
-          document.querySelectorAll('.price').forEach((el) => { el.style.outline = 'none'; });
-          tile.style.outline = '3px solid #f4c300';
+          document.querySelectorAll('.price-tile').forEach((el) => el.classList.remove('is-selected'));
+          tile.classList.add('is-selected');
           const nameEl = document.getElementById('selected-ticket-name');
           const noteEl = document.getElementById('selected-ticket-note');
           const btn = document.getElementById('eventbrite-checkout-btn');
-          const earlyBirdCutoff = new Date('2026-04-17T23:59:59');
-          const now = new Date();
           let displayName = tile.dataset.ticket;
           let displayPrice = tile.dataset.price;
           if (tile.dataset.ticket === 'Industry Professionals') {
-            if (now < earlyBirdCutoff) {
-              displayName = 'Industry Professionals (Early Bird)';
-              displayPrice = '$25';
-            } else {
-              displayPrice = '$45';
-            }
+            displayPrice = '$45';
           }
           if (tile.dataset.ticket === 'Student Admission') {
             displayPrice = '$0 (Sponsored through NDMSI)';
@@ -467,13 +918,43 @@ body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c456
 
       document.getElementById('dark-toggle').addEventListener('click', () => {
         document.body.classList.toggle('dark');
-        document.getElementById('dark-toggle').textContent = document.body.classList.contains('dark') ? '☀️ Light Mode' : '🌙 Dark Mode';
       });
 
       // Calendar dropdown
       (function(){
         const title = 'Midwest OT Cybersecurity Summit (MOCS) 2026';
-        const desc = 'OT Cybersecurity conference hosted at Marquette University. Registration: https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566';
+        const desc = [
+          'Midwest OT Cybersecurity Summit — April 24, 2026',
+          'Marquette University · Alumni Memorial Union · Milwaukee, WI',
+          '',
+          'AGENDA',
+          '10:00 AM   Registration & Check-In opens (Lobby)',
+          '11:00 AM   Lunch & Networking (AMU 227)',
+          '11:30 AM   Opening Keynote — FBI Milwaukee (AMU 227)',
+          '12:40 PM   Breakouts',
+          '           R227 · OT GRC / IEC 62443 / EU CRA — Malkan Solutions',
+          '           R252 · OT Device Pen Testing — Rockwell Automation',
+          '           R254 · Cybersecurity Escape Room — Session 1',
+          ' 1:20 PM   Breakouts',
+          '           R227 · Firewall Hygiene to Network Segmentation — Johnson Controls',
+          '           R252 · Hidden Passwords in a Multilingual World — Sprocket Security',
+          '           R254 · Modbus SCADA Lab — ICS Village (runs to 2:20)',
+          ' 2:00 PM   Breakouts',
+          '           R227 · OT Threat Modeling & Risk Prioritization — Rockwell Automation',
+          '           R252 · Advanced IT Risk Management — Johnson Controls',
+          ' 2:40 PM   Breakouts · Salsa & dip served',
+          '           R227 · OT System Security — IBM',
+          '           R252 · Securing the Digital Handshake — Irulast',
+          '           R254 · Cybersecurity Escape Room — Session 2',
+          ' 3:20 PM   Breakouts',
+          '           R227 · Strategies for Landing Your Next Role — BSides MKE',
+          '           R252 · Practical Security That Scales — ISACA MKE',
+          ' 4:00 PM   Executive Panel · Preparing OT Environments for the Next Generation of Cybersecurity (AMU 227)',
+          ' 4:30 PM   Evening Networking · Snacks (AMU 227)',
+          '',
+          'Register:  https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566',
+          'Full agenda: https://midwest-otcs.org/agenda/'
+        ].join('\n');
         const location = 'Marquette University, Alumni Memorial Union, Milwaukee, WI';
         const start = '20260424T150000Z'; // April 24 2026, 10:00 AM CDT = 15:00 UTC
         const end = '20260424T223000Z';   // 5:30 PM CDT = 22:30 UTC
@@ -539,15 +1020,21 @@ body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c456
         setInterval(update, 1000);
       })();
 
-      // Speaker carousel scroll arrows
+      // Speaker strip — auto-scrolling infinite loop
       (function(){
-        var wrap = document.querySelector('.speaker-scroll');
-        if (!wrap) return;
-        var leftBtn = document.querySelector('.scroll-arrow.left');
-        var rightBtn = document.querySelector('.scroll-arrow.right');
-        var scrollAmt = 300;
-        if (leftBtn) leftBtn.addEventListener('click', function(){ wrap.scrollBy({left: -scrollAmt, behavior:'smooth'}); });
-        if (rightBtn) rightBtn.addEventListener('click', function(){ wrap.scrollBy({left: scrollAmt, behavior:'smooth'}); });
+        var scroll = document.querySelector('.speaker-scroll');
+        if (!scroll) return;
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        // Wrap existing speaker cards in a track
+        var track = document.createElement('div');
+        track.className = 'speaker-track';
+        while (scroll.firstChild) track.appendChild(scroll.firstChild);
+        // Duplicate once so translateX(-50%) creates a seamless loop
+        Array.prototype.slice.call(track.children).forEach(function(c){
+          track.appendChild(c.cloneNode(true));
+        });
+        scroll.appendChild(track);
+        if (reduce) track.style.animation = 'none';
       })();
     </script>
   </body>

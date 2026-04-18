@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:www.marquette.edu)",
+      "Bash(python3 -c ' *)",
+      "Bash(py --version)",
+      "Bash(powershell.exe *)",
+      "Bash(docker run *)",
+      "Bash(docker version *)",
+      "Bash(docker info *)"
+    ]
+  }
+}
