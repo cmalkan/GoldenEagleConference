@@ -206,6 +206,38 @@
       body.dark .snack-ico{background:rgba(244,195,0,.07);border-color:rgba(244,195,0,.17);color:#c9a000}
       body.dark .btn-blue{background:#3b6fad;color:#f0f6ff}
 
+      /* BRING BANNER — highlighted "what to pack" callout */
+      .bring-banner{position:relative;background:linear-gradient(180deg,#fdfbf3 0%,#fff 60%);border:1px solid #ead9a1;border-radius:14px;padding:22px 24px;margin:0 0 18px;box-shadow:0 4px 18px rgba(138,104,0,.08)}
+      .bring-banner::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 5%,rgba(244,195,0,.6) 50%,transparent 95%)}
+      .bring-head{display:flex;align-items:flex-start;gap:14px;margin:0 0 14px}
+      .bring-icon{width:40px;height:40px;border-radius:10px;background:rgba(244,195,0,.18);color:#8a6800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+      .bring-eyebrow{margin:0 0 2px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10.5px;font-weight:800;color:#8a6800;letter-spacing:.18em;text-transform:uppercase}
+      .bring-title{margin:0;font-size:22px;font-weight:800;color:#3a2c00;letter-spacing:-.015em;line-height:1.15}
+      .bring-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+      .bring-item{position:relative;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px 16px 20px;display:flex;flex-direction:column;gap:8px}
+      .bring-item::before{content:"";position:absolute;left:0;top:16px;bottom:16px;width:3px;border-radius:2px}
+      .bring-item-id::before{background:#c7362e}
+      .bring-item-lab::before{background:#1f4f8f}
+      .bring-badge{display:inline-block;width:fit-content;font-size:10px;font-weight:800;padding:3px 9px;border-radius:4px;letter-spacing:.12em;text-transform:uppercase;background:rgba(199,54,46,.1);color:#c7362e;border:1px solid rgba(199,54,46,.3)}
+      .bring-badge-lab{background:rgba(31,79,143,.08);color:#1f4f8f;border-color:rgba(31,79,143,.3)}
+      .bring-item strong{color:#143a68;font-size:15.5px;font-weight:800;letter-spacing:-.005em}
+      .bring-audience{font-size:12.5px;color:var(--muted);font-weight:600;font-style:italic;margin-left:2px}
+      .bring-item p{margin:4px 0 0;font-size:13px;color:#546b86;line-height:1.55}
+      .bring-item p a{color:#1f4f8f;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(31,79,143,.3)}
+      .bring-item p strong{font-size:inherit;color:#143a68}
+      @media (max-width:720px){
+        .bring-banner{padding:18px 16px}
+        .bring-title{font-size:19px}
+        .bring-list{grid-template-columns:1fr}
+      }
+      body.dark .bring-banner{background:linear-gradient(180deg,#1f1e12 0%,#13243a 70%);border-color:#5a4a1e}
+      body.dark .bring-title{color:#ffde73}
+      body.dark .bring-eyebrow{color:#ffd766}
+      body.dark .bring-item{background:#13243a;border-color:#2c4563}
+      body.dark .bring-item strong{color:#e8f3ff}
+      body.dark .bring-item p{color:#a7bed9}
+      body.dark .bring-audience{color:#7eb3e0}
+
       /* PAGE NAV — sticky section jump links */
       .page-nav{position:sticky;top:8px;z-index:50;display:flex;align-items:stretch;gap:6px;flex-wrap:wrap;margin:0 0 18px;padding:8px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:12px;box-shadow:0 4px 14px rgba(13,50,96,.08)}
       .page-nav-link{position:relative;flex:1;min-width:110px;display:flex;align-items:center;gap:8px;padding:10px 12px;text-decoration:none;color:var(--muted);border-radius:8px;font-size:13px;font-weight:700;letter-spacing:-.005em;transition:color 180ms ease,background 180ms ease}
@@ -374,6 +406,35 @@
         <a class="page-nav-link" href="#parking"><span class="page-nav-idx">04</span>Parking</a>
         <a class="page-nav-link" href="#contact"><span class="page-nav-idx">05</span>Contact</a>
       </nav>
+
+      <!-- WHAT TO BRING -->
+      <section class="bring-banner" aria-label="What to bring">
+        <div class="bring-head">
+          <span class="bring-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </span>
+          <div>
+            <p class="bring-eyebrow">What to bring</p>
+            <h2 class="bring-title">Two things you need to pack.</h2>
+          </div>
+        </div>
+        <ul class="bring-list">
+          <li class="bring-item bring-item-id">
+            <span class="bring-badge">Required</span>
+            <div>
+              <strong>Student ID</strong> <span class="bring-audience">(students only)</span>
+              <p>Free/sponsored student registration requires a valid student ID at check-in. No exceptions — without an ID, at-door pricing is $15.</p>
+            </div>
+          </li>
+          <li class="bring-item bring-item-lab">
+            <span class="bring-badge bring-badge-lab">Lab participants</span>
+            <div>
+              <strong>Laptop with Docker installed</strong> <span class="bring-audience">(ICS Village Lab · 1:20 – 2:20 PM · AMU 254)</span>
+              <p>The <em>Securing the Grid</em> hands-on lab (simulated Modbus SCADA, replay-attack mitigation) runs in containers. You must bring your own laptop with <strong><a href="https://docs.docker.com/get-docker/" target="_blank" rel="noreferrer">Docker Desktop</a></strong> installed and working <strong>before you arrive</strong>. Wi-Fi bandwidth won't be enough to install on the day.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
 
       <!-- ARRIVAL FLOW -->
       <div id="arrival" style="margin-bottom:6px;margin-top:4px;scroll-margin-top:90px;">
