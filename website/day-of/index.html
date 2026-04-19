@@ -158,6 +158,25 @@
       .info-box p,.info-box li{font-size:12.5px;color:#405b78;line-height:1.6;margin:0 0 3px}
       .info-box ul{margin:4px 0 0;padding-left:16px}
       .map-wrap{margin-top:12px;border-radius:10px;overflow:hidden;border:1px solid var(--line);box-shadow:0 4px 16px rgba(13,50,96,.08)}
+
+      /* MAP CARD — static address block, opens Google Maps in new tab */
+      .map-card{display:flex;align-items:center;gap:16px;margin-top:14px;padding:16px 18px;background:#fff;border:1px solid var(--line);border-radius:12px;text-decoration:none;color:var(--text);position:relative;overflow:hidden;transition:transform 220ms var(--ease),box-shadow 220ms ease,border-color 220ms ease}
+      .map-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(31,79,143,.4),transparent)}
+      .map-card-icon{width:40px;height:40px;border-radius:10px;background:#eef3fb;color:#1f4f8f;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+      .map-card-body{flex:1;min-width:0}
+      .map-card-label{margin:0 0 3px;font-size:10.5px;font-weight:800;color:#3b6ba5;text-transform:uppercase;letter-spacing:.16em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+      .map-card-addr{margin:0;font-size:13.5px;color:#405b78;line-height:1.55}
+      .map-card-addr strong{color:#143a68;font-weight:700}
+      .map-card-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;background:#f4c300;color:#173b65;border-radius:8px;font-size:13px;font-weight:800;letter-spacing:-.005em;flex-shrink:0;transition:background 180ms ease,box-shadow 180ms ease}
+      @media (hover:hover) and (pointer:fine){
+        .map-card:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(13,50,96,.10);border-color:#b8cbe4}
+        .map-card:hover .map-card-btn{background:#ffd433;box-shadow:0 3px 12px rgba(244,195,0,.3)}
+      }
+      @media (max-width:600px){.map-card{flex-wrap:wrap}.map-card-btn{width:100%;justify-content:center}}
+      body.dark .map-card{background:#13243a;border-color:#2c4563;color:#d8e6f8}
+      body.dark .map-card-icon{background:#1b3554;color:#7eb3e0}
+      body.dark .map-card-addr{color:#a7bed9}
+      body.dark .map-card-addr strong{color:#e8f3ff}
       @media(max-width:600px){.info-grid{grid-template-columns:1fr}}
 
       /* CONTACT */
@@ -242,6 +261,40 @@
       /* Reduced motion — respect user preference */
       @media (prefers-reduced-motion:reduce){
         *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+      }
+
+      /* MOBILE POLISH */
+      @media (max-width:720px){
+        .topbar{padding:6px 0 4px;gap:8px}
+        .brand-logo{height:28px}
+        .brand-logo-sftf{height:26px}
+        .brand-rule{height:20px}
+        .brand-word{font-size:14px}
+        .topnav{gap:2px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;flex-wrap:nowrap;width:100%;padding:4px 0}
+        .topnav::-webkit-scrollbar{display:none}
+        .topnav-link{white-space:nowrap;padding:6px 10px;font-size:12.5px;flex-shrink:0}
+        .topnav-rule{display:none}
+        .btn-register-sm{padding:7px 11px;font-size:12px;flex-shrink:0}
+        .page-hero{padding:18px 16px}
+        .page-hero h1{font-size:26px}
+        .page-hero p{font-size:13.5px}
+        .page-nav{padding:6px;gap:4px}
+        .page-nav-link{min-width:0;flex:1 1 auto;padding:8px 10px;font-size:12px}
+        .sec-card{padding:16px;border-radius:12px}
+        .sec-title{font-size:22px}
+        .flow-step{padding:16px}
+        .flow-step-primary .flow-step-title{font-size:18px}
+        .flow-step-title{font-size:16px}
+        .park-feature{padding:20px 16px}
+        .park-feature h3{font-size:20px}
+        .park-feature-meta{gap:12px}
+        .park-meta-item .v{font-size:13px}
+        .map-card{padding:14px;gap:12px}
+        .map-card-btn{padding:8px 12px;font-size:12.5px}
+        .info-box{padding:12px 14px}
+        .map-legend{padding:12px 14px;gap:8px 14px;font-size:12px}
+        .contact-card{padding:16px;border-radius:12px}
+        .contact-person{padding:10px 12px}
       }
 
       /* TOP BAR — taste-skill shared */
@@ -503,12 +556,19 @@
             <p><strong>MCTS Routes 30, 30X, 31</strong> stop at Wisconsin &amp; 16th. Uber/Lyft drop-off at the AMU main entrance.</p>
           </div>
         </div>
-        <div class="map-wrap">
-          <iframe title="Marquette University AMU Map"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2918.0!2d-87.93830!3d43.03870!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8805199d8b2e9041%3A0x10e29fbbec893bc!2sAlumni%20Memorial%20Union%2C%20Marquette%20University!5e0!3m2!1sen!2sus!4v1"
-            width="100%" height="240" style="border:0;display:block;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
+        <a class="map-card" href="https://www.google.com/maps/place/Alumni+Memorial+Union,+Marquette+University/@43.03870,-87.93830,17z" target="_blank" rel="noreferrer">
+          <span class="map-card-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </span>
+          <div class="map-card-body">
+            <p class="map-card-label">Venue</p>
+            <p class="map-card-addr"><strong>Alumni Memorial Union · Marquette University</strong><br>1442 W. Wisconsin Ave, Milwaukee, WI 53233</p>
+          </div>
+          <span class="map-card-btn">
+            Open in Maps
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </span>
+        </a>
       </section>
 
       <!-- CONTACT -->

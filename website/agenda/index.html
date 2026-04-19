@@ -149,6 +149,35 @@
         *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
       }
 
+      /* MOBILE POLISH */
+      @media (max-width:720px){
+        .topbar{padding:6px 0 4px;gap:8px}
+        .brand-logo{height:28px}
+        .brand-logo-sftf{height:26px}
+        .brand-rule{height:20px}
+        .brand-word{font-size:14px}
+        .topnav{gap:2px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;flex-wrap:nowrap;width:100%;padding:4px 0}
+        .topnav::-webkit-scrollbar{display:none}
+        .topnav-link{white-space:nowrap;padding:6px 10px;font-size:12.5px;flex-shrink:0}
+        .topnav-rule{display:none}
+        .btn-register-sm{padding:7px 11px;font-size:12px;flex-shrink:0}
+        .page-hero{padding:18px 16px}
+        .page-hero h1{font-size:26px}
+        .page-hero p{font-size:13.5px}
+        .ts-section,.spn-section{padding:18px 16px}
+        .ts-title{font-size:22px}
+        .ts-sub{font-size:12.5px}
+        .tk-toolbar{padding:8px;gap:6px}
+        .tk-btn{padding:7px 10px;font-size:12px}
+        .agenda-dayof{padding:12px 14px;gap:10px}
+        .agenda-dayof-label{font-size:14px}
+        .agenda-dayof-desc{font-size:12px}
+        .agenda-dayof-arrow{width:28px;height:28px}
+        .spn-tier{margin-bottom:18px}
+        .spn-logo{min-height:64px;padding:10px}
+        .agenda-table th,.agenda-table td{font-size:11.5px;padding:5px 3px}
+      }
+
       /* REFINED TOOLBAR */
       .tk-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 16px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:12px}
       .tk-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;background:transparent;border:1px solid var(--line);border-radius:8px;color:#3b6ba5;font-size:13px;font-weight:700;text-decoration:none;cursor:pointer;letter-spacing:-.005em;transition:background 180ms ease,color 180ms ease,border-color 180ms ease,transform 160ms cubic-bezier(0.23,1,0.32,1)}
@@ -361,7 +390,7 @@
             <tr class="break-row"><td colspan="3">── 10 min break ──</td></tr>
             <tr><td><strong>2:00 PM – 2:30 PM</strong></td><td><strong>OT Threat Modeling and Risk Prioritization</strong><br>Steven Taylor · Rockwell Automation</td><td><strong>Advanced Strategies for Modern IT Risk Management</strong><br>Jeni Herrera &amp; Kelly Yang · Johnson Controls</td></tr>
             <tr class="break-row"><td colspan="4">── 10 min break · Salsa &amp; dip served ──</td></tr>
-            <tr><td><strong>2:40 PM – 3:10 PM</strong></td><td><strong>Presentation from IBM on OT System Security</strong><br>TBD · IBM</td><td><strong>Securing the Digital Handshake in Hiring and Sales</strong><br>Adam Weigold · Irulast</td><td><strong>Cybersecurity Escape Room — Session 2</strong><br><span style="font-size:11px;color:var(--muted);">30 min · 5–10 participants · Solve cyber puzzles to "escape" a simulated breach scenario</span></td></tr>
+            <tr><td><strong>2:40 PM – 3:10 PM</strong></td><td><strong>OT System Security — IBM</strong><br>Preston Futrell <span style="font-size:10px;color:#c7362e;font-weight:800;letter-spacing:.06em;">VIRTUAL</span> · Michael Massimi <span style="font-size:10px;color:#c7362e;font-weight:800;letter-spacing:.06em;">VIRTUAL</span> · Dan Bailey <span style="font-size:10px;color:#2f9a52;font-weight:800;letter-spacing:.06em;">IN-PERSON</span> · IBM</td><td><strong>Securing the Digital Handshake in Hiring and Sales</strong><br>Adam Weigold · Irulast</td><td><strong>Cybersecurity Escape Room — Session 2</strong><br><span style="font-size:11px;color:var(--muted);">30 min · 5–10 participants · Solve cyber puzzles to "escape" a simulated breach scenario</span></td></tr>
             <tr class="break-row"><td colspan="4">── 10 min break ──</td></tr>
             <tr><td><strong>3:20 PM – 3:50 PM</strong></td><td><strong>Strategies for Landing Your Next Role</strong><br>Rebecca Jo Jones · BSides MKE</td><td><strong>Practical Security That Scales: Automation, Risk, and Real-World Execution</strong><br>Joshua Sharkey · ISACA MKE Chapter</td><td> </td></tr>
             <tr class="break-row"><td colspan="4">── 10 min break ──</td></tr>
@@ -429,9 +458,9 @@
             </div>
 
             <div class="speaker-card">
-              <div style="display:flex;align-items:center;gap:10px;"><div class="speaker-initials" style="background:#1f4f8f;">IBM</div><p class="company">IBM</p></div>
+              <div style="display:flex;align-items:center;gap:10px;"><div class="speaker-initials"><img src="../assets/logos/ibmPreston.jpg" alt="Preston Futrell" /></div><div class="speaker-initials"><img src="../assets/logos/ibmMike.jpg" alt="Michael Massimi" /></div><div class="speaker-initials"><img src="../assets/logos/ibmDan.jpg" alt="Dan Bailey" /></div><p class="company">IBM</p></div>
               <h4>OT System Security</h4>
-              <div class="speaker-name"><strong style="color:var(--muted);">Speaker TBD</strong></div>
+              <div class="speaker-name"><strong>Preston Futrell</strong> <span style="font-size:10px;color:#c7362e;font-weight:800;letter-spacing:.06em;">VIRTUAL</span> · <a class="speaker-linkedin" href="https://www.linkedin.com/in/preston-futrell-13637712/" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a><br><strong>Michael Massimi</strong> <span style="font-size:10px;color:#c7362e;font-weight:800;letter-spacing:.06em;">VIRTUAL</span> · <a class="speaker-linkedin" href="https://www.linkedin.com/in/michael-massimi-b4b3b21/" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a><br><strong>Dan Bailey</strong> <span style="font-size:10px;color:#2f9a52;font-weight:800;letter-spacing:.06em;">IN-PERSON</span> · <a class="speaker-linkedin" href="https://www.linkedin.com/in/djb180/" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a></div>
             </div>
 
             <div class="speaker-card">
@@ -533,7 +562,7 @@
       });
 
       document.getElementById('btn-copy-agenda').addEventListener('click', async () => {
-        const agendaText = `Midwest OT Cybersecurity Summit (MOCS) — Agenda — As of April 17, 2026\nApril 24, 2026 · Marquette University, Milwaukee\n\n10:00 AM →            Registration & Check-In opens | Lobby | Badges, welcome packets, sponsor tables\n11:00 AM – 11:30 AM  Lunch & Networking | Box lunches provided for all REGISTERED attendees | AMU Room 227\n11:30 AM – 12:30 PM  Opening Keynote — FBI Milwaukee | SSA Brett Lerner & IA Thomas Gathman | Counterintelligence, WMD, and Cyber Programs | AMU Room 227\n  ── 10 min break ──\n12:40 PM –  1:10 PM  AMU Room 227: OT Cybersecurity GRC, IEC 62443 Standards, and the EU Cyber Resilience Act — Malkan Solutions\n                     AMU Room 252: OT Device Penetration Testing Basics — Rockwell Automation\n                     AMU Room 254: Cybersecurity Escape Room — Session 1 (30 min, 5–10 participants)\n  ── 10 min break ──\n 1:20 PM –  1:50 PM  AMU Room 227: From Firewall Hygiene to Advanced Network Segmentation — Johnson Controls\n                     AMU Room 252: Lost in Transliteration: Hidden Passwords in a Multilingual World — Sprocket Security\n                     AMU Room 254: Securing the Grid: Simulated Modbus SCADA Environments and Replay Attack Mitigation (Lab) — ICS Village (1:20–2:20 PM)\n  ── 10 min break ──\n 2:00 PM –  2:30 PM  AMU Room 227: OT Threat Modeling and Risk Prioritization — Rockwell Automation\n                     AMU Room 252: Advanced Strategies for Modern IT Risk Management — Johnson Controls\n  ── 10 min break · Salsa & dip served ──\n 2:40 PM –  3:10 PM  AMU Room 227: Presentation from IBM on OT System Security — IBM\n                     AMU Room 252: Securing the Digital Handshake in Hiring and Sales — Irulast\n                     AMU Room 254: Cybersecurity Escape Room — Session 2 (30 min, 5–10 participants)\n  ── 10 min break ──\n 3:20 PM –  3:50 PM  AMU Room 227: Strategies for Landing Your Next Role — BSides MKE\n                     AMU Room 252: Practical Security That Scales: Automation, Risk, and Real-World Execution — ISACA MKE Chapter\n  ── 10 min break ──\n 4:00 PM –  4:30 PM  Executive Panel: Preparing OT Environments for the Next Generation of Cybersecurity | AMU Room 227\n 4:30 PM –  5:30 PM  Evening Networking | Snacks provided | AMU Room 227`;
+        const agendaText = `Midwest OT Cybersecurity Summit (MOCS) — Agenda — As of April 17, 2026\nApril 24, 2026 · Marquette University, Milwaukee\n\n10:00 AM →            Registration & Check-In opens | Lobby | Badges, welcome packets, sponsor tables\n11:00 AM – 11:30 AM  Lunch & Networking | Box lunches provided for all REGISTERED attendees | AMU Room 227\n11:30 AM – 12:30 PM  Opening Keynote — FBI Milwaukee | SSA Brett Lerner & IA Thomas Gathman | Counterintelligence, WMD, and Cyber Programs | AMU Room 227\n  ── 10 min break ──\n12:40 PM –  1:10 PM  AMU Room 227: OT Cybersecurity GRC, IEC 62443 Standards, and the EU Cyber Resilience Act — Malkan Solutions\n                     AMU Room 252: OT Device Penetration Testing Basics — Rockwell Automation\n                     AMU Room 254: Cybersecurity Escape Room — Session 1 (30 min, 5–10 participants)\n  ── 10 min break ──\n 1:20 PM –  1:50 PM  AMU Room 227: From Firewall Hygiene to Advanced Network Segmentation — Johnson Controls\n                     AMU Room 252: Lost in Transliteration: Hidden Passwords in a Multilingual World — Sprocket Security\n                     AMU Room 254: Securing the Grid: Simulated Modbus SCADA Environments and Replay Attack Mitigation (Lab) — ICS Village (1:20–2:20 PM)\n  ── 10 min break ──\n 2:00 PM –  2:30 PM  AMU Room 227: OT Threat Modeling and Risk Prioritization — Rockwell Automation\n                     AMU Room 252: Advanced Strategies for Modern IT Risk Management — Johnson Controls\n  ── 10 min break · Salsa & dip served ──\n 2:40 PM –  3:10 PM  AMU Room 227: OT System Security — Preston Futrell (virtual), Michael Massimi (virtual), Dan Bailey (in-person) · IBM\n                     AMU Room 252: Securing the Digital Handshake in Hiring and Sales — Irulast\n                     AMU Room 254: Cybersecurity Escape Room — Session 2 (30 min, 5–10 participants)\n  ── 10 min break ──\n 3:20 PM –  3:50 PM  AMU Room 227: Strategies for Landing Your Next Role — BSides MKE\n                     AMU Room 252: Practical Security That Scales: Automation, Risk, and Real-World Execution — ISACA MKE Chapter\n  ── 10 min break ──\n 4:00 PM –  4:30 PM  Executive Panel: Preparing OT Environments for the Next Generation of Cybersecurity | AMU Room 227\n 4:30 PM –  5:30 PM  Evening Networking | Snacks provided | AMU Room 227`;
         await navigator.clipboard.writeText(agendaText);
         const toast = document.getElementById('agenda-toast');
         toast.classList.add('show');
@@ -567,7 +596,7 @@
           '           R227 · OT Threat Modeling & Risk Prioritization — Rockwell Automation',
           '           R252 · Advanced IT Risk Management — Johnson Controls',
           ' 2:40 PM   Breakouts · Salsa & dip served',
-          '           R227 · OT System Security — IBM',
+          '           R227 · OT System Security — Preston Futrell (virtual), Michael Massimi (virtual), Dan Bailey (in-person) · IBM',
           '           R252 · Securing the Digital Handshake — Irulast',
           '           R254 · Cybersecurity Escape Room — Session 2',
           ' 3:20 PM   Breakouts',

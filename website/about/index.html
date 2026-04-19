@@ -73,6 +73,65 @@
       .who-logo{background:#fff;border-radius:8px;padding:8px 10px;height:48px;display:flex;align-items:center}
       .who-logo img{max-height:32px;display:block}
 
+      /* FOUNDERS — YC/editorial-inspired layout */
+      /* Team hero banner */
+      .team-hero{position:relative;margin:18px 0 24px;padding:0;border-radius:16px;overflow:hidden;aspect-ratio:16/7;background:#0d3260;box-shadow:0 12px 36px rgba(13,50,96,.22)}
+      .team-hero img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.02) contrast(1.02)}
+      .team-hero-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:22px 26px;background:linear-gradient(180deg,transparent 40%,rgba(7,22,45,.85) 100%);color:#fff;pointer-events:none}
+      .team-hero-eyebrow{margin:0 0 6px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;font-weight:700;color:#ffde73;letter-spacing:.22em;text-transform:uppercase}
+      .team-hero-caption{margin:0;font-size:15px;font-weight:600;color:#fff;letter-spacing:-.005em;max-width:560px;line-height:1.4;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+      @media (max-width:640px){.team-hero{aspect-ratio:16/10}.team-hero-caption{font-size:13.5px}}
+
+      /* Founder cards — portrait left, editorial right */
+      .founders-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-top:6px}
+      .founder-card{position:relative;background:#fff;border:1px solid var(--line);border-radius:16px;padding:0;text-decoration:none;color:inherit;display:flex;overflow:hidden;transition:transform 260ms var(--ease-out),box-shadow 260ms ease,border-color 260ms ease}
+      @media (hover:hover) and (pointer:fine){
+        .founder-card:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(13,50,96,.12);border-color:#b8cbe4}
+        .founder-card:hover .founder-portrait-photo img{transform:scale(1.04)}
+        .founder-card:hover .founder-portrait-initials::after{opacity:1}
+        .founder-card:hover .founder-link-arrow{transform:translateX(3px)}
+      }
+
+      /* Portrait column — square-ish aspect */
+      .founder-portrait{position:relative;width:128px;flex-shrink:0;align-self:stretch;overflow:hidden;background:#eef3fb;border-right:1px solid var(--line)}
+      .founder-portrait-photo img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;transition:transform 400ms var(--ease-out);filter:saturate(1.02)}
+      /* Crop — group photo positioned per face */
+      .founder-portrait-crop{background-image:url("../assets/founders/xftf-leadership-group.jpg");background-size:auto 260%;background-position:var(--bg-pos,50% 40%);background-repeat:no-repeat;filter:saturate(1.08) contrast(1.04) brightness(1.02);transition:background-size 600ms var(--ease-out),filter 300ms ease}
+      .founder-card:hover .founder-portrait-crop{background-size:auto 290%}
+      .founder-portrait-initials{display:flex;align-items:center;justify-content:center;background:linear-gradient(155deg,var(--grad-a,#1a4a7c) 0%,var(--grad-b,#0d3260) 100%);position:relative}
+      .founder-portrait-initials::before{content:attr(data-initials);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:44px;font-weight:800;color:rgba(255,215,102,.95);letter-spacing:-.02em;text-shadow:0 2px 16px rgba(0,0,0,.35);z-index:2}
+      /* Subtle grid pattern overlay on initial avatars */
+      .founder-portrait-initials::after{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent 0 14px,rgba(255,255,255,.08) 14px 15px),repeating-linear-gradient(90deg,transparent 0 14px,rgba(255,255,255,.08) 14px 15px);opacity:.55;transition:opacity 260ms ease;pointer-events:none}
+
+      /* Body column */
+      .founder-body{flex:1;min-width:0;padding:18px 20px 18px 18px;display:flex;flex-direction:column}
+      .founder-role-eyebrow{margin:0 0 6px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;font-weight:800;color:#3b6ba5;text-transform:uppercase;letter-spacing:.16em}
+      .founder-name{margin:0 0 4px;font-size:19px;font-weight:800;color:#143a68;letter-spacing:-.015em;line-height:1.15}
+      .founder-title{margin:0 0 10px;font-size:12.5px;color:#3b6ba5;line-height:1.45;font-weight:600;letter-spacing:-.005em}
+      .founder-bio{margin:0 0 12px;font-size:13px;color:#546b86;line-height:1.6}
+      .founder-bio strong{color:#143a68;font-weight:700}
+      .founder-link{margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;font-weight:700;color:#0077b5;padding-top:10px;border-top:1px solid #eef3fb;letter-spacing:.01em}
+      .founder-link-arrow{margin-left:2px;transition:transform 220ms cubic-bezier(0.23,1,0.32,1)}
+
+      /* Stack vertically on narrow */
+      @media (max-width:500px){
+        .founders-grid{grid-template-columns:1fr}
+        .founder-card{flex-direction:column}
+        .founder-portrait{width:100%;aspect-ratio:3/2;border-right:none;border-bottom:1px solid var(--line)}
+        .founder-portrait-photo img{object-position:center 20%}
+      }
+
+      body.dark .founder-card{background:#13243a;border-color:#2c4563}
+      body.dark .founder-name{color:#e8f3ff}
+      body.dark .founder-title{color:#7eb3e0}
+      body.dark .founder-bio{color:#a7bed9}
+      body.dark .founder-bio strong{color:#e8f3ff}
+      body.dark .founder-role-eyebrow{color:#7eb3e0}
+      body.dark .founder-link{color:#5bb8f5;border-top-color:#2c4563}
+      body.dark .founder-portrait{background:#1b3554;border-right-color:#2c4563}
+      body.dark .founder-portrait{border-right-color:#2c4563}
+      @media (max-width:500px){body.dark .founder-portrait{border-bottom-color:#2c4563}}
+
       /* WHY ATTEND — 3-up grid */
       .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
       .tile{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;transition:transform 200ms var(--ease-out),box-shadow 200ms ease}
@@ -145,6 +204,54 @@
         *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
         .strip-track{animation:none}
         .reveal,.tl-card{opacity:1;transform:none}
+      }
+
+      /* MOBILE POLISH */
+      @media (max-width:720px){
+        .topbar{padding:6px 0 4px;gap:8px}
+        .brand-logo{height:28px}
+        .brand-logo-sftf{height:26px}
+        .brand-rule{height:20px}
+        .brand-word{font-size:14px}
+        .topnav{gap:2px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;flex-wrap:nowrap;width:100%;padding:4px 0}
+        .topnav::-webkit-scrollbar{display:none}
+        .topnav-link{white-space:nowrap;padding:6px 10px;font-size:12.5px;flex-shrink:0}
+        .topnav-rule{display:none}
+        .btn-register-sm{padding:7px 11px;font-size:12px;flex-shrink:0}
+        .page-hero{padding:18px 16px}
+        .page-hero h1{font-size:26px}
+        .page-hero p{font-size:13.5px}
+        .page-nav{padding:6px;gap:4px}
+        .page-nav-link{min-width:0;flex:1 1 auto;padding:8px 10px;font-size:12px;justify-content:center}
+        .section{margin-bottom:28px}
+        .h2{font-size:22px}
+        .lead{font-size:13.5px}
+        .who{gap:12px}
+        .who-card{padding:18px}
+        .who-card h3{font-size:18px}
+        .who-card p{font-size:13px}
+        .tile{padding:16px}
+        .tile h4{font-size:16px}
+        .tile p{font-size:12.5px}
+        .stat{padding:14px}
+        .stat .num{font-size:28px}
+        .team-hero-caption{font-size:13px}
+        .founders-grid{grid-template-columns:1fr;gap:12px}
+        .founder-card{flex-direction:row}
+        .founder-portrait{width:110px}
+        .founder-body{padding:14px 16px}
+        .founder-name{font-size:16px}
+        .founder-title{font-size:11.5px}
+        .founder-bio{font-size:12px}
+        .tl-card img{height:140px}
+        .tl-card-body{padding:12px 14px}
+        .thanks{padding:20px 18px}
+        .thanks h3{font-size:19px}
+      }
+      @media (max-width:480px){
+        .founder-card{flex-direction:column}
+        .founder-portrait{width:100%;aspect-ratio:3/2;border-right:none;border-bottom:1px solid var(--line)}
+        .stats{grid-template-columns:repeat(2,1fr)}
       }
 
       /* RESPONSIVE */
@@ -274,11 +381,12 @@
 
       <nav class="page-nav" aria-label="On this page">
         <a class="page-nav-link" href="#who"><span class="page-nav-idx">01</span>Who we are</a>
-        <a class="page-nav-link" href="#why"><span class="page-nav-idx">02</span>Why attend</a>
-        <a class="page-nav-link" href="#watch"><span class="page-nav-idx">03</span>Watch</a>
-        <a class="page-nav-link" href="#numbers"><span class="page-nav-idx">04</span>Numbers</a>
-        <a class="page-nav-link" href="#journey"><span class="page-nav-idx">05</span>Journey</a>
-        <a class="page-nav-link" href="#milestones"><span class="page-nav-idx">06</span>Milestones</a>
+        <a class="page-nav-link" href="#founders"><span class="page-nav-idx">02</span>Our team</a>
+        <a class="page-nav-link" href="#why"><span class="page-nav-idx">03</span>Why attend</a>
+        <a class="page-nav-link" href="#watch"><span class="page-nav-idx">04</span>Watch</a>
+        <a class="page-nav-link" href="#numbers"><span class="page-nav-idx">05</span>Numbers</a>
+        <a class="page-nav-link" href="#journey"><span class="page-nav-idx">06</span>Journey</a>
+        <a class="page-nav-link" href="#milestones"><span class="page-nav-idx">07</span>Milestones</a>
       </nav>
 
       <!-- WHO WE ARE -->
@@ -302,6 +410,107 @@
               <span class="who-logo"><img src="../assets/MU Cyber logo.png" alt="Marquette Cyber logo" /></span>
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- OUR TEAM — YC-inspired editorial layout -->
+      <section class="section reveal" id="founders" style="scroll-margin-top:90px;">
+        <p class="eyebrow">Our team</p>
+        <h2 class="h2">The people behind MOCS.</h2>
+        <p class="lead">Five people — practitioners, academics, students, and program operators — kept building this summit together. <a href="https://www.xftf.org" target="_blank" rel="noreferrer" style="color:#1f4f8f;font-weight:700;">Security for the Folks</a> is the mentorship circle that seeded it; Marquette University's Center for Cybersecurity makes it happen on the ground.</p>
+
+        <!-- Team hero photo -->
+        <figure class="team-hero">
+          <img src="../assets/founders/xftf-leadership-group.jpg" alt="Security for the Folks leadership — the mentorship circle behind MOCS" loading="lazy" />
+          <div class="team-hero-overlay">
+            <p class="team-hero-eyebrow">August 2024 · Milwaukee</p>
+            <p class="team-hero-caption">The XFTF mentorship circle that seeded MOCS.</p>
+          </div>
+        </figure>
+
+        <!-- Team cards -->
+        <div class="founders-grid">
+
+          <a class="founder-card" href="https://www.linkedin.com/in/chiragmalkan/" target="_blank" rel="noreferrer">
+            <div class="founder-portrait founder-portrait-photo">
+              <img src="../assets/founders/chirag.png" alt="Chirag Malkan" loading="lazy" />
+            </div>
+            <div class="founder-body">
+              <p class="founder-role-eyebrow">Founder · MOCS</p>
+              <h3 class="founder-name">Chirag Malkan</h3>
+              <p class="founder-title">Founder, MOCS · Founder &amp; CEO, Malkan Solutions · Adjunct Professor, Marquette</p>
+              <p class="founder-bio">Spent 20+ years at <strong>GE Healthcare</strong> and <strong>Rockwell Automation</strong> before founding Malkan Solutions. Returned to Marquette in 2024 to teach ethical hacking — and launched MOCS to put Midwest OT practitioners in the same room.</p>
+              <span class="founder-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                chiragmalkan <span class="founder-link-arrow">→</span>
+              </span>
+            </div>
+          </a>
+
+          <a class="founder-card" href="https://www.linkedin.com/in/debbie-perouli-mu" target="_blank" rel="noreferrer">
+            <div class="founder-portrait founder-portrait-photo">
+              <img src="../assets/founders/debbie-perouli.png" alt="Dr. Debbie Perouli" loading="lazy" />
+            </div>
+            <div class="founder-body">
+              <p class="founder-role-eyebrow">Academia · Research</p>
+              <h3 class="founder-name">Dr. Debbie Perouli</h3>
+              <p class="founder-title">Associate Professor, Computer Science · Marquette</p>
+              <p class="founder-bio">Cybersecurity and privacy researcher. Holds a <strong>$2.6M NSF grant</strong> to train the next generation of IT security pros. Awarded GenCyber grants by NSA &amp; NSF.</p>
+              <span class="founder-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                debbie-perouli-mu <span class="founder-link-arrow">→</span>
+              </span>
+            </div>
+          </a>
+
+          <a class="founder-card" href="https://www.linkedin.com/in/kevin-umba-672a88198/" target="_blank" rel="noreferrer">
+            <div class="founder-portrait founder-portrait-photo">
+              <img src="../assets/founders/kevin.jpg" alt="Kevin Umba" loading="lazy" />
+            </div>
+            <div class="founder-body">
+              <p class="founder-role-eyebrow">Industry Relations</p>
+              <h3 class="founder-name">Kevin Umba</h3>
+              <p class="founder-title">Director of Industry Partnerships · MOCS</p>
+              <p class="founder-bio">Bridges MOCS with industry sponsors, presenting companies, and the OT practitioner community. Owns speaker relationships, sponsor activations, and the partnerships pipeline. MS Computer Science, Marquette Cybersecurity.</p>
+              <span class="founder-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                kevin-umba <span class="founder-link-arrow">→</span>
+              </span>
+            </div>
+          </a>
+
+          <a class="founder-card" href="https://www.linkedin.com/in/vikrammalkan/" target="_blank" rel="noreferrer">
+            <div class="founder-portrait founder-portrait-photo">
+              <img src="../assets/founders/vikram.jpg" alt="Vikram Malkan" loading="lazy" />
+            </div>
+            <div class="founder-body">
+              <p class="founder-role-eyebrow">Founder · XFTF</p>
+              <h3 class="founder-name">Vikram Malkan</h3>
+              <p class="founder-title">Founder, Security for the Folks (XFTF)</p>
+              <p class="founder-bio">Founded <strong>Security for the Folks</strong> — the grassroots cybersecurity maker space that seeded MOCS. Built the mentorship circle that brings practitioners, students, and professors into the same room across Wisconsin.</p>
+              <span class="founder-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                vikrammalkan <span class="founder-link-arrow">→</span>
+              </span>
+            </div>
+          </a>
+
+          <a class="founder-card" href="https://www.linkedin.com/in/nwamaka-jessica-ottor/" target="_blank" rel="noreferrer">
+            <div class="founder-portrait founder-portrait-photo">
+              <img src="../assets/founders/jessica.jpg" alt="Nwamaka Jessica Ottor" loading="lazy" />
+            </div>
+            <div class="founder-body">
+              <p class="founder-role-eyebrow">Business Development</p>
+              <h3 class="founder-name">Nwamaka Jessica Ottor</h3>
+              <p class="founder-title">Head of Business Development · MOCS</p>
+              <p class="founder-bio">Drives MOCS business development — sponsorship growth, new partner cultivation, and the revenue programs that keep student tickets free. Marquette University, Center for Cybersecurity.</p>
+              <span class="founder-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                nwamaka-jessica-ottor <span class="founder-link-arrow">→</span>
+              </span>
+            </div>
+          </a>
+
         </div>
       </section>
 
