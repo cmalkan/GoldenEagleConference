@@ -26,7 +26,9 @@
       "WebFetch(domain:sigcse2023.sigcse.org)",
       "WebFetch(domain:www.praetorian.com)",
       "WebFetch(domain:theorg.com)",
-      "WebFetch(domain:securityintelligence.com)"
+      "WebFetch(domain:securityintelligence.com)",
+      "Bash(cp \"/g/Shared drives/MU Ethical Hacking Class/xFTF/MOCS 2026/Speaker Slides/Technical Panel OT Cybersecurity Industry Perspectives 1.pptx\" \"C:/Users/b2/source/repos/GoldenEagleConference/_panel.pptx\")",
+      "Bash(unzip -q -o \"C:/Users/b2/source/repos/GoldenEagleConference/_panel.pptx\" -d \"C:/Users/b2/source/repos/GoldenEagleConference/_panel_extracted/\")"
     ]
   }
 }
