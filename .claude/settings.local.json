@@ -70,7 +70,13 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "WebFetch(domain:github.com)",
       "Bash(curl -s \"https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/taste-skill.md\")",
-      "Bash(curl -s \"https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/skills/taste-skill/SKILL.md\")"
+      "Bash(curl -s \"https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/skills/taste-skill/SKILL.md\")",
+      "WebFetch(domain:rocketreach.co)",
+      "WebFetch(domain:www.google.com)",
+      "Bash(cp \"/g/Shared drives/MU Ethical Hacking Class/xFTF/MOCS 2026/Speaker Slides/Technical Panel OT Cybersecurity Industry Perspectives 1.pptx\" \"C:/Users/b2/source/repos/GoldenEagleConference/_panel.pptx\")",
+      "Bash(unzip -q -o \"C:/Users/b2/source/repos/GoldenEagleConference/_panel.pptx\" -d \"C:/Users/b2/source/repos/GoldenEagleConference/_panel_extracted/\")",
+      "Bash(grep -oiE '\\(linkedin|cochrane|josh[^<]{0,80}|jci[^<]{0,40}|senior[^<]{0,80}\\)' \"C:/Users/b2/source/repos/GoldenEagleConference/_panel_extracted/ppt/slides/slide2.xml\" \"C:/Users/b2/source/repos/GoldenEagleConference/_panel_extracted/ppt/slides/slide7.xml\" \"C:/Users/b2/source/repos/GoldenEagleConference/_panel_extracted/ppt/slides/slide9.xml\" \"C:/Users/b2/source/repos/GoldenEagleConference/_panel_extracted/ppt/slides/slide10.xml\")",
+      "Bash(grep -oE \"As of April [0-9]+|Executive Panel[^|]*\\\\|[^\\\\\\\\\\\\\\\\]*|Perouli|Cochrane\" \"C:/Users/b2/source/repos/GoldenEagleConference/website/agenda/index.html\")"
     ]
   }
 }

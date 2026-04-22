@@ -9,7 +9,7 @@
     <meta name="keywords" content="OT cybersecurity, operational technology, ICS security, industrial control systems, cybersecurity summit, Milwaukee, Marquette University, MOCS, CPE credits, OT security conference" />
     <meta name="robots" content="index, follow" />
     <meta property="article:published_time" content="2026-02-01T00:00:00-06:00" />
-    <meta property="article:modified_time" content="2026-04-11T00:00:00-05:00" />
+    <meta property="article:modified_time" content="2026-04-22T00:00:00-05:00" />
     <link rel="canonical" href="https://midwest-otcs.org/" />
     <meta property="og:site_name" content="Midwest OT Cybersecurity Summit (MOCS)" />
     <meta property="og:title" content="Midwest OT Cybersecurity Summit (MOCS)" />
@@ -194,10 +194,14 @@
       body.dark .speaker-scroll-wrap::before{background:linear-gradient(to right,#13243a,transparent)}
       body.dark .speaker-scroll-wrap::after{background:linear-gradient(to left,#13243a,transparent)}
       .speaker-scroll{overflow:hidden;padding:4px 0 8px}
-      .speaker-track{display:flex;gap:12px;width:max-content;animation:speaker-scroll 60s linear infinite}
-      .speaker-track:hover{animation-play-state:paused}
-      @keyframes speaker-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+      .speaker-track{display:flex;gap:12px;width:max-content;will-change:transform}
+      .speaker-scroll-wrap.edge-left{cursor:w-resize}
+      .speaker-scroll-wrap.edge-right{cursor:e-resize}
       .speaker-card{min-width:280px;max-width:280px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px}
+      .speaker-card.is-panel{background:linear-gradient(180deg,#fff5f4 0%,#ffe8e5 100%);border-color:#f3b5ae}
+      .speaker-card.is-panel .company{color:#b4322a}
+      body.dark .speaker-card.is-panel{background:linear-gradient(180deg,#2e1a18 0%,#3a1f1c 100%)!important;border-color:#6b3a34!important}
+      body.dark .speaker-card.is-panel .company{color:#f3a39c}
       .speaker-card h4{margin:0;font-size:16px;color:#173c6b;line-height:1.3}
       .speaker-card .company{margin:0;font-size:13px;color:#3b6ba5;font-weight:600}
       .speaker-card .speaker-name{margin-top:auto;padding-top:6px}
@@ -767,7 +771,7 @@ body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c456
             <div class="speaker-card">
               <div style="display:flex;align-items:center;gap:10px;"><div class="speaker-initials"><img src="assets/logos/ibmPreston.jpg" alt="Preston Futrell" /></div><div class="speaker-initials"><img src="assets/logos/ibmMike.jpg" alt="Michael Massimi" /></div><div class="speaker-initials"><img src="assets/logos/ibmDan.jpg" alt="Dan Bailey" /></div><p class="company">IBM</p></div>
               <h4>OT System Security</h4>
-              <div class="speaker-name"><strong>Preston Futrell</strong> <span style="font-size:10px;color:#c7362e;font-weight:800;letter-spacing:.06em;">VIRTUAL</span> · <a class="speaker-linkedin" href="https://www.linkedin.com/in/preston-futrell-13637712/" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a><br><strong>Michael Massimi</strong> <span style="font-size:10px;color:#c7362e;font-weight:800;letter-spacing:.06em;">VIRTUAL</span> · <a class="speaker-linkedin" href="https://www.linkedin.com/in/michael-massimi-b4b3b21/" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a><br><strong>Dan Bailey</strong> <span style="font-size:10px;color:#2f9a52;font-weight:800;letter-spacing:.06em;">IN-PERSON</span> · <a class="speaker-linkedin" href="https://www.linkedin.com/in/djb180/" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a></div>
+              <div class="speaker-name"><strong>Preston Futrell</strong> · <a class="speaker-linkedin" href="https://www.linkedin.com/in/preston-futrell-13637712/" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a><br><strong>Michael Massimi</strong> · <a class="speaker-linkedin" href="https://www.linkedin.com/in/michael-massimi-b4b3b21/" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a><br><strong>Dan Bailey</strong> · <a class="speaker-linkedin" href="https://www.linkedin.com/in/djb180/" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a></div>
             </div>
 
             <div class="speaker-card">
@@ -786,6 +790,12 @@ body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c456
               <div style="display:flex;align-items:center;gap:10px;"><div class="speaker-initials"><img src="assets/logos/Joshua.jpg" alt="Joshua Sharkey" /></div><p class="company">ISACA MKE</p></div>
               <h4>Practical Security That Scales: Automation, Risk, and Real-World Execution</h4>
               <div class="speaker-name"><strong>Joshua Sharkey</strong><br><a class="speaker-linkedin" href="https://www.linkedin.com/in/joshua-sharkey/" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a></div>
+            </div>
+
+            <div class="speaker-card is-panel" style="min-width:340px;max-width:340px;">
+              <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;"><div class="speaker-initials" style="width:40px;height:40px;"><img src="assets/founders/debbie-perouli.png" alt="Dr. Debbie Perouli" /></div><div class="speaker-initials" style="width:40px;height:40px;"><img src="assets/founders/chirag.png" alt="Chirag Malkan" /></div><div class="speaker-initials" style="width:40px;height:40px;"><img src="assets/logos/ibmDan.jpg" alt="Dan Bailey" /></div><div class="speaker-initials" style="width:40px;height:40px;"><img src="assets/logos/Josh C.jpg" alt="Josh Cochrane" /></div><p class="company">Executive Panel</p></div>
+              <h4>Preparing OT Environments for the Next Generation of Cybersecurity</h4>
+              <div class="speaker-name"><strong>Dr. Debbie Perouli</strong> · Marquette · <a class="speaker-linkedin" href="https://www.linkedin.com/in/debbie-perouli-mu" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a><br><strong>Chirag Malkan</strong> · Malkan Solutions · <a class="speaker-linkedin" href="https://www.linkedin.com/in/chiragmalkan/" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a><br><strong>Dan Bailey</strong> · IBM · <a class="speaker-linkedin" href="https://www.linkedin.com/in/djb180/" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a><br><strong>Josh Cochrane</strong> · Johnson Controls · <a class="speaker-linkedin" href="https://www.linkedin.com/in/joshuascochrane/" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a></div>
             </div>
 
           </div>
@@ -856,7 +866,7 @@ body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c456
             <span class="agenda-dot">·</span>
             <span class="agenda-stat">Networking</span>
           </div>
-          <p class="agenda-stamp" style="margin:6px 0 0;">Last updated · April 11, 2026</p>
+          <p class="agenda-stamp" style="margin:6px 0 0;">Last updated · April 22, 2026</p>
         </div>
         <a class="btn btn-gold" href="agenda/index.html">View full agenda →</a>
       </section>
@@ -1026,13 +1036,14 @@ body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c456
           '           R227 · OT Threat Modeling & Risk Prioritization — Rockwell Automation',
           '           R252 · Advanced IT Risk Management — Johnson Controls',
           ' 2:40 PM   Breakouts · Salsa & dip served',
-          '           R227 · OT System Security — Preston Futrell (virtual), Michael Massimi (virtual), Dan Bailey (in-person) · IBM',
+          '           R227 · OT System Security — Preston Futrell, Michael Massimi, Dan Bailey · IBM',
           '           R252 · Securing the Digital Handshake — Irulast',
           '           R254 · Cybersecurity Escape Room — Session 2',
           ' 3:20 PM   Breakouts',
           '           R227 · Strategies for Landing Your Next Role — BSides MKE',
           '           R252 · Practical Security That Scales — ISACA MKE',
           ' 4:00 PM   Executive Panel · Preparing OT Environments for the Next Generation of Cybersecurity (AMU 227)',
+          '           Debbie Perouli (Marquette) · Chirag Malkan (Malkan Solutions) · Dan Bailey (IBM) · Josh Cochrane (Johnson Controls)',
           ' 4:30 PM   Evening Networking · Snacks (AMU 227)',
           '',
           'Register:  https://www.eventbrite.com/e/golden-eagle-cyber-defense-summit-2026-tickets-1985023781566',
@@ -1103,21 +1114,68 @@ body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c456
         setInterval(update, 1000);
       })();
 
-      // Speaker strip — auto-scrolling infinite loop
+      // Speaker strip — auto-scrolling infinite loop with edge-hover speed control
       (function(){
-        var scroll = document.querySelector('.speaker-scroll');
+        var wrap = document.querySelector('.speaker-scroll-wrap');
+        var scroll = wrap && wrap.querySelector('.speaker-scroll');
         if (!scroll) return;
         var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        // Wrap existing speaker cards in a track
         var track = document.createElement('div');
         track.className = 'speaker-track';
         while (scroll.firstChild) track.appendChild(scroll.firstChild);
-        // Duplicate once so translateX(-50%) creates a seamless loop
         Array.prototype.slice.call(track.children).forEach(function(c){
           track.appendChild(c.cloneNode(true));
         });
         scroll.appendChild(track);
-        if (reduce) track.style.animation = 'none';
+        if (reduce) return;
+
+        var defaultSpeed = -50; // px/s, negative = drift left (reveals upcoming cards on right)
+        var maxEdgeSpeed = 450; // px/s at the very edge
+        var edgeZone = 0.28;    // left 0..28% and right 72..100% trigger speed-up
+        var currentSpeed = defaultSpeed;
+        var offset = 0;
+        var halfWidth = 0;
+
+        function measure(){ halfWidth = track.scrollWidth / 2; }
+        measure();
+        window.addEventListener('resize', measure);
+
+        wrap.addEventListener('mousemove', function(e){
+          var rect = wrap.getBoundingClientRect();
+          var x = (e.clientX - rect.left) / rect.width;
+          if (x < edgeZone) {
+            var t = 1 - (x / edgeZone);
+            currentSpeed = maxEdgeSpeed * t; // positive = slide right
+            wrap.classList.add('edge-left');
+            wrap.classList.remove('edge-right');
+          } else if (x > 1 - edgeZone) {
+            var t2 = (x - (1 - edgeZone)) / edgeZone;
+            currentSpeed = -maxEdgeSpeed * t2; // negative = slide left
+            wrap.classList.add('edge-right');
+            wrap.classList.remove('edge-left');
+          } else {
+            currentSpeed = 0; // middle: paused for easy clicking
+            wrap.classList.remove('edge-left','edge-right');
+          }
+        });
+        wrap.addEventListener('mouseleave', function(){
+          currentSpeed = defaultSpeed;
+          wrap.classList.remove('edge-left','edge-right');
+        });
+
+        var lastT = performance.now();
+        function tick(now){
+          var dt = Math.min((now - lastT) / 1000, 0.05);
+          lastT = now;
+          if (halfWidth > 0) {
+            offset += currentSpeed * dt;
+            if (offset <= -halfWidth) offset += halfWidth;
+            else if (offset > 0) offset -= halfWidth;
+            track.style.transform = 'translateX(' + offset + 'px)';
+          }
+          requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
       })();
     </script>
   </body>
