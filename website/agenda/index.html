@@ -73,6 +73,20 @@
       .agenda-table th{color:#1f446f;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
       .agenda-table td:last-child{color:#405b78}
 
+      /* Room color coding: 227 blue · 252 green · 254 red */
+      .agenda-table .col-227{border-left:3px solid #3b7dd8;background:rgba(59,125,216,.06)}
+      .agenda-table .col-252{border-left:3px solid #2f9a52;background:rgba(47,154,82,.06)}
+      .agenda-table .col-254{border-left:3px solid #c7362e;background:rgba(199,54,46,.06)}
+      .agenda-table th.col-227{background:rgba(59,125,216,.18);color:#1a4a8c}
+      .agenda-table th.col-252{background:rgba(47,154,82,.18);color:#1e6b38}
+      .agenda-table th.col-254{background:rgba(199,54,46,.18);color:#8f2822}
+      body.dark .agenda-table .col-227{background:rgba(59,125,216,.14)}
+      body.dark .agenda-table .col-252{background:rgba(47,154,82,.14)}
+      body.dark .agenda-table .col-254{background:rgba(199,54,46,.14)}
+      body.dark .agenda-table th.col-227{background:rgba(59,125,216,.28);color:#a5c7f0}
+      body.dark .agenda-table th.col-252{background:rgba(47,154,82,.28);color:#9cd4b1}
+      body.dark .agenda-table th.col-254{background:rgba(199,54,46,.28);color:#f0a39c}
+
       .footer-note{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px}
       .logos{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.logo{background:var(--navy);border-radius:10px;padding:10px;display:flex;justify-content:center;align-items:center;min-height:72px}
 
@@ -156,6 +170,13 @@
         .agenda-table{table-layout:fixed;width:100%}
         .agenda-table th,.agenda-table td{color:#000!important;border-bottom-color:#ccc!important;font-size:9px!important;padding:3px 3px!important;line-height:1.3!important}
         .agenda-table th{background:#eee!important;color:#000!important;font-size:8px!important}
+        .agenda-table .col-227,.agenda-table .col-252,.agenda-table .col-254{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+        .agenda-table th.col-227{background:rgba(59,125,216,.22)!important;color:#1a4a8c!important}
+        .agenda-table th.col-252{background:rgba(47,154,82,.22)!important;color:#1e6b38!important}
+        .agenda-table th.col-254{background:rgba(199,54,46,.22)!important;color:#8f2822!important}
+        .agenda-table td.col-227{background:rgba(59,125,216,.08)!important}
+        .agenda-table td.col-252{background:rgba(47,154,82,.08)!important}
+        .agenda-table td.col-254{background:rgba(199,54,46,.08)!important}
         table{background:#fff!important;border:1px solid #ccc!important;page-break-inside:avoid}
         .break-row td{background:#f5f5f5!important;color:#555!important;padding:1px!important;font-size:8px!important}
         .reveal-badge{background:#ddd!important;color:#333!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -404,21 +425,21 @@
 
         <div style="overflow-x:auto;">
         <table class="agenda-table" style="background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;">
-          <thead><tr><th>Time</th><th>Marquette, AMU Room 227</th><th>Marquette, AMU Room 252</th><th>Marquette, AMU Room 254</th></tr></thead>
+          <thead><tr><th>Time</th><th class="col-227">Marquette, AMU Room 227</th><th class="col-252">Marquette, AMU Room 252</th><th class="col-254">Marquette, AMU Room 254</th></tr></thead>
           <tbody>
             <tr><td><strong>10:00 AM →</strong></td><td colspan="3"><strong>Registration &amp; Check-In opens</strong> · Lobby · Badges, welcome packets, sponsor tables</td></tr>
             <tr style="background:#f0f7ff;"><td><strong>11:00 AM – 11:30 AM</strong></td><td colspan="3"><strong>Lunch &amp; Networking</strong> · Box lunches provided for all REGISTERED attendees · AMU Room 227</td></tr>
             <tr><td><strong>11:30 AM – 12:30 PM</strong></td><td colspan="3"><strong>Opening & Keynote by FBI Milwaukee</strong><br>SSA Brett Lerner &amp; IA Thomas Gathman · Counterintelligence, WMD, and Cyber Programs · AMU Room 227</td></tr>
             <tr class="break-row"><td colspan="4">── 10 min break ──</td></tr>
-            <tr><td><strong>12:40 PM – 1:10 PM</strong></td><td><strong>OT Cybersecurity GRC, IEC 62443 Standards, and the EU Cyber Resilience Act</strong><br>Shoshana Wodzisz · Malkan Solutions</td><td><strong>OT Device Penetration Testing Basics</strong><br>Tillman Petersen · Rockwell Automation</td><td><strong>Cyber Awareness Escape Room — Session 1</strong><br><span style="font-size:11px;color:var(--muted);">30 min · 5–10 participants · Solve cyber puzzles to "escape" a simulated breach scenario</span></td></tr>
+            <tr><td><strong>12:40 PM – 1:10 PM</strong></td><td class="col-227"><strong>OT Cybersecurity GRC, IEC 62443 Standards, and the EU Cyber Resilience Act</strong><br>Shoshana Wodzisz · Malkan Solutions</td><td class="col-252"><strong>OT Device Penetration Testing Basics</strong><br>Tillman Petersen · Rockwell Automation</td><td class="col-254"><strong>Cyber Awareness Escape Room — Session 1</strong><br><span style="font-size:11px;color:var(--muted);">30 min · 5–10 participants · Solve cyber puzzles to "escape" a simulated breach scenario</span></td></tr>
             <tr class="break-row"><td colspan="4">── 10 min break ──</td></tr>
-            <tr><td><strong>1:20 PM – 1:50 PM</strong></td><td><strong>From Firewall Hygiene to Advanced Network Segmentation</strong><br>Peter McLane · Johnson Controls</td><td><strong>Lost in Transliteration: Hidden Passwords in a Multilingual World</strong><br>Juan Pablo Gomez Postigo · Sprocket Security</td><td rowspan="3" style="vertical-align:top;"><strong>Securing the Grid: Simulated Modbus SCADA Environments and Replay Attack Mitigation (Lab)</strong><br>Neil Brandon · ICS Village<br><span style="font-size:11px;color:var(--muted);">1 hour · 1:20 PM – 2:20 PM</span><br><span style="display:inline-block;margin-top:6px;padding:3px 8px;background:rgba(199,54,46,.1);color:#c7362e;border:1px solid rgba(199,54,46,.3);border-radius:4px;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;">⚠ Bring laptop · Docker required</span></td></tr>
+            <tr><td><strong>1:20 PM – 1:50 PM</strong></td><td class="col-227"><strong>From Firewall Hygiene to Advanced Network Segmentation</strong><br>Peter McLane · Johnson Controls</td><td class="col-252"><strong>Lost in Transliteration: Hidden Passwords in a Multilingual World</strong><br>Juan Pablo Gomez Postigo · Sprocket Security</td><td class="col-254" rowspan="3" style="vertical-align:top;"><strong>Securing the Grid: Simulated Modbus SCADA Environments and Replay Attack Mitigation (Lab)</strong><br>Neil Brandon · ICS Village<br><span style="font-size:11px;color:var(--muted);">1 hour · 1:20 PM – 2:20 PM</span><br><span style="display:inline-block;margin-top:6px;padding:3px 8px;background:rgba(199,54,46,.1);color:#c7362e;border:1px solid rgba(199,54,46,.3);border-radius:4px;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;">⚠ Bring laptop · Docker required</span></td></tr>
             <tr class="break-row"><td colspan="3">── 10 min break ──</td></tr>
-            <tr><td><strong>2:00 PM – 2:30 PM</strong></td><td><strong>OT Threat Modeling and Risk Prioritization</strong><br>Steven Taylor · Rockwell Automation</td><td><strong>Understanding Supply Chain Cybersecurity in a Connected World</strong><br>Jeni Herrera &amp; Kelly Yang · Johnson Controls</td></tr>
+            <tr><td><strong>2:00 PM – 2:30 PM</strong></td><td class="col-227"><strong>OT Threat Modeling and Risk Prioritization</strong><br>Steven Taylor · Rockwell Automation</td><td class="col-252"><strong>Understanding Supply Chain Cybersecurity in a Connected World</strong><br>Jeni Herrera &amp; Kelly Yang · Johnson Controls</td></tr>
             <tr class="break-row"><td colspan="4">── 10 min break · Salsa &amp; dip served ──</td></tr>
-            <tr><td><strong>2:40 PM – 3:10 PM</strong></td><td><strong>OT System Security — IBM</strong><br>Preston Futrell · Michael Massimi · Dan Bailey · IBM</td><td><strong>Securing the Digital Handshake in Hiring and Sales</strong><br>Adam Weigold · Irulast</td><td><strong>Cyber Awareness Escape Room — Session 2</strong><br><span style="font-size:11px;color:var(--muted);">30 min · 5–10 participants · Solve cyber puzzles to "escape" a simulated breach scenario</span></td></tr>
+            <tr><td><strong>2:40 PM – 3:10 PM</strong></td><td class="col-227"><strong>OT System Security — IBM</strong><br>Preston Futrell · Michael Massimi · Dan Bailey · IBM</td><td class="col-252"><strong>Securing the Digital Handshake in Hiring and Sales</strong><br>Adam Weigold · Irulast</td><td class="col-254"><strong>Cyber Awareness Escape Room — Session 2</strong><br><span style="font-size:11px;color:var(--muted);">30 min · 5–10 participants · Solve cyber puzzles to "escape" a simulated breach scenario</span></td></tr>
             <tr class="break-row"><td colspan="4">── 10 min break ──</td></tr>
-            <tr><td><strong>3:20 PM – 3:50 PM</strong></td><td><strong>Strategies for Landing Your Next Role</strong><br>Rebecca Jo Jones · BSides MKE</td><td><strong>Practical Security That Scales: Automation, Risk, and Real-World Execution</strong><br>Joshua Sharkey · ISACA MKE Chapter</td><td> </td></tr>
+            <tr><td><strong>3:20 PM – 3:50 PM</strong></td><td class="col-227"><strong>Strategies for Landing Your Next Role</strong><br>Rebecca Jo Jones · BSides MKE</td><td class="col-252"><strong>Practical Security That Scales: Automation, Risk, and Real-World Execution</strong><br>Joshua Sharkey · ISACA MKE Chapter</td><td class="col-254">&nbsp;</td></tr>
             <tr class="break-row"><td colspan="4">── 10 min break ──</td></tr>
             <tr><td><strong>4:00 PM – 4:30 PM</strong></td><td colspan="3"><strong>Executive Panel: Preparing OT Environments for the Next Generation of Cybersecurity</strong> · AMU Room 227<br>Dr. Debbie Perouli · Marquette · Chirag Malkan · Malkan Solutions · Dan Bailey · IBM · Josh Cochrane · Johnson Controls</td></tr>
             <tr style="background:#f0f7ff;"><td><strong>4:30 PM – 5:30 PM</strong></td><td colspan="3"><strong>Evening Networking</strong> · Snacks provided · AMU Room 227</td></tr>
