@@ -78,7 +78,15 @@
       "Bash(grep -oiE '\\(linkedin|cochrane|josh[^<]{0,80}|jci[^<]{0,40}|senior[^<]{0,80}\\)' \"C:/Users/b2/source/repos/GoldenEagleConference/_panel_extracted/ppt/slides/slide2.xml\" \"C:/Users/b2/source/repos/GoldenEagleConference/_panel_extracted/ppt/slides/slide7.xml\" \"C:/Users/b2/source/repos/GoldenEagleConference/_panel_extracted/ppt/slides/slide9.xml\" \"C:/Users/b2/source/repos/GoldenEagleConference/_panel_extracted/ppt/slides/slide10.xml\")",
       "Bash(grep -oE \"As of April [0-9]+|Executive Panel[^|]*\\\\|[^\\\\\\\\\\\\\\\\]*|Perouli|Cochrane\" \"C:/Users/b2/source/repos/GoldenEagleConference/website/agenda/index.html\")",
       "Bash(mkdir -p \"C:/Users/b2/source/repos/GoldenEagleConference/website/assets/recap-2026\")",
-      "Bash(cp 20260424_103336.jpg 20260424_112953.jpg 20260424_113844.jpg 20260424_115202.jpg 20260424_115325.jpg 20260424_134327.jpg 20260424_141845.jpg 20260424_142609.jpg 20260424_160054.jpg 20260424_161229.jpg \"../recap-2026/\")"
+      "Bash(cp 20260424_103336.jpg 20260424_112953.jpg 20260424_113844.jpg 20260424_115202.jpg 20260424_115325.jpg 20260424_134327.jpg 20260424_141845.jpg 20260424_142609.jpg 20260424_160054.jpg 20260424_161229.jpg \"../recap-2026/\")",
+      "Bash(python -c \"from PIL import Image; print\\('Pillow OK'\\)\")",
+      "Bash(python3 -c \"from PIL import Image; print\\('Pillow OK'\\)\")",
+      "Bash(docker --version)",
+      "Bash(docker info *)",
+      "Bash(docker run *)",
+      "Bash(MSYS_NO_PATHCONV=1 docker run *)",
+      "Bash(sed -i 's|assets/recap-2026/|assets/recap-2026-wm/|g' index.html)",
+      "Bash(sed -i 's|\\\\.\\\\./assets/recap-2026/|../assets/recap-2026-wm/|g; s|\\\\.\\\\./assets/journey-photos/|../assets/journey-photos-wm/|g' about/index.html)"
     ]
   }
 }
