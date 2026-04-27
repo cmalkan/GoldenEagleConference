@@ -295,6 +295,23 @@ body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c456
       @media (max-width:900px){.mom-stats{grid-template-columns:repeat(3,1fr)}.mom-title{font-size:22px}.mom-num{font-size:26px}}
       @media (max-width:640px){.mom-stats{grid-template-columns:repeat(2,1fr)}.mom-stat-num{font-size:28px}.mom-title{font-size:20px}.mom-num{font-size:22px}}
 
+      /* PAGE NAV — sticky section jump links */
+      .page-nav{position:sticky;top:8px;z-index:50;display:flex;align-items:stretch;gap:6px;flex-wrap:wrap;margin:14px 0 18px;padding:8px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:12px;box-shadow:0 4px 14px rgba(13,50,96,.08)}
+      .page-nav-link{position:relative;flex:1;min-width:110px;display:flex;align-items:center;gap:8px;padding:10px 12px;text-decoration:none;color:var(--muted);border-radius:8px;font-size:13px;font-weight:700;letter-spacing:-.005em;transition:color 180ms ease,background 180ms ease}
+      .page-nav-idx{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;font-weight:700;color:#a8bcd4;letter-spacing:.06em;flex-shrink:0;transition:color 180ms ease}
+      .page-nav-link.is-active{background:#143a68;color:#ffd766}
+      .page-nav-link.is-active .page-nav-idx{color:#ffde73}
+      @media (hover:hover) and (pointer:fine){
+        .page-nav-link:hover{background:#eef3fb;color:#143a68}
+        .page-nav-link:hover .page-nav-idx{color:#1f4f8f}
+        .page-nav-link.is-active:hover{background:#0f3260;color:#ffd766}
+      }
+      @media (max-width:640px){.page-nav{top:4px;padding:6px;gap:4px}.page-nav-link{min-width:0;flex:1 1 calc(50% - 4px);padding:8px 10px;font-size:12px;justify-content:center}}
+      body.dark .page-nav{background:rgba(13,24,48,.85);border-color:#2c4563}
+      body.dark .page-nav-link{color:#a7bed9}
+      body.dark .page-nav-link:hover{background:#1b3554;color:#e8f3ff}
+      .ts-section,.spn-section{scroll-margin-top:80px}
+
       /* RECAP GALLERY — MOCS 2026 thank-you */
       .recap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
       .recap-card{position:relative;border-radius:12px;overflow:hidden;background:#13243a;cursor:pointer;aspect-ratio:4/3;border:1px solid var(--line);transition:transform 240ms cubic-bezier(0.16,1,0.3,1),box-shadow 240ms ease}
@@ -310,12 +327,56 @@ body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c456
       @media (max-width:900px){.recap-grid{grid-template-columns:repeat(2,1fr)}.recap-card.is-wide{grid-column:span 2}}
       @media (max-width:600px){.recap-grid{grid-template-columns:1fr}.recap-card.is-wide{grid-column:span 1}}
 
-      .recap-thanks{background:linear-gradient(160deg,#0f2a4f 0%,#163f74 60%,#0d2f5d 100%);color:#eaf2ff;border-radius:14px;padding:24px 26px;margin:0 0 6px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;position:relative;overflow:hidden}
+      .recap-thanks{background:linear-gradient(160deg,#0f2a4f 0%,#163f74 60%,#0d2f5d 100%);color:#eaf2ff;border-radius:14px;padding:22px 26px;margin:14px 0 16px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;position:relative;overflow:hidden}
       .recap-thanks::before{content:"";position:absolute;inset:0;opacity:.08;background-image:repeating-linear-gradient(90deg,transparent 0 60px,rgba(255,222,115,.4) 60px 61px)}
-      .recap-thanks > *{position:relative}
+      .recap-thanks > *{position:relative;z-index:1}
       .recap-thanks-eyebrow{margin:0 0 4px;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#ffd766}
-      .recap-thanks h3{margin:0;font-size:22px;font-weight:800;letter-spacing:-.015em;color:#fff;line-height:1.2}
-      .recap-thanks p{margin:6px 0 0;font-size:14px;color:#c8d8ef;line-height:1.55;max-width:560px}
+      .recap-thanks h3{margin:0;font-size:20px;font-weight:800;letter-spacing:-.015em;color:#fff;line-height:1.2}
+      .recap-thanks p{margin:6px 0 0;font-size:13.5px;color:#c8d8ef;line-height:1.5;max-width:480px}
+      .recap-stats{display:flex;gap:18px;flex-wrap:wrap;flex-shrink:0}
+      .recap-stat{display:flex;flex-direction:column;align-items:flex-start;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;line-height:1;padding-left:14px;border-left:2px solid rgba(255,215,102,.3)}
+      .recap-stat .n{font-size:26px;font-weight:800;color:#ffd766;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+      .recap-stat .l{font-size:10.5px;font-weight:700;color:#a8d4ff;letter-spacing:.14em;text-transform:uppercase;margin-top:5px}
+      @media (max-width:760px){.recap-stats{gap:12px}.recap-stat{padding-left:10px}.recap-stat .n{font-size:22px}}
+      @media (max-width:520px){.recap-stats{width:100%;justify-content:space-between}}
+
+      /* Subsection divider inside the recap section */
+      .recap-sub-divider{margin:30px 0 12px;padding-top:18px;border-top:1px dashed var(--line);text-align:center}
+      body.dark .recap-sub-divider{border-top-color:#2c4563}
+      .recap-sub-eyebrow{margin:0 0 4px;font-size:10.5px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:#3b6ba5;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+      .recap-sub-title{margin:0 0 12px;font-size:18px;font-weight:800;color:#173c6b;letter-spacing:-.01em}
+      body.dark .recap-sub-title{color:#e8f3ff}
+
+      /* OTHER CONFERENCES list */
+      .cons-list{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+      .cons-item{display:flex;gap:18px;background:#fff;border:1px solid var(--line);border-left:3px solid #1f4f8f;border-radius:10px;padding:16px 18px;align-items:flex-start;transition:transform 200ms cubic-bezier(0.16,1,0.3,1),box-shadow 200ms ease,border-left-color 200ms ease}
+      @media (hover:hover) and (pointer:fine){.cons-item:hover{transform:translateX(2px);box-shadow:0 6px 18px rgba(13,50,96,.10);border-left-color:#f4c300}}
+      .cons-item-highlight{border-left-color:#f4c300;background:linear-gradient(180deg,#fffaea 0%,#fff 100%)}
+      .cons-date{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:60px;padding:8px 0;background:#f4f7fc;border:1px solid #cfdae8;border-radius:8px;flex-shrink:0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+      .cons-item-highlight .cons-date{background:#f4c300;border-color:#e0b300}
+      .cons-date-d{font-size:24px;font-weight:800;color:#173c6b;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+      .cons-date-m{font-size:11px;font-weight:800;color:#3b6ba5;letter-spacing:.12em;margin-top:3px}
+      .cons-item-highlight .cons-date-d{color:#173b65}
+      .cons-item-highlight .cons-date-m{color:#5a4400}
+      .cons-body{flex:1;min-width:0}
+      .cons-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:4px;flex-wrap:wrap}
+      .cons-name{margin:0;font-size:16px;font-weight:800;color:#173c6b;letter-spacing:-.01em;line-height:1.3}
+      .cons-city{font-size:12px;font-weight:700;color:#3b6ba5;letter-spacing:.02em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+      .cons-badge{display:inline-block;margin-left:6px;padding:2px 7px;background:rgba(244,195,0,.18);color:#8a6500;border:1px solid rgba(244,195,0,.45);border-radius:4px;font-size:9.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;vertical-align:1px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+      .cons-desc{margin:4px 0 8px;font-size:13.5px;color:var(--text);line-height:1.5}
+      .cons-link{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700;color:#1f4f8f;text-decoration:none;letter-spacing:-.005em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+      .cons-link:hover{color:#143a68}
+      .cons-link:hover .cons-arrow{transform:translateX(3px)}
+      .cons-arrow{transition:transform 180ms cubic-bezier(0.23,1,0.32,1);font-weight:900}
+      body.dark .cons-item{background:#13243a;border-color:#2c4563}
+      body.dark .cons-item-highlight{background:linear-gradient(180deg,#3a2e10 0%,#13243a 100%)}
+      body.dark .cons-name{color:#e8f3ff}
+      body.dark .cons-desc{color:#d8e6f8}
+      body.dark .cons-city{color:#7eb3e0}
+      body.dark .cons-date{background:#0d2f5d;border-color:#2c4563}
+      body.dark .cons-date-d{color:#ffd766}
+      body.dark .cons-link{color:#5bb8f5}
+      @media (max-width:600px){.cons-item{gap:14px;padding:14px}.cons-date{min-width:50px}.cons-date-d{font-size:20px}.cons-row{flex-direction:column;gap:2px}.cons-city{font-size:11px}}
 
       /* LIGHTBOX */
       #recap-lb{display:none;position:fixed;inset:0;z-index:2000;background:rgba(8,18,34,.94);align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
@@ -660,96 +721,12 @@ body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c456
 
     <main class="wrap">
 
-      <!-- QUICK LINKS -->
-      <section class="ql" aria-label="Quick links">
-        <div class="ql-head-row">
-          <p class="ql-eyebrow">Start here</p>
-          <p class="ql-sub">Four quick reads as we build out MOCS 2027.</p>
-        </div>
-        <div class="ql-grid">
-
-          <a class="ql-card ql-feature" href="#cfs">
-            <span class="ql-idx">01</span>
-            <span class="ql-tag">Open now</span>
-            <div class="ql-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8-8-2z"/></svg>
-            </div>
-            <h3 class="ql-title">Call for Speakers</h3>
-            <p class="ql-desc">Submissions open through <strong>Mar 5, 2027</strong>. Pitch a talk, panel, or hands-on session for MOCS 2027.</p>
-            <span class="ql-link">Submit a talk<span class="ql-arrow" aria-hidden="true">→</span></span>
-          </a>
-
-          <a class="ql-card" href="agenda/index.html">
-            <span class="ql-idx">02</span>
-            <div class="ql-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            </div>
-            <h3 class="ql-title">2027 Agenda Template</h3>
-            <p class="ql-desc">12 sessions across 3 rooms — same proven format as 2026. Speaker line-up confirms after CFS closes in March.</p>
-            <span class="ql-link">View template<span class="ql-arrow" aria-hidden="true">→</span></span>
-          </a>
-
-          <a class="ql-card" href="speaker-sponsor/index.html">
-            <span class="ql-idx">03</span>
-            <div class="ql-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v4M8 23h8"/></svg>
-            </div>
-            <h3 class="ql-title">Speakers &amp; Sponsors</h3>
-            <p class="ql-desc">What to expect once your talk is accepted — AV, deadlines, day-of flow. Sponsorship inquiries open for 2027.</p>
-            <span class="ql-link">View logistics<span class="ql-arrow" aria-hidden="true">→</span></span>
-          </a>
-
-          <a class="ql-card" href="about/index.html">
-            <span class="ql-idx">04</span>
-            <div class="ql-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            </div>
-            <h3 class="ql-title">About &amp; 2026 Recap</h3>
-            <p class="ql-desc">Who we are, why MOCS exists, and a look back at 2026 — 100+ attendees, 12 sessions, the team behind the summit.</p>
-            <span class="ql-link">Read the story<span class="ql-arrow" aria-hidden="true">→</span></span>
-          </a>
-
-        </div>
-      </section>
-
-      <!-- MOMENTUM / WHAT WE BUILT -->
-      <section class="mom" aria-label="MOCS 2026 outcomes">
-        <div class="mom-head">
-          <p class="mom-eyebrow">MOCS 2026 — that's a wrap</p>
-          <h2 class="mom-title"><span class="mom-num">100+</span> attended. We're back in 2027.</h2>
-          <p class="mom-stamp">Final tally · April 24, 2026 · <a href="#cfs">be on stage in 2027 →</a></p>
-        </div>
-
-        <div class="mom-stats">
-          <div class="mom-stat">
-            <p class="mom-stat-num">100+</p>
-            <p class="mom-stat-lbl">Attendees</p>
-            <p class="mom-stat-sub">Students, defenders, OT practitioners</p>
-          </div>
-          <div class="mom-stat">
-            <p class="mom-stat-num">12</p>
-            <p class="mom-stat-lbl">Sessions</p>
-            <p class="mom-stat-sub">Across 3 rooms, one full day</p>
-          </div>
-          <div class="mom-stat">
-            <p class="mom-stat-num">30+</p>
-            <p class="mom-stat-lbl">Organizations</p>
-            <p class="mom-stat-sub">ICS, manufacturing, healthcare, gov</p>
-          </div>
-          <div class="mom-stat">
-            <p class="mom-stat-num">5</p>
-            <p class="mom-stat-lbl">Universities</p>
-            <p class="mom-stat-sub">Marquette, UWM, UWGB, WGU, WCTC</p>
-          </div>
-          <div class="mom-stat">
-            <p class="mom-stat-num">7</p>
-            <p class="mom-stat-lbl">States</p>
-            <p class="mom-stat-sub">WI · IL · MN · MI · MO · TX · VA</p>
-          </div>
-        </div>
-
-        <p style="margin:14px 4px 0;font-size:13px;color:var(--muted);">Curious who's in the room? <a href="speaker-sponsor/index.html#audience" style="color:#1f4f8f;font-weight:700;border-bottom:1px solid rgba(31,79,143,.3);text-decoration:none;">See the full audience profile →</a></p>
-      </section>
+      <nav class="page-nav" aria-label="On this page">
+        <a class="page-nav-link" href="#cfs"><span class="page-nav-idx">01</span>Call for Speakers</a>
+        <a class="page-nav-link" href="#recap-2026"><span class="page-nav-idx">02</span>2026 Recap</a>
+        <a class="page-nav-link" href="#sponsors"><span class="page-nav-idx">03</span>Sponsors</a>
+        <a class="page-nav-link" href="#other-cons"><span class="page-nav-idx">04</span>Other Cons</a>
+      </nav>
 
       <!-- CALL FOR SPEAKERS (MOCS 2027) -->
       <section id="cfs" class="ts-section">
@@ -793,59 +770,27 @@ body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c456
         <style>@media (max-width:760px){.cfs-grid{grid-template-columns:1fr!important}}</style>
       </section>
 
-      <!-- 2026 SPEAKER ARCHIVE -->
-      <section id="archive-2026" class="ts-section">
+      <!-- MOCS 2026 — that's a wrap (consolidated: thank-you + stats + gallery + speaker archive) -->
+      <section id="recap-2026" class="ts-section">
         <div class="ts-head">
           <span class="ts-idx">02 /</span>
           <div>
-            <h2 class="ts-title">MOCS 2026 — speaker line-up</h2>
-            <p class="ts-sub">A thank-you to the practitioners and educators who took the stage on April 24, 2026. We'll see you in 2027.</p>
-          </div>
-        </div>
-        <div style="overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:12px;margin-top:14px;">
-          <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:640px;">
-            <thead>
-              <tr style="background:#f4f7fc;border-bottom:2px solid var(--line);">
-                <th style="text-align:left;padding:12px 16px;font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#3b6ba5;">Speaker(s)</th>
-                <th style="text-align:left;padding:12px 16px;font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#3b6ba5;">Organization</th>
-                <th style="text-align:left;padding:12px 16px;font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#3b6ba5;">Talk</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr style="border-bottom:1px solid var(--line);"><td style="padding:11px 16px;color:#173c6b;font-weight:700;">SSA Brett Lerner &amp; IA Thomas Gathman</td><td style="padding:11px 16px;color:var(--text);">FBI Milwaukee</td><td style="padding:11px 16px;color:var(--text);">Opening Keynote — Counterintelligence, WMD &amp; Cyber Programs</td></tr>
-              <tr style="border-bottom:1px solid var(--line);"><td style="padding:11px 16px;color:#173c6b;font-weight:700;">Shoshana Wodzisz</td><td style="padding:11px 16px;color:var(--text);">Malkan Solutions</td><td style="padding:11px 16px;color:var(--text);">OT Cybersecurity GRC, IEC 62443 &amp; EU CRA</td></tr>
-              <tr style="border-bottom:1px solid var(--line);"><td style="padding:11px 16px;color:#173c6b;font-weight:700;">Peter McLane</td><td style="padding:11px 16px;color:var(--text);">Johnson Controls</td><td style="padding:11px 16px;color:var(--text);">Firewall Hygiene to Network Segmentation</td></tr>
-              <tr style="border-bottom:1px solid var(--line);"><td style="padding:11px 16px;color:#173c6b;font-weight:700;">Steven Taylor</td><td style="padding:11px 16px;color:var(--text);">Rockwell Automation</td><td style="padding:11px 16px;color:var(--text);">OT Threat Modeling and Risk Prioritization</td></tr>
-              <tr style="border-bottom:1px solid var(--line);"><td style="padding:11px 16px;color:#173c6b;font-weight:700;">Tillman Petersen</td><td style="padding:11px 16px;color:var(--text);">Rockwell Automation</td><td style="padding:11px 16px;color:var(--text);">OT Device Penetration Testing Basics</td></tr>
-              <tr style="border-bottom:1px solid var(--line);"><td style="padding:11px 16px;color:#173c6b;font-weight:700;">Juan Pablo Gomez Postigo</td><td style="padding:11px 16px;color:var(--text);">Sprocket Security</td><td style="padding:11px 16px;color:var(--text);">Hidden Passwords in a Multilingual World</td></tr>
-              <tr style="border-bottom:1px solid var(--line);"><td style="padding:11px 16px;color:#173c6b;font-weight:700;">Adam Weigold</td><td style="padding:11px 16px;color:var(--text);">Irulast</td><td style="padding:11px 16px;color:var(--text);">Securing the Digital Handshake</td></tr>
-              <tr style="border-bottom:1px solid var(--line);"><td style="padding:11px 16px;color:#173c6b;font-weight:700;">Jeni Herrera &amp; Kelly Yang</td><td style="padding:11px 16px;color:var(--text);">Johnson Controls</td><td style="padding:11px 16px;color:var(--text);">Understanding Supply Chain Cybersecurity in a Connected World</td></tr>
-              <tr style="border-bottom:1px solid var(--line);"><td style="padding:11px 16px;color:#173c6b;font-weight:700;">Preston Futrell, Michael Massimi, Dan Bailey</td><td style="padding:11px 16px;color:var(--text);">IBM</td><td style="padding:11px 16px;color:var(--text);">OT System Security</td></tr>
-              <tr style="border-bottom:1px solid var(--line);"><td style="padding:11px 16px;color:#173c6b;font-weight:700;">Neil Brandon</td><td style="padding:11px 16px;color:var(--text);">ICS Village</td><td style="padding:11px 16px;color:var(--text);">Securing the Grid Lab</td></tr>
-              <tr style="border-bottom:1px solid var(--line);"><td style="padding:11px 16px;color:#173c6b;font-weight:700;">Rebecca Jo Jones</td><td style="padding:11px 16px;color:var(--text);">BSides MKE</td><td style="padding:11px 16px;color:var(--text);">Strategies for Landing Your Next Role</td></tr>
-              <tr style="border-bottom:1px solid var(--line);"><td style="padding:11px 16px;color:#173c6b;font-weight:700;">Joshua Sharkey</td><td style="padding:11px 16px;color:var(--text);">ISACA MKE</td><td style="padding:11px 16px;color:var(--text);">Practical Security That Scales: Automation, Risk, and Real-World Execution</td></tr>
-              <tr><td style="padding:11px 16px;color:#173c6b;font-weight:700;">Dr. Debbie Perouli, Chirag Malkan, Dan Bailey, Josh Cochrane</td><td style="padding:11px 16px;color:var(--text);">Executive Panel</td><td style="padding:11px 16px;color:var(--text);">Preparing OT Environments for the Next Generation of Cybersecurity</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p style="margin:14px 4px 0;font-size:13px;color:var(--muted);">Want to be on this list in 2027? <a href="#cfs" style="color:#1f4f8f;font-weight:700;border-bottom:1px solid rgba(31,79,143,.3);text-decoration:none;">Submit a talk →</a></p>
-      </section>
-
-      <!-- THANK YOU GALLERY — MOCS 2026 community -->
-      <section id="recap-2026" class="ts-section">
-        <div class="ts-head">
-          <span class="ts-idx">03 /</span>
-          <div>
-            <h2 class="ts-title">Thank you, MOCS 2026 community.</h2>
-            <p class="ts-sub">A few moments from April 24, 2026 — the room, the work, the people who made it real.</p>
+            <h2 class="ts-title">MOCS 2026 — that's a wrap.</h2>
+            <p class="ts-sub">Thank you to every speaker, sponsor, volunteer, and attendee. We'll see you in 2027.</p>
           </div>
         </div>
 
         <div class="recap-thanks">
           <div>
             <p class="recap-thanks-eyebrow">For the folks · by the folks</p>
-            <h3>Every speaker, sponsor, volunteer, and attendee — this is for you.</h3>
-            <p>You showed up, taught, asked questions, set up tables before sunrise, and stayed for the panel. We're grateful — and we'll see you again on April 30, 2027.</p>
+            <h3>You showed up — and we're grateful.</h3>
+            <p>You taught, asked questions, set up tables before sunrise, and stayed for the panel. See you on April 30, 2027.</p>
+          </div>
+          <div class="recap-stats">
+            <div class="recap-stat"><span class="n">100+</span><span class="l">Attendees</span></div>
+            <div class="recap-stat"><span class="n">12</span><span class="l">Sessions</span></div>
+            <div class="recap-stat"><span class="n">30+</span><span class="l">Organizations</span></div>
+            <div class="recap-stat"><span class="n">7</span><span class="l">States</span></div>
           </div>
         </div>
 
@@ -892,7 +837,40 @@ body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c456
           </div>
         </div>
 
-        <p style="margin:18px 4px 0;font-size:13px;color:var(--muted);text-align:center;">Click any photo to enlarge · See you at <a href="#cfs" style="color:#1f4f8f;font-weight:700;border-bottom:1px solid rgba(31,79,143,.3);text-decoration:none;">MOCS 2027</a>.</p>
+        <p style="margin:18px 4px 0;font-size:13px;color:var(--muted);text-align:center;">Click any photo to enlarge.</p>
+
+        <!-- Speaker line-up subsection -->
+        <div class="recap-sub-divider">
+          <p class="recap-sub-eyebrow">2026 Line-up</p>
+          <h3 class="recap-sub-title">Every speaker who took the stage</h3>
+        </div>
+        <div style="overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:12px;">
+          <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:640px;">
+            <thead>
+              <tr style="background:#f4f7fc;border-bottom:2px solid var(--line);">
+                <th style="text-align:left;padding:12px 16px;font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#3b6ba5;">Speaker(s)</th>
+                <th style="text-align:left;padding:12px 16px;font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#3b6ba5;">Organization</th>
+                <th style="text-align:left;padding:12px 16px;font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#3b6ba5;">Talk</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--line);"><td style="padding:11px 16px;color:#173c6b;font-weight:700;">SSA Brett Lerner &amp; IA Thomas Gathman</td><td style="padding:11px 16px;color:var(--text);">FBI Milwaukee</td><td style="padding:11px 16px;color:var(--text);">Opening Keynote — Counterintelligence, WMD &amp; Cyber Programs</td></tr>
+              <tr style="border-bottom:1px solid var(--line);"><td style="padding:11px 16px;color:#173c6b;font-weight:700;">Shoshana Wodzisz</td><td style="padding:11px 16px;color:var(--text);">Malkan Solutions</td><td style="padding:11px 16px;color:var(--text);">OT Cybersecurity GRC, IEC 62443 &amp; EU CRA</td></tr>
+              <tr style="border-bottom:1px solid var(--line);"><td style="padding:11px 16px;color:#173c6b;font-weight:700;">Peter McLane</td><td style="padding:11px 16px;color:var(--text);">Johnson Controls</td><td style="padding:11px 16px;color:var(--text);">Firewall Hygiene to Network Segmentation</td></tr>
+              <tr style="border-bottom:1px solid var(--line);"><td style="padding:11px 16px;color:#173c6b;font-weight:700;">Steven Taylor</td><td style="padding:11px 16px;color:var(--text);">Rockwell Automation</td><td style="padding:11px 16px;color:var(--text);">OT Threat Modeling and Risk Prioritization</td></tr>
+              <tr style="border-bottom:1px solid var(--line);"><td style="padding:11px 16px;color:#173c6b;font-weight:700;">Tillman Petersen</td><td style="padding:11px 16px;color:var(--text);">Rockwell Automation</td><td style="padding:11px 16px;color:var(--text);">OT Device Penetration Testing Basics</td></tr>
+              <tr style="border-bottom:1px solid var(--line);"><td style="padding:11px 16px;color:#173c6b;font-weight:700;">Juan Pablo Gomez Postigo</td><td style="padding:11px 16px;color:var(--text);">Sprocket Security</td><td style="padding:11px 16px;color:var(--text);">Hidden Passwords in a Multilingual World</td></tr>
+              <tr style="border-bottom:1px solid var(--line);"><td style="padding:11px 16px;color:#173c6b;font-weight:700;">Adam Weigold</td><td style="padding:11px 16px;color:var(--text);">Irulast</td><td style="padding:11px 16px;color:var(--text);">Securing the Digital Handshake</td></tr>
+              <tr style="border-bottom:1px solid var(--line);"><td style="padding:11px 16px;color:#173c6b;font-weight:700;">Jeni Herrera &amp; Kelly Yang</td><td style="padding:11px 16px;color:var(--text);">Johnson Controls</td><td style="padding:11px 16px;color:var(--text);">Understanding Supply Chain Cybersecurity in a Connected World</td></tr>
+              <tr style="border-bottom:1px solid var(--line);"><td style="padding:11px 16px;color:#173c6b;font-weight:700;">Preston Futrell, Michael Massimi, Dan Bailey</td><td style="padding:11px 16px;color:var(--text);">IBM</td><td style="padding:11px 16px;color:var(--text);">OT System Security</td></tr>
+              <tr style="border-bottom:1px solid var(--line);"><td style="padding:11px 16px;color:#173c6b;font-weight:700;">Neil Brandon</td><td style="padding:11px 16px;color:var(--text);">ICS Village</td><td style="padding:11px 16px;color:var(--text);">Securing the Grid Lab</td></tr>
+              <tr style="border-bottom:1px solid var(--line);"><td style="padding:11px 16px;color:#173c6b;font-weight:700;">Rebecca Jo Jones</td><td style="padding:11px 16px;color:var(--text);">BSides MKE</td><td style="padding:11px 16px;color:var(--text);">Strategies for Landing Your Next Role</td></tr>
+              <tr style="border-bottom:1px solid var(--line);"><td style="padding:11px 16px;color:#173c6b;font-weight:700;">Joshua Sharkey</td><td style="padding:11px 16px;color:var(--text);">ISACA MKE</td><td style="padding:11px 16px;color:var(--text);">Practical Security That Scales: Automation, Risk, and Real-World Execution</td></tr>
+              <tr><td style="padding:11px 16px;color:#173c6b;font-weight:700;">Dr. Debbie Perouli, Chirag Malkan, Dan Bailey, Josh Cochrane</td><td style="padding:11px 16px;color:var(--text);">Executive Panel</td><td style="padding:11px 16px;color:var(--text);">Preparing OT Environments for the Next Generation of Cybersecurity</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin:14px 4px 0;font-size:13px;color:var(--muted);text-align:center;">Want to be on this list in 2027? <a href="#cfs" style="color:#1f4f8f;font-weight:700;">Submit a talk →</a></p>
       </section>
 
       <!-- LIGHTBOX -->
@@ -1043,7 +1021,7 @@ body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c456
 
       <section id="sponsors" class="spn-section">
         <div class="ts-head">
-          <span class="ts-idx">04 /</span>
+          <span class="ts-idx">03 /</span>
           <div>
             <h2 class="ts-title">Sponsors &amp; partners</h2>
             <p class="ts-sub">MOCS 2027 — sponsorship inquiries open. Past sponsors below; reach out about 2027.</p>
@@ -1114,6 +1092,105 @@ body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c456
             <a href="https://www.ibm.com/consulting" target="_blank" rel="noreferrer" class="spn-logo"><img src="assets/logos/ibmconsulting_logo.jpg" alt="IBM Consulting" style="max-height:44px;" /></a>
           </div>
         </div>
+      </section>
+
+      <!-- OTHER CONFERENCES — WI & IL · 2026 -->
+      <section id="other-cons" class="ts-section">
+        <div class="ts-head">
+          <span class="ts-idx">04 /</span>
+          <div>
+            <h2 class="ts-title">Other conferences — WI &amp; IL · 2026</h2>
+            <p class="ts-sub">Upcoming cybersecurity events in our region. We'll see you there. (Verify dates before traveling — links go to each event's site.)</p>
+          </div>
+        </div>
+
+        <ul class="cons-list">
+          <li class="cons-item">
+            <div class="cons-date"><span class="cons-date-d">16</span><span class="cons-date-m">MAY</span></div>
+            <div class="cons-body">
+              <div class="cons-row">
+                <h3 class="cons-name">BSides312</h3>
+                <span class="cons-city">Chicago, IL</span>
+              </div>
+              <p class="cons-desc">Chicago's community-driven security BSides — talks, villages, CTF. Held at the Irish American Heritage Center.</p>
+              <a class="cons-link" href="https://bsides312.org/" target="_blank" rel="noreferrer">bsides312.org<span class="cons-arrow" aria-hidden="true">→</span></a>
+            </div>
+          </li>
+
+          <li class="cons-item">
+            <div class="cons-date"><span class="cons-date-d">20</span><span class="cons-date-m">MAY</span></div>
+            <div class="cons-body">
+              <div class="cons-row">
+                <h3 class="cons-name">SecureWorld Chicago</h3>
+                <span class="cons-city">Rosemont, IL</span>
+              </div>
+              <p class="cons-desc">Regional CISO-focused day with keynotes, panels, and a vendor floor. Donald E. Stephens Convention Center.</p>
+              <a class="cons-link" href="https://events.secureworld.io/details/chicago-il-2026/" target="_blank" rel="noreferrer">events.secureworld.io<span class="cons-arrow" aria-hidden="true">→</span></a>
+            </div>
+          </li>
+
+          <li class="cons-item">
+            <div class="cons-date"><span class="cons-date-d">02</span><span class="cons-date-m">JUN</span></div>
+            <div class="cons-body">
+              <div class="cons-row">
+                <h3 class="cons-name">Cybersecurity Summit: Milwaukee</h3>
+                <span class="cons-city">Milwaukee, WI</span>
+              </div>
+              <p class="cons-desc">3rd Annual Milwaukee summit (Cyber Risk Alliance) — invitation-style event for senior leaders and CISOs.</p>
+              <a class="cons-link" href="https://cyberriskalliance.swoogo.com/Milwaukee-2026" target="_blank" rel="noreferrer">cyberriskalliance.swoogo.com<span class="cons-arrow" aria-hidden="true">→</span></a>
+            </div>
+          </li>
+
+          <li class="cons-item">
+            <div class="cons-date"><span class="cons-date-d">11</span><span class="cons-date-m">JUN</span></div>
+            <div class="cons-body">
+              <div class="cons-row">
+                <h3 class="cons-name">WISCON 2026</h3>
+                <span class="cons-city">Madison, WI</span>
+              </div>
+              <p class="cons-desc">Inaugural Wisconsin Information Security Conference — talks, villages, hands-on. Goodman Community Center, Atwood.</p>
+              <a class="cons-link" href="https://wiscon.io/" target="_blank" rel="noreferrer">wiscon.io<span class="cons-arrow" aria-hidden="true">→</span></a>
+            </div>
+          </li>
+
+          <li class="cons-item">
+            <div class="cons-date"><span class="cons-date-d">10</span><span class="cons-date-m">SEP</span></div>
+            <div class="cons-body">
+              <div class="cons-row">
+                <h3 class="cons-name">Blue Team Con</h3>
+                <span class="cons-city">Chicago, IL · Sep 10–13</span>
+              </div>
+              <p class="cons-desc">Defender-focused infosec conference — SOC, IR, threat hunting, training, labs. Swissôtel.</p>
+              <a class="cons-link" href="https://blueteamcon.com/" target="_blank" rel="noreferrer">blueteamcon.com<span class="cons-arrow" aria-hidden="true">→</span></a>
+            </div>
+          </li>
+
+          <li class="cons-item">
+            <div class="cons-date"><span class="cons-date-d">24</span><span class="cons-date-m">SEP</span></div>
+            <div class="cons-body">
+              <div class="cons-row">
+                <h3 class="cons-name">FutureCon Milwaukee</h3>
+                <span class="cons-city">Milwaukee, WI</span>
+              </div>
+              <p class="cons-desc">CISO-led practical sessions on threats, risk, and resilience — Milwaukee regional stop on the FutureCon tour.</p>
+              <a class="cons-link" href="https://futureconevents.com/" target="_blank" rel="noreferrer">futureconevents.com<span class="cons-arrow" aria-hidden="true">→</span></a>
+            </div>
+          </li>
+
+          <li class="cons-item cons-item-highlight">
+            <div class="cons-date"><span class="cons-date-d">21</span><span class="cons-date-m">OCT</span></div>
+            <div class="cons-body">
+              <div class="cons-row">
+                <h3 class="cons-name">ManuSec USA <span class="cons-badge">OT focus</span></h3>
+                <span class="cons-city">Chicago, IL · Oct 21–22</span>
+              </div>
+              <p class="cons-desc">11th annual cyber-security summit for IT &amp; OT practitioners protecting critical manufacturing — directly adjacent to MOCS.</p>
+              <a class="cons-link" href="https://usa.manusecevent.com/" target="_blank" rel="noreferrer">usa.manusecevent.com<span class="cons-arrow" aria-hidden="true">→</span></a>
+            </div>
+          </li>
+        </ul>
+
+        <p style="margin:18px 4px 0;font-size:12.5px;color:var(--muted);text-align:center;">Know an event we missed? <a href="#" onclick="event.preventDefault();document.getElementById('contact-modal').style.display='flex';" style="color:#1f4f8f;font-weight:700;">Let us know</a> and we'll add it.</p>
       </section>
 
 
@@ -1206,6 +1283,31 @@ body.dark .agenda-table th,body.dark .agenda-table td{border-bottom-color:#2c456
         var s = document.createElement('style');
         s.textContent = 'img{-webkit-user-drag:none;user-drag:none;-webkit-touch-callout:none;user-select:none}';
         document.head.appendChild(s);
+      })();
+
+      // Sticky-nav active section highlighting
+      (function(){
+        const navLinks = document.querySelectorAll('.page-nav-link');
+        const sections = Array.from(navLinks).map(l => {
+          const id = l.getAttribute('href').slice(1);
+          return { id, el: document.getElementById(id), link: l };
+        }).filter(s => s.el);
+        if (!sections.length || !('IntersectionObserver' in window)) return;
+        const setActive = (id) => navLinks.forEach(l => l.classList.toggle('is-active', l.getAttribute('href') === '#' + id));
+        const visible = new Map();
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) visible.set(e.target.id, e.intersectionRatio);
+            else visible.delete(e.target.id);
+          });
+          if (visible.size === 0) return;
+          const top = sections
+            .filter(s => visible.has(s.id))
+            .map(s => ({ id: s.id, top: s.el.getBoundingClientRect().top }))
+            .sort((a,b) => Math.abs(a.top) - Math.abs(b.top))[0];
+          if (top) setActive(top.id);
+        }, { rootMargin: '-100px 0px -60% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] });
+        sections.forEach(s => obs.observe(s.el));
       })();
 
       // Recap lightbox
